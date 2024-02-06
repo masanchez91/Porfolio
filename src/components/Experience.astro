@@ -1,0 +1,37 @@
+---
+import ExperienceItem from "./ExperienceItem.astro"
+const EXPERIENCIE = [
+  {
+    date: "Actualmente...",
+    title: "Líder Técnico",
+    company: "Kobro.io",
+    description:
+      "Responsable del desarrollo completo de aplicaciones web, desde el frontend hasta el backend. Implemento medidas integrales de integración, despliegue y testing para garantizar un producto final de alta calidad y rendimiento óptimo.",
+    link: "https://www.kobro.io",
+  },
+  {
+    date: "Octubre 2018",
+    title: "Ingeniero Full Stack",
+    company: "CompuSoluciones",
+    description:
+      "Responsabilidad: Encargado del desarrollo y mantenimiento del backend de aplicaciones web. Implemento estrategias eficientes para el despliegue y la gestión de servidores, asegurando la escalabilidad y el rendimiento óptimo del sistema.",
+  },
+  {
+    date: "Junio 2016",
+    title: "Ingeniero Principal de Backend",
+    company: "Sustam",
+    description:
+      "Encargado de liderar un equipo de más de 12 personas en el desarrollo y mantenimiento tanto del backend como del frontend de aplicaciones web. Implemento estrategias efectivas para el despliegue y gestión de servidores, asegurando la escalabilidad y el rendimiento óptimo del sistema en todo momento.",
+  },
+]
+---
+
+<ol class="relative mt-16">
+  {
+    EXPERIENCIE.map((experiencie) => (
+      <li class="">
+        <ExperienceItem {...experiencie} />
+      </li>
+    ))
+  }
+</ol>
