@@ -8,9 +8,13 @@ import { ViewTransitions } from "astro:transitions"
 interface Props {
   title: string
   description: string
+  image?: string; // Opcional: URL de la imagen para redes sociales
 }
 
 const { description, title } = Astro.props
+// Usar imagen por defecto si no se provee. Asegúrate de que esta imagen exista en public/
+const image = new URL(Astro.props.image ?? "/default-og-image.png", Astro.site).href;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site); // Construir la URL canónica
 ---
 
 <!doctype html>
@@ -21,8 +25,63 @@ const { description, title } = Astro.props
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={image} />
+    <meta property="og:type" content="website" /> 
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content={"The Holy Code"} /> {/* Cambia esto si el nombre del sitio es diferente */} 
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" /> {/* O 'summary' si prefieres una imagen pequeña */} 
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    {/* <meta name="twitter:site" content="@tuUsuarioTwitter"> */}
+    {/* <meta name="twitter:creator" content="@tuUsuarioCreador"> */} 
+
     <title>{title}</title>
     <ViewTransitions />
+
+    {/* Schema Markup (JSON-LD) */}
+    <script type="application/ld+json" set:html={JSON.stringify(
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "name": "Mauro Sánchez", 
+            "url": canonicalURL.href, 
+            "jobTitle": "Ingeniero de Software y Creador de Contenido", 
+            "sameAs": [
+              "https://linkedin.com/in/mesanchez91",
+              "https://twitch.tv/holycode"
+            ],
+            "image": { 
+              "@type": "ImageObject",
+              "url": new URL("/me.webp", Astro.site).href, 
+              "caption": "Mauro Sánchez"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "url": canonicalURL.href, 
+            "name": title, 
+            "description": description, 
+            "publisher": { 
+              "@type": "Person",
+              "name": "Mauro Sánchez"
+            }
+          }
+        ]
+      }
+    )} />
+
   </head>
 
   <body class="relative text-black dark:text-white">
