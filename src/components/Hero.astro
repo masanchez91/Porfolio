@@ -1,7 +1,5 @@
 ---
 const personalImageAlt = "The Holy Code - Mauro Sánchez"
-import Badge from "@/components/Badge.astro"
-import LinkedInIcon from "@/components/icons/LinkedIn.astro"
 import MailIcon from "@/components/icons/Mail.astro"
 import SocialPill from "@/components/SocialPill.astro"
 ---
@@ -14,15 +12,13 @@ import SocialPill from "@/components/SocialPill.astro"
       alt={personalImageAlt}
     />
     <div class="flex flex-col justify-center">
-      <a
-        href="https://linkedin.com/in/mesanchez91"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center transition md:justify-start md:hover:scale-105"
-      >
-        <Badge>Disponible para proyectos</Badge>
-      </a>
-      <p class="text-sm text-holy-neutral mt-1">Indie Creator & Agencia</p>
+      <div class="flex items-center gap-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-holy-action/20 text-holy-action rounded-full text-sm font-semibold border border-holy-action/30">
+          <span class="w-2 h-2 bg-holy-action rounded-full animate-pulse"></span>
+          ✨ Disponible para proyectos
+        </div>
+      </div>
+      <p class="text-sm text-holy-neutral mt-1">🚀 Indie Creator & Agencia</p>
     </div>
   </div>
 
@@ -51,11 +47,7 @@ import SocialPill from "@/components/SocialPill.astro"
   <nav class="flex flex-wrap gap-4 mt-10">
     <SocialPill href="mailto:mauro@holy-code.com">
       <MailIcon class="size-4" />
-      ¿Tienes una idea? → Contáctame
-    </SocialPill>
-    <SocialPill href="https://linkedin.com/in/mesanchez91">
-      <LinkedInIcon class="size-4" />
-      LinkedIn
+      💡 ¿Tienes una idea? → Contáctame
     </SocialPill>
   </nav>
 </div>

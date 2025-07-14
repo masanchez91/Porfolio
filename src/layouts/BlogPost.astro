@@ -11,158 +11,1054 @@ const { title, description, pubDate, updatedDate, heroImage, tags, author } = po
 ---
 
 <Layout title={title} description={description}>
-  <main class="px-4 py-8 max-w-4xl mx-auto">
+  <main class="min-h-screen bg-gradient-to-b from-holy-dark-primary to-holy-dark-secondary/50">
     <!-- Breadcrumb -->
-    <nav class="mb-8">
-      <ol class="flex items-center space-x-2 text-sm text-holy-neutral">
-        <li><a href="/" class="hover:text-holy-action transition-colors">Inicio</a></li>
-        <li>/</li>
-        <li><a href="/blog" class="hover:text-holy-action transition-colors">Blog</a></li>
-        <li>/</li>
-        <li class="text-holy-text-primary">{title}</li>
-      </ol>
+    <nav class="pt-20 pb-8 px-4 max-w-4xl mx-auto">
+      <div class="bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-white/10">
+        <ol class="flex items-center space-x-2 text-sm">
+          <li>
+            <a href="/" class="text-gray-300 hover:text-holy-action transition-colors font-medium">
+              🏠 Inicio
+            </a>
+          </li>
+          <li class="text-gray-500">•</li>
+          <li>
+            <a href="/blog" class="text-gray-300 hover:text-holy-action transition-colors font-medium">
+              📝 Blog
+            </a>
+          </li>
+          <li class="text-gray-500">•</li>
+          <li class="text-white font-semibold truncate">
+            {title}
+          </li>
+        </ol>
+      </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="mb-12">
-      {heroImage && (
-        <img 
-          src={heroImage} 
-          alt={title}
-          class="w-full h-64 md:h-96 object-cover rounded-2xl mb-8 shadow-xl"
-        />
-      )}
-      
-      <div class="space-y-4">
-        <h1 class="font-heading text-4xl md:text-5xl font-bold text-holy-text-primary leading-tight">
-          {title}
-        </h1>
-        
-        <p class="text-xl text-holy-neutral leading-relaxed">
-          {description}
-        </p>
-        
-        <div class="flex flex-wrap items-center gap-4 text-sm text-holy-text-secondary">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 bg-holy-action rounded-full"></span>
-            <span>Por {author}</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 bg-holy-action rounded-full"></span>
-            <time datetime={pubDate.toISOString()}>
-              {pubDate.toLocaleDateString('es-ES', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
-            </time>
-          </div>
-          {updatedDate && (
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 bg-holy-action rounded-full"></span>
-              <span>Actualizado el {updatedDate.toLocaleDateString('es-ES')}</span>
-            </div>
+    <!-- Article Container -->
+    <div class="px-4 max-w-4xl mx-auto pb-16">
+      <!-- Article Card -->
+      <article class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
+
+        <!-- Hero Section -->
+        <header class="p-8 md:p-12 bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
+          {heroImage && (
+            <img 
+              src={heroImage} 
+              alt={title}
+              class="w-full h-64 md:h-80 object-cover rounded-xl mb-8 shadow-lg"
+            />
           )}
-        </div>
-        
-        {tags && tags.length > 0 && (
-          <div class="flex flex-wrap gap-2 mt-4">
-            {tags.map((tag) => (
-              <span class="px-3 py-1 bg-holy-dark-secondary/50 text-holy-action rounded-full text-sm border border-holy-action/20">
-                #{tag}
-              </span>
-            ))}
+          
+          <div class="space-y-6">
+            <h1 class="font-serif text-4xl md:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
+              {title}
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-600 leading-relaxed font-light max-w-3xl">
+              {description}
+            </p>
+            
+            <div class="flex flex-wrap items-center gap-6 text-sm text-gray-500 pt-4">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-holy-action rounded-full flex items-center justify-center">
+                  <span class="text-white text-xs font-semibold">MS</span>
+                </div>
+                <span class="font-medium">Por {author}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+                <time datetime={pubDate.toISOString()} class="font-medium">
+                  {pubDate.toLocaleDateString('es-ES', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </time>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+                <span class="font-medium">5 min de lectura</span>
+              </div>
+            </div>
+            
+            {tags && tags.length > 0 && (
+              <div class="flex flex-wrap gap-2 pt-4">
+                {tags.map((tag) => (
+                  <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300 transition-colors">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </header>
+        </header>
 
-    <!-- Content -->
-    <article class="prose prose-lg prose-invert max-w-none">
-      <slot />
-    </article>
-
-    <!-- Footer -->
-    <footer class="mt-16 pt-8 border-t border-holy-neutral/20">
-      <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-6 border border-holy-action/20">
-        <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
-          ¿Te gustó este artículo?
-        </h3>
-        <p class="text-holy-neutral mb-6">
-          Comparte tu feedback, haz preguntas o cuéntanos sobre tu experiencia. 
-          En The Holy Code nos encanta la conversación sobre desarrollo y tecnología.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a 
-            href="mailto:mauro@holy-code.com?subject=Comentario sobre: {title}"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105"
-          >
-            Enviar comentario
-          </a>
-          <a 
-            href="https://linkedin.com/in/mesanchez91"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-holy-dark-secondary hover:bg-holy-dark-secondary/80 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105 border border-holy-neutral/20"
-          >
-            Conectar en LinkedIn
-          </a>
+        <!-- Content -->
+        <div class="px-8 md:px-12 py-12">
+          <article class="prose prose-xl max-w-none blog-content">
+            <slot />
+          </article>
         </div>
+
+        <!-- Compartir al final del contenido -->
+        <div class="px-8 md:px-12 pb-8 border-b border-gray-200">
+          <div class="max-w-2xl mx-auto">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">
+              📢 ¡Comparte este artículo!
+            </h3>
+            <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+              <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
+                <!-- Copy Link Bottom -->
+                <button id="copy-link-bottom" class="flex flex-col items-center gap-2 p-4 bg-white text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-colors border border-gray-200 justify-center">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                  </svg>
+                  <span class="text-xs">Copiar</span>
+                </button>
+                
+                <!-- Twitter Bottom -->
+                <button id="share-twitter-bottom" class="flex flex-col items-center gap-2 p-4 bg-black text-white rounded-xl font-medium hover:bg-gray-800 transition-colors justify-center">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                  <span class="text-xs">X</span>
+                </button>
+                
+                <!-- Facebook Bottom -->
+                <button id="share-facebook-bottom" class="flex flex-col items-center gap-2 p-4 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors justify-center">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                  <span class="text-xs">Facebook</span>
+                </button>
+                
+                <!-- LinkedIn Bottom -->
+                <button id="share-linkedin-bottom" class="flex flex-col items-center gap-2 p-4 bg-blue-700 text-white rounded-xl font-medium hover:bg-blue-800 transition-colors justify-center">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                  <span class="text-xs">LinkedIn</span>
+                </button>
+                
+                <!-- WhatsApp Bottom -->
+                <button id="share-whatsapp-bottom" class="flex flex-col items-center gap-2 p-4 bg-green-500 text-white rounded-xl font-medium hover:bg-green-600 transition-colors justify-center col-span-2 lg:col-span-1">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+                  </svg>
+                  <span class="text-xs">WhatsApp</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+    <!-- Placeholder for future features -->
+    <div class="mt-16 space-y-6">
+      <!-- Future: Social sharing buttons -->
+      <div id="social-sharing" class="hidden">
+        <!-- Will be implemented in future iteration -->
       </div>
-    </footer>
+      
+      <!-- Future: Like button -->
+      <div id="like-section" class="hidden">
+        <!-- Will be implemented in future iteration -->
+      </div>
+      
+      <!-- Future: Comments section -->
+      <div id="comments-section" class="hidden">
+        <!-- Will be implemented in future iteration -->
+      </div>
+    </div>
+
+        <!-- Footer -->
+        <footer class="border-t border-gray-200 bg-gray-50 px-8 md:px-12 py-12">
+          <div class="max-w-2xl mx-auto text-center space-y-8">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+              ¿Te gustó este artículo?
+            </h3>
+            <p class="text-gray-600 text-lg leading-relaxed">
+              Comparte tu feedback, haz preguntas o cuéntanos sobre tu experiencia. 
+              En The Holy Code nos encanta la conversación sobre desarrollo y tecnología.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+              <a 
+                href="mailto:mauro@holy-code.com?subject=Comentario sobre: {title}"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-holy-action text-white rounded-full font-semibold hover:bg-holy-action/90 transition-all duration-300 hover:scale-105 shadow-lg"
+              >
+                💬 Enviar comentario
+              </a>
+              <a 
+                href="https://linkedin.com/in/mesanchez91"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-700 rounded-full font-semibold hover:bg-gray-50 transition-all duration-300 hover:scale-105 border border-gray-300 shadow-lg"
+              >
+                🔗 Conectar en LinkedIn
+              </a>
+            </div>
+          </div>
+        </footer>
+      </article>
+    </div>
   </main>
 </Layout>
 
-<style>
-  .prose {
-    @apply text-holy-neutral;
+<style is:global>
+  /* Medium-style typography - Enhanced for better readability */
+  .blog-content {
+    font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
+    line-height: 1.8;
+    color: rgba(41, 41, 41, 1);
+    text-align: justify;
+    text-justify: inter-word;
   }
   
+  /* Headings with perfect hierarchy */
   .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-    @apply text-holy-text-primary font-heading;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-top: 64px;
+    margin-bottom: 24px;
+    letter-spacing: -0.022em;
+    text-align: left;
   }
   
+  .prose h1 {
+    font-size: 2.75rem;
+    line-height: 1.1;
+    margin-top: 0;
+    margin-bottom: 32px;
+  }
+  
+  .prose h2 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    margin-top: 56px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 8px;
+  }
+  
+  .prose h3 {
+    font-size: 1.75rem;
+    line-height: 1.3;
+    margin-top: 48px;
+    margin-bottom: 16px;
+    color: #2d3748;
+  }
+  
+  .prose h4 {
+    font-size: 1.375rem;
+    line-height: 1.4;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    color: #4a5568;
+  }
+  
+  /* Perfect paragraph spacing */
+  .prose p {
+    font-size: 21px;
+    line-height: 1.75;
+    margin-bottom: 28px;
+    color: #292929;
+    font-weight: 400;
+    letter-spacing: -0.003em;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  
+  /* Enhanced paragraph spacing for better readability */
+  .prose p + p {
+    margin-top: 8px;
+  }
+  
+  .prose p:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Links with subtle styling */
   .prose a {
-    @apply text-holy-action hover:text-holy-action/80 transition-colors;
+    color: #1a8917;
+    text-decoration: underline;
+    text-decoration-color: rgba(26, 137, 23, 0.4);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+    transition: all 0.2s ease;
+    font-weight: 500;
   }
   
+  .prose a:hover {
+    text-decoration-color: rgba(26, 137, 23, 1);
+    color: #0f5132;
+  }
+  
+  /* Strong text */
   .prose strong {
-    @apply text-holy-text-primary font-semibold;
+    font-weight: 700;
+    color: #1a1a1a;
   }
   
+  /* Emphasis */
+  .prose em {
+    font-style: italic;
+    color: #4a5568;
+  }
+  
+  /* Inline code with better styling */
   .prose code {
-    @apply bg-holy-dark-secondary/50 text-holy-action px-1.5 py-0.5 rounded text-sm;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #d63384;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid #dee2e6;
+    font-feature-settings: "liga" 1, "calt" 1;
   }
   
+  /* Enhanced VS Code / GitHub style code blocks */
   .prose pre {
-    @apply bg-holy-dark-secondary/80 border border-holy-neutral/20 rounded-lg;
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    color: #e6edf3;
+    border-radius: 12px;
+    margin: 40px 0;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      0 16px 32px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border: 1px solid #30363d;
+    font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-feature-settings: "liga" 1, "calt" 1;
   }
   
+  /* Code block header with language indicator */
+  .prose pre::before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #21262d 0%, #161b22 100%);
+    color: #7d8590;
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid #30363d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Language icon indicators */
+  .prose pre[data-language="JAVASCRIPT"]::before,
+  .prose pre[data-language="JS"]::before {
+    content: "🟨 " attr(data-language);
+  }
+  
+  .prose pre[data-language="TYPESCRIPT"]::before,
+  .prose pre[data-language="TS"]::before {
+    content: "🔷 " attr(data-language);
+  }
+  
+  .prose pre[data-language="PYTHON"]::before,
+  .prose pre[data-language="PY"]::before {
+    content: "🐍 " attr(data-language);
+  }
+  
+  .prose pre[data-language="CSS"]::before {
+    content: "🎨 " attr(data-language);
+  }
+  
+  .prose pre[data-language="HTML"]::before {
+    content: "🌐 " attr(data-language);
+  }
+  
+  .prose pre[data-language="JSON"]::before {
+    content: "📋 " attr(data-language);
+  }
+  
+  .prose pre[data-language="BASH"]::before,
+  .prose pre[data-language="SH"]::before {
+    content: "⚡ " attr(data-language);
+  }
+  
+  /* Code content area with enhanced styling */
   .prose pre code {
-    @apply bg-transparent text-holy-text-primary px-0 py-0;
+    display: block;
+    background: transparent;
+    color: inherit;
+    padding: 56px 24px 24px 24px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.7;
+    border-radius: 0;
+    overflow-x: auto;
+    white-space: pre;
+    font-feature-settings: "liga" 1, "calt" 1;
+    
+    /* Custom scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: #30363d #0d1117;
   }
   
+  .prose pre code::-webkit-scrollbar {
+    height: 10px;
+  }
+  
+  .prose pre code::-webkit-scrollbar-track {
+    background: #161b22;
+    border-radius: 6px;
+  }
+  
+  .prose pre code::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #30363d 0%, #484f58 100%);
+    border-radius: 6px;
+    border: 1px solid #21262d;
+  }
+  
+  .prose pre code::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #484f58 0%, #6e7681 100%);
+  }
+  
+  /* Enhanced copy button with modern design */
+  .copy-button {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: linear-gradient(135deg, #21262d 0%, #30363d 100%);
+    border: 1px solid #484f58;
+    color: #f0f6fc;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.9;
+    z-index: 10;
+    letter-spacing: 0.5px;
+  }
+  
+  .copy-button:hover {
+    background: linear-gradient(135deg, #30363d 0%, #484f58 100%);
+    border-color: #6e7681;
+    opacity: 1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .copy-button.copied {
+    background: linear-gradient(135deg, #238636 0%, #2ea043 100%);
+    border-color: #46954a;
+    color: white;
+  }
+  
+  .copy-button svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  /* Enhanced syntax highlighting colors (GitHub Dark theme) */
+  .prose pre code .token.comment {
+    color: #8b949e;
+    font-style: italic;
+  }
+  
+  .prose pre code .token.string {
+    color: #a5d6ff;
+  }
+  
+  .prose pre code .token.number {
+    color: #79c0ff;
+  }
+  
+  .prose pre code .token.keyword {
+    color: #ff7b72;
+    font-weight: 600;
+  }
+  
+  .prose pre code .token.function {
+    color: #d2a8ff;
+    font-weight: 500;
+  }
+  
+  .prose pre code .token.variable {
+    color: #ffa657;
+  }
+  
+  .prose pre code .token.operator {
+    color: #ff7b72;
+  }
+  
+  .prose pre code .token.punctuation {
+    color: #e6edf3;
+  }
+  
+  .prose pre code .token.property {
+    color: #79c0ff;
+  }
+  
+  .prose pre code .token.class-name {
+    color: #f69d50;
+    font-weight: 500;
+  }
+  
+  /* Line numbers support with enhanced styling */
+  .prose pre.line-numbers {
+    padding-left: 0;
+  }
+  
+  .prose pre.line-numbers code {
+    padding-left: 72px;
+    position: relative;
+  }
+  
+  .prose pre.line-numbers::after {
+    content: '';
+    position: absolute;
+    top: 48px;
+    left: 0;
+    bottom: 0;
+    width: 56px;
+    background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+    border-right: 1px solid #30363d;
+    pointer-events: none;
+  }
+  
+  /* Enhanced visual annotations for good/bad practices */
+  .prose pre code .annotation-good {
+    background: rgba(46, 160, 67, 0.1);
+    border-left: 3px solid #2ea043;
+    padding-left: 12px;
+    margin-left: -12px;
+    display: block;
+    position: relative;
+  }
+  
+  .prose pre code .annotation-good::before {
+    content: '✅ ';
+    color: #46954a;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  .prose pre code .annotation-bad {
+    background: rgba(248, 81, 73, 0.1);
+    border-left: 3px solid #f85149;
+    padding-left: 12px;
+    margin-left: -12px;
+    display: block;
+    position: relative;
+  }
+  
+  .prose pre code .annotation-bad::before {
+    content: '❌ ';
+    color: #f85149;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  .prose pre code .annotation-warning {
+    background: rgba(210, 153, 34, 0.1);
+    border-left: 3px solid #d29922;
+    padding-left: 12px;
+    margin-left: -12px;
+    display: block;
+    position: relative;
+  }
+  
+  .prose pre code .annotation-warning::before {
+    content: '⚠️ ';
+    color: #d29922;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  .prose pre code .annotation-info {
+    background: rgba(88, 166, 255, 0.1);
+    border-left: 3px solid #58a6ff;
+    padding-left: 12px;
+    margin-left: -12px;
+    display: block;
+    position: relative;
+  }
+  
+  .prose pre code .annotation-info::before {
+    content: '💡 ';
+    color: #58a6ff;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  /* Highlight specific lines with better styling */
+  .prose pre code .line-highlight {
+    background: rgba(88, 166, 255, 0.15);
+    border-left: 3px solid #58a6ff;
+    padding-left: 12px;
+    margin-left: -12px;
+    display: block;
+    box-shadow: inset 4px 0 0 rgba(88, 166, 255, 0.3);
+  }
+  
+  .prose pre code .line-error {
+    background: rgba(248, 81, 73, 0.15);
+    border-left: 3px solid #f85149;
+    padding-left: 12px;
+    margin-left: -12px;
+    display: block;
+    box-shadow: inset 4px 0 0 rgba(248, 81, 73, 0.3);
+  }
+  
+  .prose pre code .line-success {
+    background: rgba(46, 160, 67, 0.15);
+    border-left: 3px solid #2ea043;
+    padding-left: 12px;
+    margin-left: -12px;
+    display: block;
+    box-shadow: inset 4px 0 0 rgba(46, 160, 67, 0.3);
+  }
+  
+  /* Enhanced blockquotes with emoji support */
   .prose blockquote {
-    @apply border-l-4 border-holy-action pl-4 italic text-holy-text-secondary;
+    border-left: 4px solid #1a8917;
+    padding: 20px 24px;
+    margin: 40px 0;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.6;
+    color: #4a5568;
+    background: linear-gradient(135deg, rgba(26, 137, 23, 0.03) 0%, rgba(26, 137, 23, 0.01) 100%);
+    border-radius: 0 12px 12px 0;
+    position: relative;
+    text-align: left;
   }
   
-  .prose table {
-    @apply border-collapse border border-holy-neutral/20;
+  .prose blockquote::before {
+    content: '"';
+    font-size: 4rem;
+    color: rgba(26, 137, 23, 0.2);
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-family: serif;
   }
   
-  .prose th, .prose td {
-    @apply border border-holy-neutral/20 px-4 py-2;
-  }
-  
-  .prose th {
-    @apply bg-holy-dark-secondary/50 text-holy-text-primary font-semibold;
-  }
-  
+  /* Lists with proper spacing and emoji support */
   .prose ul, .prose ol {
-    @apply space-y-2;
+    margin: 32px 0;
+    padding-left: 28px;
   }
   
   .prose li {
-    @apply text-holy-neutral;
+    font-size: 21px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    color: #292929;
+    text-align: justify;
+    text-justify: inter-word;
   }
-</style> 
+  
+  .prose ul li {
+    list-style-type: none;
+    position: relative;
+  }
+  
+  .prose ul li::before {
+    content: '•';
+    color: #1a8917;
+    font-weight: bold;
+    position: absolute;
+    left: -20px;
+    font-size: 1.2em;
+  }
+  
+  .prose ol li {
+    list-style-type: decimal;
+    list-style-position: outside;
+    color: #1a8917;
+    font-weight: 600;
+  }
+  
+  .prose ol li::marker {
+    color: #1a8917;
+    font-weight: 600;
+  }
+  
+  /* Enhanced tables with better design */
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 40px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e7eb;
+  }
+  
+  .prose th, .prose td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  
+  .prose th {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    font-weight: 700;
+    color: #1a1a1a;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  
+  .prose td {
+    font-size: 16px;
+    color: #374151;
+    transition: background-color 0.2s ease;
+  }
+  
+  .prose tr:hover td {
+    background-color: rgba(249, 250, 251, 0.8);
+  }
+  
+  /* Enhanced images with better styling */
+  .prose img {
+    border-radius: 12px;
+    margin: 40px auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 
+      0 10px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .prose img:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 20px 40px -5px rgba(0, 0, 0, 0.15),
+      0 10px 20px -5px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Horizontal rules with style */
+  .prose hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(135deg, #e5e7eb 0%, #f3f4f6 50%, #e5e7eb 100%);
+    margin: 56px 0;
+    border-radius: 1px;
+  }
+  
+  /* Responsive typography improvements */
+  @media (max-width: 768px) {
+    .prose h1 {
+      font-size: 2.25rem;
+      line-height: 1.2;
+    }
+    
+    .prose h2 {
+      font-size: 1.875rem;
+      line-height: 1.3;
+    }
+    
+    .prose h3 {
+      font-size: 1.5rem;
+      line-height: 1.4;
+    }
+    
+    .prose p, .prose li {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    
+    .prose blockquote {
+      font-size: 19px;
+      padding: 16px 20px;
+      margin: 32px 0;
+    }
+    
+    .prose pre {
+      margin: 32px -20px;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+    }
+    
+    .prose pre code {
+      padding: 48px 20px 20px 20px;
+      font-size: 13px;
+    }
+    
+    .prose table {
+      font-size: 14px;
+    }
+    
+    .prose th, .prose td {
+      padding: 12px 16px;
+    }
+  }
+  
+  /* Smooth animations for better UX */
+  .prose * {
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+  
+  /* Support for emoji in headings and text */
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6,
+  .prose p, .prose li, .prose td, .prose th {
+    font-variant-emoji: emoji;
+  }
+  
+  /* Special styling for first paragraph (intro) */
+  .prose p:first-of-type {
+    font-size: 23px;
+    font-weight: 400;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  
+  /* Call-to-action styling for important paragraphs */
+  .prose p strong:only-child {
+    display: block;
+    text-align: center;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, rgba(26, 137, 23, 0.1) 0%, rgba(26, 137, 23, 0.05) 100%);
+    border-radius: 8px;
+    border-left: 4px solid #1a8917;
+    margin: 32px 0;
+    font-size: 20px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced code blocks functionality
+    const codeBlocks = document.querySelectorAll('pre code');
+    codeBlocks.forEach((codeBlock) => {
+      const pre = codeBlock.parentElement;
+      if (!pre) return;
+      
+      // Detect language from class names
+      const languageClass = [...codeBlock.classList].find(cls => cls.startsWith('language-'));
+      const language = languageClass ? languageClass.replace('language-', '') : 'texto';
+      
+      // Set language attribute for styling
+      pre.setAttribute('data-language', language.toUpperCase());
+      
+      // Create enhanced copy button with icon
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.setAttribute('aria-label', 'Copiar código');
+      button.innerHTML = `
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+        </svg>
+        Copiar
+      `;
+      
+      button.addEventListener('click', async () => {
+        try {
+          const textContent = codeBlock.textContent || '';
+          await navigator.clipboard.writeText(textContent);
+          
+          button.innerHTML = `
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            ¡Copiado!
+          `;
+          button.classList.add('copied');
+          
+          setTimeout(() => {
+            button.innerHTML = `
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+              </svg>
+              Copiar
+            `;
+            button.classList.remove('copied');
+          }, 2000);
+        } catch (err) {
+          console.error('Error al copiar código:', err);
+          button.innerHTML = `
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Error
+          `;
+          setTimeout(() => {
+            button.innerHTML = `
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+              </svg>
+              Copiar
+            `;
+          }, 2000);
+        }
+      });
+      
+      pre.appendChild(button);
+      
+      // Add line numbers if class exists
+      if (pre.classList.contains('line-numbers')) {
+        addLineNumbers(codeBlock);
+      }
+      
+      // Process annotations for good/bad practices
+      processCodeAnnotations(codeBlock);
+    });
+    
+    // Function to add line numbers
+    function addLineNumbers(codeBlock) {
+      const lines = codeBlock.textContent.split('\n');
+      const lineNumbersContainer = document.createElement('div');
+      lineNumbersContainer.className = 'line-numbers-container';
+      lineNumbersContainer.style.cssText = `
+        position: absolute;
+        top: 48px;
+        left: 0;
+        width: 50px;
+        background: #161b22;
+        border-right: 1px solid #21262d;
+        padding: 0 8px;
+        font-size: 12px;
+        line-height: 1.6;
+        color: #6e7681;
+        text-align: right;
+        user-select: none;
+        pointer-events: none;
+      `;
+      
+      lines.forEach((_, index) => {
+        if (index < lines.length - 1 || lines[index].trim() !== '') {
+          const lineNumber = document.createElement('div');
+          lineNumber.textContent = (index + 1).toString();
+          lineNumber.style.height = '22.4px'; // Match line height
+          lineNumbersContainer.appendChild(lineNumber);
+        }
+      });
+      
+      codeBlock.parentElement.appendChild(lineNumbersContainer);
+    }
+    
+    // Function to process code annotations
+    function processCodeAnnotations(codeBlock) {
+      const content = codeBlock.innerHTML;
+      
+      // Replace annotation markers with styled spans
+      const annotatedContent = content
+        .replace(/\/\/ ✅([^\n]*)/g, '<span class="annotation-good">// $1</span>')
+        .replace(/\/\* ✅([^*]*)\*\//g, '<span class="annotation-good">/* $1 */</span>')
+        .replace(/# ✅([^\n]*)/g, '<span class="annotation-good"># $1</span>')
+        
+        .replace(/\/\/ ❌([^\n]*)/g, '<span class="annotation-bad">// $1</span>')
+        .replace(/\/\* ❌([^*]*)\*\//g, '<span class="annotation-bad">/* $1 */</span>')
+        .replace(/# ❌([^\n]*)/g, '<span class="annotation-bad"># $1</span>')
+        
+        .replace(/\/\/ ⚠️([^\n]*)/g, '<span class="annotation-warning">// $1</span>')
+        .replace(/\/\* ⚠️([^*]*)\*\//g, '<span class="annotation-warning">/* $1 */</span>')
+        .replace(/# ⚠️([^\n]*)/g, '<span class="annotation-warning"># $1</span>')
+        
+        .replace(/\/\/ 💡([^\n]*)/g, '<span class="annotation-info">// $1</span>')
+        .replace(/\/\* 💡([^*]*)\*\//g, '<span class="annotation-info">/* $1 */</span>')
+        .replace(/# 💡([^\n]*)/g, '<span class="annotation-info"># $1</span>');
+      
+      codeBlock.innerHTML = annotatedContent;
+    }
+
+    // Social sharing functionality
+    const shareTitle = document.title;
+    const shareUrl = window.location.href;
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const shareText = metaDescription ? metaDescription.getAttribute('content') || '' : '';
+    
+    // Twitter sharing - solo botones bottom
+    const twitterButtons = document.querySelectorAll('#share-twitter-bottom');
+    twitterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}&url=${encodeURIComponent(shareUrl)}&via=MauroSanchez25`;
+        window.open(twitterUrl, '_blank', 'width=550,height=420');
+      });
+    });
+    
+    // Facebook sharing - solo botones bottom
+    const facebookButtons = document.querySelectorAll('#share-facebook-bottom');
+    facebookButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+        window.open(facebookUrl, '_blank', 'width=550,height=420');
+      });
+    });
+    
+    // LinkedIn sharing - solo botones bottom
+    const linkedinButtons = document.querySelectorAll('#share-linkedin-bottom');
+    linkedinButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+        window.open(linkedinUrl, '_blank', 'width=550,height=420');
+      });
+    });
+    
+    // WhatsApp sharing - solo botones bottom
+    const whatsappButtons = document.querySelectorAll('#share-whatsapp-bottom');
+    whatsappButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const whatsappText = `${shareTitle} - ${shareUrl}`;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
+        window.open(whatsappUrl, '_blank');
+      });
+    });
+    
+    // Copy link functionality - solo botones bottom
+    const copyLinkButtons = document.querySelectorAll('#copy-link-bottom');
+    copyLinkButtons.forEach(button => {
+      button.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(shareUrl);
+          
+          // Visual feedback
+          const originalContent = button.innerHTML;
+          
+          button.innerHTML = `
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-xs">¡Copiado!</span>
+          `;
+          
+          button.classList.add('text-green-600');
+          
+          setTimeout(() => {
+            button.innerHTML = originalContent;
+            button.classList.remove('text-green-600');
+          }, 2000);
+        } catch (err) {
+          console.error('Error al copiar enlace:', err);
+          // Mostrar error visual
+          button.classList.add('text-red-500');
+          setTimeout(() => {
+            button.classList.remove('text-red-500');
+          }, 2000);
+        }
+      });
+    });
+  });
+</script> 
