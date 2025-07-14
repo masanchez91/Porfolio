@@ -1,43 +1,57 @@
 ---
-const personalImageAlt = "Mauro Sánchez"
+const personalImageAlt = "The Holy Code - Mauro Sánchez"
 import Badge from "@/components/Badge.astro"
 import LinkedInIcon from "@/components/icons/LinkedIn.astro"
 import MailIcon from "@/components/icons/Mail.astro"
 import SocialPill from "@/components/SocialPill.astro"
 ---
 
-<div class="max-w-xl">
-  <div class="flex gap-4 mb-4">
+<div class="max-w-4xl">
+  <div class="flex gap-4 mb-6">
     <img
-      class="rounded-full shadow-lg size-16"
+      class="rounded-full shadow-lg size-20"
       src="/holycode.webp"
       alt={personalImageAlt}
     />
-    <a
-      href="https://linkedin.com/in/mesanchez91"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="flex items-center transition md:justify-center md:hover:scale-105"
-    >
-      <Badge>Trabajo en Kobro.io</Badge>
-    </a>
+    <div class="flex flex-col justify-center">
+      <a
+        href="https://linkedin.com/in/mesanchez91"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center transition md:justify-start md:hover:scale-105"
+      >
+        <Badge>Disponible para proyectos</Badge>
+      </a>
+      <p class="text-sm text-holy-neutral mt-1">Indie Creator & Agencia</p>
+    </div>
   </div>
-  <h1
-    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
-  >
-  ¡Hola! Soy Mauro Sánchez
-  </h1>
-  <p
-    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
-  >
-    Un apasionado <strong> Ingeniero de Software y Creador de Contenido sobre Programación</strong> 
-    con más de 10 años de experiencia con sede en Zapopan, México. 
-    Mi pasión por la programación me ha llevado a especializarme en el desarrollo de aplicaciones web innovadoras y únicas que cautivan a los usuarios.
-  </p>
-  <nav class="flex flex-wrap gap-4 mt-8">
+
+  <div class="space-y-6">
+    <h1 class="font-heading text-hero font-bold tracking-tight text-holy-text-primary leading-tight">
+      Donde las ideas se vuelven código.
+    </h1>
+    
+    <p class="text-xl font-heading font-semibold text-holy-action">
+      The Holy Code transforma lo imposible en producto digital.
+    </p>
+    
+    <p class="text-lg text-holy-neutral leading-relaxed max-w-3xl">
+      Somos una agencia especializada en crear <strong class="text-holy-text-primary font-semibold">MVPs revolucionarios</strong>, 
+      <strong class="text-holy-text-primary font-semibold">aplicaciones web innovadoras</strong> y 
+      <strong class="text-holy-text-primary font-semibold">soluciones digitales únicas</strong> 
+      que cautivan usuarios y transforman ideas en productos exitosos.
+    </p>
+
+    <p class="text-base text-holy-text-secondary">
+      Con más de 10 años de experiencia, liderados por Mauro Sánchez, 
+      combinamos la agilidad de un indie creator con la solidez de una agencia establecida.
+    </p>
+  </div>
+
+  <nav class="flex flex-wrap gap-4 mt-10">
     <SocialPill href="mailto:mauro.sanchez.simental@gmail.com">
       <MailIcon class="size-4" />
-      Contáctame
+      ¿Tienes una idea? → Contáctame
     </SocialPill>
     <SocialPill href="https://linkedin.com/in/mesanchez91">
       <LinkedInIcon class="size-4" />
@@ -45,3 +59,21 @@ import SocialPill from "@/components/SocialPill.astro"
     </SocialPill>
   </nav>
 </div>
+
+<style>
+  /* Aplicar animación sutil de entrada */
+  div {
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -1,0 +1,166 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const featuredPost = sortedPosts[0];
+const recentPosts = sortedPosts.slice(1);
+---
+
+<Layout 
+  title="Blog - The Holy Code | Desarrollo, Tecnología y Creatividad"
+  description="Explora artículos sobre desarrollo indie, MVPs, tecnología y la filosofía detrás de The Holy Code. Reflexiones y aprendizajes de un desarrollador apasionado."
+>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-24">
+      <!-- Hero del Blog -->
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h1 class="font-heading text-4xl md:text-5xl font-bold text-holy-text-primary mb-6">
+          Blog de The Holy Code
+        </h1>
+        <p class="text-xl text-holy-neutral leading-relaxed max-w-2xl mx-auto">
+          Reflexiones sobre desarrollo, tecnología y creatividad. 
+          Comparto experiencias, aprendizajes y la filosofía detrás de cada línea de código.
+        </p>
+      </div>
+
+      <!-- Post Destacado -->
+      {featuredPost && (
+        <section class="mb-16">
+          <h2 class="font-heading text-2xl font-semibold text-holy-text-primary mb-8">
+            Artículo Destacado
+          </h2>
+          <article class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20 hover:border-holy-action/40 transition-all duration-300">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div class="space-y-6">
+                <div class="flex flex-wrap gap-2">
+                  {featuredPost.data.tags.map((tag) => (
+                    <span class="px-3 py-1 bg-holy-action/20 text-holy-action rounded-full text-sm">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+                
+                <h3 class="font-heading text-2xl font-bold text-holy-text-primary">
+                  <a href={`/blog/${featuredPost.slug}`} class="hover:text-holy-action transition-colors">
+                    {featuredPost.data.title}
+                  </a>
+                </h3>
+                
+                <p class="text-holy-neutral leading-relaxed">
+                  {featuredPost.data.description}
+                </p>
+                
+                <div class="flex items-center gap-4 text-sm text-holy-text-secondary">
+                  <span>{featuredPost.data.author}</span>
+                  <span>•</span>
+                  <time datetime={featuredPost.data.pubDate.toISOString()}>
+                    {featuredPost.data.pubDate.toLocaleDateString('es-ES', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </time>
+                </div>
+                
+                <a 
+                  href={`/blog/${featuredPost.slug}`}
+                  class="inline-flex items-center gap-2 px-6 py-3 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105"
+                >
+                  Leer artículo
+                  <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                </a>
+              </div>
+              
+              {featuredPost.data.heroImage && (
+                <div class="order-first md:order-last">
+                  <img 
+                    src={featuredPost.data.heroImage} 
+                    alt={featuredPost.data.title}
+                    class="w-full h-64 object-cover rounded-xl shadow-lg"
+                  />
+                </div>
+              )}
+            </div>
+          </article>
+        </section>
+      )}
+
+      <!-- Posts Recientes -->
+      {recentPosts.length > 0 && (
+        <section>
+          <h2 class="font-heading text-2xl font-semibold text-holy-text-primary mb-8">
+            Artículos Recientes
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {recentPosts.map((post) => (
+              <article class="group bg-holy-dark-secondary/20 backdrop-blur-sm rounded-2xl p-6 border border-holy-neutral/20 hover:border-holy-action/30 transition-all duration-300 hover:shadow-lg hover:shadow-holy-action/10">
+                {post.data.heroImage && (
+                  <img 
+                    src={post.data.heroImage} 
+                    alt={post.data.title}
+                    class="w-full h-48 object-cover rounded-xl mb-4 group-hover:scale-105 transition-transform duration-300"
+                  />
+                )}
+                
+                <div class="space-y-4">
+                  <div class="flex flex-wrap gap-2">
+                    {post.data.tags.slice(0, 2).map((tag) => (
+                      <span class="px-2 py-1 bg-holy-action/20 text-holy-action rounded-full text-xs">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <h3 class="font-heading text-xl font-semibold text-holy-text-primary group-hover:text-holy-action transition-colors">
+                    <a href={`/blog/${post.slug}`}>
+                      {post.data.title}
+                    </a>
+                  </h3>
+                  
+                  <p class="text-holy-neutral text-sm leading-relaxed">
+                    {post.data.description}
+                  </p>
+                  
+                  <div class="flex items-center justify-between text-xs text-holy-text-secondary pt-2 border-t border-holy-neutral/10">
+                    <span>{post.data.author}</span>
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('es-ES', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                      })}
+                    </time>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Newsletter/CTA -->
+      <section class="mt-16 text-center">
+        <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20 max-w-2xl mx-auto">
+          <h3 class="font-heading text-2xl font-semibold text-holy-text-primary mb-4">
+            ¿Quieres más contenido como este?
+          </h3>
+          <p class="text-holy-neutral mb-6">
+            Comparte tus preguntas, ideas o temas que te gustaría que cubra. 
+            La mejor inspiración viene de la conversación.
+          </p>
+          <a 
+            href="mailto:mauro.sanchez.simental@gmail.com?subject=Sugerencia para el blog"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105"
+          >
+            Enviar sugerencia
+            <span>✨</span>
+          </a>
+        </div>
+      </section>
+    </SectionContainer>
+  </main>
+</Layout> 

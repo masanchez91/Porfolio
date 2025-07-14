@@ -1,0 +1,221 @@
+---
+import MailIcon from "./icons/Mail.astro";
+---
+
+<div class="max-w-4xl mx-auto">
+  <!-- Header -->
+  <div class="text-center mb-12">
+    <h2 class="font-heading text-4xl font-bold text-holy-text-primary mb-4">
+      Estoy escuchando
+    </h2>
+    <p class="text-xl text-holy-neutral leading-relaxed max-w-2xl mx-auto">
+      ¿Tienes una idea que quieres convertir en realidad? Cuéntame tu proyecto, 
+      tus desafíos o simplemente di hola. Cada gran producto digital comienza con una conversación.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <!-- Formulario -->
+    <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20">
+      <form
+        action="https://formspree.io/f/xwpkwjpk"
+        method="POST"
+        class="space-y-6"
+      >
+        <!-- Honeypot field -->
+        <input type="hidden" name="_subject" value="Nuevo mensaje desde The Holy Code" />
+        <input type="hidden" name="_next" value="https://holy-code.com/gracias" />
+        <div class="hidden">
+          <label>
+            No llenar este campo si eres humano:
+            <input name="_gotcha" />
+          </label>
+        </div>
+
+        <!-- Nombre -->
+        <div>
+          <label for="name" class="block text-holy-text-primary font-semibold mb-2">
+            Nombre *
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full px-4 py-3 bg-holy-dark-primary/50 border border-holy-neutral/30 rounded-lg text-holy-text-primary placeholder-holy-neutral/50 focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
+            placeholder="Tu nombre"
+          />
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label for="email" class="block text-holy-text-primary font-semibold mb-2">
+            Email *
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-4 py-3 bg-holy-dark-primary/50 border border-holy-neutral/30 rounded-lg text-holy-text-primary placeholder-holy-neutral/50 focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
+            placeholder="tu@email.com"
+          />
+        </div>
+
+        <!-- Asunto -->
+        <div>
+          <label for="subject" class="block text-holy-text-primary font-semibold mb-2">
+            Asunto
+          </label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            class="w-full px-4 py-3 bg-holy-dark-primary/50 border border-holy-neutral/30 rounded-lg text-holy-text-primary placeholder-holy-neutral/50 focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
+            placeholder="¿En qué puedo ayudarte?"
+          />
+        </div>
+
+        <!-- Tipo de proyecto -->
+        <div>
+          <label for="project-type" class="block text-holy-text-primary font-semibold mb-2">
+            Tipo de proyecto
+          </label>
+          <select
+            id="project-type"
+            name="project-type"
+            class="w-full px-4 py-3 bg-holy-dark-primary/50 border border-holy-neutral/30 rounded-lg text-holy-text-primary focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
+          >
+            <option value="">Seleccionar...</option>
+            <option value="desarrollo-web">Desarrollo Web/App</option>
+            <option value="mvp">MVP para Startup</option>
+            <option value="consultoria">Consultoría Técnica</option>
+            <option value="co-creacion">Co-creación de Ideas</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <!-- Mensaje -->
+        <div>
+          <label for="message" class="block text-holy-text-primary font-semibold mb-2">
+            Mensaje *
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            required
+            class="w-full px-4 py-3 bg-holy-dark-primary/50 border border-holy-neutral/30 rounded-lg text-holy-text-primary placeholder-holy-neutral/50 focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors resize-none"
+            placeholder="Cuéntame sobre tu proyecto, idea o pregunta. Mientras más detalles compartas, mejor podré ayudarte."
+          ></textarea>
+        </div>
+
+        <!-- Botón de envío -->
+        <button
+          type="submit"
+          class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-lg font-semibold text-button transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-holy-action/25"
+        >
+          <MailIcon class="size-5" />
+          Enviar mensaje
+        </button>
+      </form>
+    </div>
+
+    <!-- Información de contacto -->
+    <div class="space-y-8">
+      <!-- Contacto directo -->
+      <div class="bg-holy-dark-secondary/20 backdrop-blur-sm rounded-2xl p-6 border border-holy-neutral/20">
+        <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
+          Contacto directo
+        </h3>
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="p-2 bg-holy-action/20 rounded-lg">
+              <MailIcon class="size-5 text-holy-action" />
+            </div>
+            <div>
+              <p class="text-holy-text-primary font-semibold">Email</p>
+              <a 
+                href="mailto:mauro.sanchez.simental@gmail.com"
+                class="text-holy-action hover:text-holy-action/80 transition-colors"
+              >
+                mauro.sanchez.simental@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tiempo de respuesta -->
+      <div class="bg-holy-dark-secondary/20 backdrop-blur-sm rounded-2xl p-6 border border-holy-neutral/20">
+        <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
+          Tiempo de respuesta
+        </h3>
+        <div class="space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 bg-holy-action rounded-full"></span>
+            <span class="text-holy-neutral">Email: 24-48 horas</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 bg-holy-action rounded-full"></span>
+            <span class="text-holy-neutral">Proyectos urgentes: mismo día</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 bg-holy-action rounded-full"></span>
+            <span class="text-holy-neutral">Consultas técnicas: 2-3 días</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proceso -->
+      <div class="bg-holy-dark-secondary/20 backdrop-blur-sm rounded-2xl p-6 border border-holy-neutral/20">
+        <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
+          ¿Qué sigue?
+        </h3>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-6 h-6 bg-holy-action text-holy-text-primary rounded-full flex items-center justify-center text-sm font-bold">1</span>
+            <div>
+              <p class="text-holy-text-primary font-semibold">Conversación inicial</p>
+              <p class="text-holy-neutral text-sm">Entendemos tu proyecto y objetivos</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-6 h-6 bg-holy-action text-holy-text-primary rounded-full flex items-center justify-center text-sm font-bold">2</span>
+            <div>
+              <p class="text-holy-text-primary font-semibold">Propuesta personalizada</p>
+              <p class="text-holy-neutral text-sm">Estrategia, timeline y presupuesto</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-6 h-6 bg-holy-action text-holy-text-primary rounded-full flex items-center justify-center text-sm font-bold">3</span>
+            <div>
+              <p class="text-holy-text-primary font-semibold">Desarrollo colaborativo</p>
+              <p class="text-holy-neutral text-sm">Transformamos la idea en realidad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Animaciones para campos de formulario */
+  input:focus, textarea:focus, select:focus {
+    transform: translateY(-1px);
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Estilos para validación */
+  input:invalid:not(:placeholder-shown) {
+    border-color: #ef4444;
+  }
+  
+  input:valid:not(:placeholder-shown) {
+    border-color: #28A745;
+  }
+</style> 

@@ -29,77 +29,189 @@ const TAGS = {
     icon: TypeScript,
   },
 }
+
 const PROJECTS = [
   {
     title: "MEALMATE+ - Tu Compañero de Estilo de Vida Personalizado",
-    description:
-      "MealMate+ es una plataforma digital diseñada para brindarte una experiencia de estilo de vida personalizada.",
+    description: "Plataforma digital integral diseñada para transformar la gestión nutricional en una experiencia personalizada y motivadora. Desarrollada con tecnología de vanguardia para ofrecer recomendaciones inteligentes y seguimiento nutricional.",
+    longDescription: "MealMate+ representa la evolución del seguimiento nutricional, combinando inteligencia artificial con diseño centrado en el usuario. El proyecto incluyó desarrollo de algoritmos de recomendación personalizados, integración con APIs nutricionales y diseño de una experiencia móvil-first que ha captado la atención de usuarios en múltiples países.",
     link: "https://mealmeatplus.holy-code.com/",
     github: "https://github.com/masanchez91/MealMate",
     image: "/projects/mealmeat.webp",
     tags: [TAGS.REACT, TAGS.TAILWIND],
+    type: "indie",
+    status: "Activo",
+    timeline: "8 semanas",
+    impact: "500+ usuarios activos",
+    achievements: [
+      "Algoritmo de recomendación personalizado",
+      "Integración con bases de datos nutricionales",
+      "Diseño responsive optimizado",
+      "Sistema de gamificación integrado"
+    ]
   },
   {
     title: "Kondominios - Gestión Integral de Condominios",
-    description:
-      "Plataforma para la gestión de condominios, incluyendo avisos, notificaciones, pagos, clientes, proveedores, amenidades y más.",
+    description: "Solución completa para digitalizar la gestión de condominios, incluyendo avisos, notificaciones, pagos, gestión de clientes, proveedores y amenidades. Una transformación digital completa del sector inmobiliario.",
+    longDescription: "Kondominios surgió como respuesta a la necesidad de modernizar la gestión tradicional de condominios en México. El proyecto abarcó desde la arquitectura del sistema hasta la experiencia del usuario final, incluyendo módulos para administradores, residentes y proveedores. La plataforma ha revolucionado la manera en que los condominios manejan sus operaciones diarias.",
     link: "https://kondominios.holy-code.com/",
     github: "https://github.com/masanchez91/kondominios",
     image: "/projects/kondominios.webp",
     tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND],
+    type: "cliente",
+    status: "Completado",
+    timeline: "12 semanas",
+    impact: "10+ condominios gestionados",
+    achievements: [
+      "Sistema de roles y permisos avanzado",
+      "Módulo de pagos integrado",
+      "Dashboard analítico en tiempo real",
+      "Notificaciones push y email"
+    ]
   },
 ]
 ---
 
-<div class="flex flex-col gap-y-16">
-  {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
-    <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-  <div class="w-full md:w-1/2">
-    <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt={title} class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
-    </div>
+<div class="space-y-16">
+  <!-- Introducción -->
+  <div class="text-center max-w-3xl mx-auto mb-16">
+    <h3 class="font-heading text-2xl font-semibold text-holy-text-primary mb-4">
+      Proyectos que Transforman Realidades
+    </h3>
+    <p class="text-holy-neutral leading-relaxed">
+      Cada proyecto es una oportunidad de redefinir lo posible. Desde productos indie 
+      hasta soluciones empresariales, creamos experiencias digitales que impactan usuarios y negocios.
+    </p>
   </div>
 
-  <div class="w-full md:w-1/2 md:max-w-lg">
-    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-      {title}
-    </h3>
-    <div class="flex flex-wrap mt-2">
-      <ul class="flex flex-row mb-2 gap-x-2">
-          {tags.map((tag) => (
-            <li>
-              <span
-                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-              >
+  <!-- Proyectos -->
+  <div class="space-y-20">
+    {PROJECTS.map(({ image, title, description, longDescription, tags, link, github, type, status, timeline, impact, achievements }, index) => (
+      <article class={`group relative ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} flex flex-col lg:flex gap-12 items-center`}>
+        
+        <!-- Imagen del proyecto -->
+        <div class="w-full lg:w-1/2">
+          <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+            <img 
+              alt={title} 
+              class="object-cover object-top w-full h-64 md:h-80 lg:h-96 transition-transform duration-700 group-hover:scale-110" 
+              loading="lazy" 
+              src={image} 
+            />
+            <div class="absolute inset-0 bg-holy-action/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            
+            <!-- Badge de tipo -->
+            <div class="absolute top-4 left-4">
+              <span class={`px-3 py-1 rounded-full text-sm font-semibold ${type === 'indie' ? 'bg-holy-action text-holy-text-primary' : 'bg-holy-dark-secondary text-holy-action border border-holy-action'}`}>
+                {type === 'indie' ? 'Proyecto Indie' : 'Proyecto Cliente'}
+              </span>
+            </div>
+            
+            <!-- Estado -->
+            <div class="absolute top-4 right-4">
+              <span class={`px-3 py-1 rounded-full text-sm font-semibold ${status === 'Activo' ? 'bg-green-500/20 text-green-400 border border-green-500' : 'bg-blue-500/20 text-blue-400 border border-blue-500'}`}>
+                {status}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenido del proyecto -->
+        <div class="w-full lg:w-1/2 space-y-6">
+          
+          <!-- Header -->
+          <div class="space-y-4">
+            <h3 class="font-heading text-2xl md:text-3xl font-bold text-holy-text-primary group-hover:text-holy-action transition-colors">
+              {title}
+            </h3>
+            
+            <p class="text-holy-neutral leading-relaxed">
+              {description}
+            </p>
+          </div>
+
+          <!-- Métricas -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-xl p-4 border border-holy-neutral/20">
+              <p class="text-holy-text-secondary text-sm">Timeline</p>
+              <p class="text-holy-text-primary font-semibold">{timeline}</p>
+            </div>
+            <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-xl p-4 border border-holy-neutral/20">
+              <p class="text-holy-text-secondary text-sm">Impacto</p>
+              <p class="text-holy-text-primary font-semibold">{impact}</p>
+            </div>
+          </div>
+
+          <!-- Logros -->
+          <div class="space-y-3">
+            <h4 class="font-heading text-lg font-semibold text-holy-text-primary">
+              Logros Destacados
+            </h4>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
+              {achievements.map((achievement) => (
+                <li class="flex items-center gap-2 text-sm text-holy-neutral">
+                  <span class="w-1.5 h-1.5 bg-holy-action rounded-full flex-shrink-0"></span>
+                  {achievement}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Tecnologías -->
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="inline-flex items-center gap-2 px-3 py-1 bg-holy-dark-secondary/50 text-holy-text-secondary rounded-full text-sm border border-holy-neutral/20">
                 <tag.icon class="size-4" />
                 {tag.name}
               </span>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
 
-      <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
-      <footer class="flex items-end justify-start mt-4 gap-x-4">
-          {github && (
-            <LinkButton href={github}>
-              <GitHub class="size-6" />
-              Code
-              
-            </LinkButton>
-          )}
-          {link && (
-            <LinkButton href={link}>
-              <Link class="size-4" />
-              Preview
-            </LinkButton>
-          )}
-        </footer>
+          <!-- Acciones -->
+          <div class="flex flex-wrap gap-4 pt-4">
+            {github && (
+              <LinkButton href={github}>
+                <GitHub class="size-5" />
+                Código
+              </LinkButton>
+            )}
+            {link && (
+              <LinkButton href={link}>
+                <Link class="size-4" />
+                Ver proyecto
+              </LinkButton>
+            )}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Call to action -->
+  <div class="text-center bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20 mt-20">
+    <h3 class="font-heading text-2xl font-semibold text-holy-text-primary mb-4">
+      ¿Listo para el próximo proyecto revolucionario?
+    </h3>
+    <p class="text-holy-neutral mb-8 max-w-2xl mx-auto">
+      Cada proyecto comienza con una conversación. Ya sea un producto indie ambicioso 
+      o una solución empresarial compleja, estamos listos para transformar tu visión en realidad.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a 
+        href="#contacto"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105"
+      >
+        Hablemos de tu proyecto
+        <span class="transform transition-transform group-hover:translate-x-1">→</span>
+      </a>
+      <a 
+        href="/blog"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-holy-dark-secondary hover:bg-holy-dark-secondary/80 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105 border border-holy-neutral/20"
+      >
+        Leer sobre nuestro proceso
+      </a>
     </div>
   </div>
-</article>
-    ))
-  }
 </div>
 
 

@@ -1,0 +1,94 @@
+---
+import Code from "./icons/Code.astro"
+import NextJS from "./icons/NextJS.astro"
+import ReactJS from "./icons/ReactJS.astro"
+import TypeScript from "./icons/TypeScript.astro"
+
+const services = [
+  {
+    title: "Desarrollo Web/App Personalizado",
+    description: "Creamos aplicaciones web y móviles únicas, diseñadas específicamente para tu negocio. Desde landing pages hasta plataformas complejas, cada proyecto es una obra de arte digital.",
+    icon: Code,
+    features: ["React & Next.js", "Diseño responsivo", "Optimización SEO", "Integración APIs"]
+  },
+  {
+    title: "MVPs para Startups",
+    description: "Transformamos tu idea en un producto mínimo viable funcional. Prototipado rápido, validación de mercado y escalabilidad desde el primer día.",
+    icon: NextJS,
+    features: ["Desarrollo ágil", "Validación rápida", "Arquitectura escalable", "Feedback loops"]
+  },
+  {
+    title: "Consultoría Técnica",
+    description: "Asesoramiento experto en arquitectura, stack tecnológico y mejores prácticas. Optimizamos tu producto actual o diseñamos la estrategia técnica perfecta.",
+    icon: TypeScript,
+    features: ["Auditoría técnica", "Optimización performance", "Arquitectura moderna", "Code review"]
+  },
+  {
+    title: "Co-creación de Ideas",
+    description: "Nos convertimos en tu socio tecnológico. Desde la conceptualización hasta el lanzamiento, trabajamos juntos para hacer realidad tu visión más ambiciosa.",
+    icon: ReactJS,
+    features: ["Brainstorming técnico", "Prototipado", "Desarrollo colaborativo", "Lanzamiento conjunto"]
+  }
+]
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  {
+    services.map(({ title, description, icon: Icon, features }) => (
+      <article class="group bg-holy-dark-secondary/50 backdrop-blur-sm rounded-2xl p-6 border border-holy-neutral/20 hover:border-holy-action/50 transition-all duration-300 hover:shadow-lg hover:shadow-holy-action/10">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="p-3 bg-holy-action/20 rounded-xl group-hover:bg-holy-action/30 transition-colors duration-300">
+            <Icon class="size-6 text-holy-action" />
+          </div>
+          <div class="flex-1">
+            <h3 class="font-heading text-h3 font-semibold text-holy-text-primary mb-2">
+              {title}
+            </h3>
+          </div>
+        </div>
+        
+        <p class="text-holy-neutral leading-relaxed mb-4">
+          {description}
+        </p>
+        
+        <ul class="space-y-2">
+          {features.map((feature) => (
+            <li class="flex items-center gap-2 text-sm text-holy-text-secondary">
+              <span class="w-1.5 h-1.5 bg-holy-action rounded-full"></span>
+              {feature}
+            </li>
+          ))}
+        </ul>
+        
+        <div class="mt-6 pt-4 border-t border-holy-neutral/10">
+          <a 
+            href="#contacto" 
+            class="inline-flex items-center gap-2 text-holy-action hover:text-holy-action/80 transition-colors font-semibold text-sm"
+          >
+            Conversemos sobre tu proyecto
+            <span class="transform group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </article>
+    ))
+  }
+</div>
+
+<div class="mt-12 text-center">
+  <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20">
+    <h3 class="font-heading text-h3 font-semibold text-holy-text-primary mb-4">
+      ¿No encuentras lo que buscas?
+    </h3>
+    <p class="text-holy-neutral mb-6 max-w-2xl mx-auto">
+      Cada proyecto es único. Si tienes una idea que no encaja en ninguna categoría, 
+      hablemos. Nos especializamos en convertir lo imposible en realidad digital.
+    </p>
+    <a 
+      href="mailto:mauro.sanchez.simental@gmail.com"
+      class="inline-flex items-center gap-2 px-6 py-3 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-holy-action/25"
+    >
+      Cuéntanos tu idea
+      <span>✨</span>
+    </a>
+  </div>
+</div> 

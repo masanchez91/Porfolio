@@ -1,8 +1,13 @@
 ---
-import "@fontsource-variable/onest"
+import "@fontsource/poppins/400.css"
+import "@fontsource/poppins/600.css"
+import "@fontsource/poppins/700.css"
+import "@fontsource/inter/400.css"
+import "@fontsource/inter/600.css"
 
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
+import FloatingCTA from "../components/FloatingCTA.astro"
 import { ViewTransitions } from "astro:transitions"
 
 interface Props {
@@ -35,15 +40,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site); // Construir la UR
     <meta property="og:image" content={image} />
     <meta property="og:type" content="website" /> 
     <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content={"The Holy Code"} /> {/* Cambia esto si el nombre del sitio es diferente */} 
+    <meta property="og:site_name" content="The Holy Code - Agencia de Desarrollo" />
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="keywords" content="desarrollo web, agencia desarrollo, MVP, startup, aplicaciones web, React, Next.js, consultoría técnica, indie developer, México, LATAM" />
+    <meta name="author" content="Mauro Sánchez - The Holy Code" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#28A745" />
+    <meta name="msapplication-navbutton-color" content="#28A745" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#28A745" /> {/* Cambia esto si el nombre del sitio es diferente */} 
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" /> {/* O 'summary' si prefieres una imagen pequeña */} 
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
-    {/* <meta name="twitter:site" content="@tuUsuarioTwitter"> */}
-    {/* <meta name="twitter:creator" content="@tuUsuarioCreador"> */} 
+    <meta name="twitter:site" content="@holycode_dev" />
+    <meta name="twitter:creator" content="@maurosanchez91" /> 
 
     <title>{title}</title>
     <ViewTransitions />
@@ -54,28 +67,110 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site); // Construir la UR
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "Person",
-            "name": "Mauro Sánchez", 
-            "url": canonicalURL.href, 
-            "jobTitle": "Ingeniero de Software y Creador de Contenido", 
+            "@type": "Organization",
+            "name": "The Holy Code",
+            "alternateName": "Holy Code",
+            "url": canonicalURL.href,
+            "logo": {
+              "@type": "ImageObject",
+              "url": new URL("/holycode.webp", Astro.site).href,
+              "caption": "The Holy Code Logo"
+            },
+            "description": "Agencia de desarrollo especializada en transformar ideas en productos digitales. Creamos MVPs, aplicaciones web y soluciones técnicas innovadoras.",
+            "foundingDate": "2020",
+            "foundingLocation": {
+              "@type": "Place",
+              "name": "Zapopan, Jalisco, México"
+            },
+            "founder": {
+              "@type": "Person",
+              "name": "Mauro Sánchez",
+              "jobTitle": "Founder & Lead Developer",
+              "sameAs": [
+                "https://linkedin.com/in/mesanchez91",
+                "https://twitch.tv/holycode"
+              ]
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+52",
+              "contactType": "customer service",
+              "email": "mauro.sanchez.simental@gmail.com",
+              "availableLanguage": ["Spanish", "English"]
+            },
+            "areaServed": {
+              "@type": "Place",
+              "name": "LATAM"
+            },
+            "serviceType": [
+              "Web Development",
+              "Mobile App Development", 
+              "MVP Development",
+              "Technical Consulting",
+              "Software Architecture"
+            ],
             "sameAs": [
               "https://linkedin.com/in/mesanchez91",
+              "https://github.com/masanchez91",
               "https://twitch.tv/holycode"
-            ],
-            "image": { 
-              "@type": "ImageObject",
-              "url": new URL("/me.webp", Astro.site).href, 
-              "caption": "Mauro Sánchez"
-            }
+            ]
           },
           {
             "@type": "WebSite",
-            "url": canonicalURL.href, 
-            "name": title, 
-            "description": description, 
-            "publisher": { 
-              "@type": "Person",
-              "name": "Mauro Sánchez"
+            "url": canonicalURL.href,
+            "name": "The Holy Code - Agencia de Desarrollo",
+            "description": description,
+            "publisher": {
+              "@type": "Organization",
+              "name": "The Holy Code"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": canonicalURL.href + "/blog?search={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "ProfessionalService",
+            "name": "The Holy Code",
+            "serviceType": "Software Development Agency",
+            "provider": {
+              "@type": "Organization",
+              "name": "The Holy Code"
+            },
+            "areaServed": {
+              "@type": "Place", 
+              "name": "LATAM"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Development Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "MVP Development",
+                    "description": "Minimum Viable Product development for startups"
+                  }
+                },
+                {
+                  "@type": "Offer", 
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Web Application Development",
+                    "description": "Custom web applications with modern technologies"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service", 
+                    "name": "Technical Consulting",
+                    "description": "Architecture and technical strategy consulting"
+                  }
+                }
+              ]
             }
           }
         ]
@@ -84,43 +179,38 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site); // Construir la UR
 
   </head>
 
-  <body class="relative text-black dark:text-white">
+  <body class="relative text-holy-text-primary bg-holy-dark-primary">
     <div
-      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-50 dark:bg-gray-950
-      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
-      dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-holy-dark-primary
+      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(22,42,63,0.8),rgba(15,31,46,0.9))]"
     >
     </div>
     <Header />
     <slot />
     <Footer />
+    <FloatingCTA />
     <style is:global>
       :root {
         color-scheme: light dark;
       }
 
       html {
-        font-family: "Onest Variable", system-ui, sans-serif;
+        font-family: "Inter", system-ui, sans-serif;
         scroll-behavior: smooth;
       }
 
       body {
-        color: rgba(17, 17, 17, 0.9);
+        color: rgba(255, 255, 255, 0.9);
         display: flex;
         flex-direction: column;
         min-height: 100vh;
         overscroll-behavior: none;
+        background-color: #0F1F2E;
       }
 
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        body {
-          color: rgba(255, 255, 255, 0.9);
         }
       }
 

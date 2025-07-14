@@ -3,9 +3,14 @@ import ThemeToggle from "./ThemeToggle.astro"
 
 const navItems = [
   {
-    title: "Experiencia",
-    label: "experiencia",
-    url: "/#experiencia",
+    title: "Inicio",
+    label: "inicio",
+    url: "/",
+  },
+  {
+    title: "Agencia",
+    label: "agencia",
+    url: "/#agencia",
   },
   {
     title: "Proyectos",
@@ -13,9 +18,19 @@ const navItems = [
     url: "/#proyectos",
   },
   {
-    title: "Sobre mí",
-    label: "sobre-mi",
-    url: "/#sobre-mi",
+    title: "Servicios",
+    label: "servicios",
+    url: "/#servicios",
+  },
+  {
+    title: "Blog",
+    label: "blog",
+    url: "/blog",
+  },
+  {
+    title: "Contacto",
+    label: "contacto",
+    url: "/#contacto",
   },
 ]
 ---
@@ -24,12 +39,13 @@ const navItems = [
   class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
 >
   <nav
-    class="flex px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-center items-center"
+    id="header-nav"
+    class="flex px-4 py-2 text-sm font-medium rounded-full text-holy-neutral justify-center items-center backdrop-blur-sm bg-holy-dark-secondary/80 border border-holy-neutral/20"
   >
     {
       navItems.map((link) => (
         <a
-          class="relative block px-2 py-2 transition hover:text-yellow-500 dark:hover:text-yellow-400"
+          class="relative block px-3 py-2 transition hover:text-holy-action"
           aria-label={link.label}
           href={link.url}
         >
@@ -37,7 +53,6 @@ const navItems = [
         </a>
       ))
     }
-    <ThemeToggle />
   </nav>
 </header>
 
@@ -51,9 +66,11 @@ const navItems = [
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
             if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-yellow-500")
+              item.classList.add("text-holy-action")
+              item.classList.remove("text-holy-neutral")
             } else {
-              item.classList.remove("text-yellow-500")
+              item.classList.remove("text-holy-action")
+              item.classList.add("text-holy-neutral")
             }
           })
         }
@@ -88,7 +105,7 @@ const navItems = [
 
   @keyframes nav-shadown {
     to {
-      @apply shadow-lg ring-1 backdrop-blur bg-gray-300/60 dark:bg-gray-800/60 ring-white/10;
+      @apply shadow-lg ring-1 backdrop-blur-md bg-holy-dark-secondary/90 ring-holy-action/20;
     }
   }
 </style>

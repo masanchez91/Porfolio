@@ -1,0 +1,49 @@
+---
+import MailIcon from "./icons/Mail.astro"
+---
+
+<div class="fixed bottom-6 right-6 z-50">
+  <a 
+    href="mailto:mauro.sanchez.simental@gmail.com"
+    class="group flex items-center gap-3 px-6 py-4 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-holy-action/20 backdrop-blur-sm"
+    aria-label="Contactar por email"
+  >
+    <MailIcon class="size-5 group-hover:scale-110 transition-transform" />
+    <span class="font-heading font-semibold text-button">¿Hablamos?</span>
+    <div class="absolute inset-0 bg-holy-action/20 rounded-full animate-ping opacity-75"></div>
+  </a>
+</div>
+
+<style>
+  /* Animación sutil de pulsación */
+  @keyframes pulse-subtle {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+  }
+
+  .group:hover .animate-ping {
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+
+  /* Responsive: ocultar en pantallas muy pequeñas */
+  @media (max-width: 480px) {
+    .fixed {
+      bottom: 4rem;
+      right: 1rem;
+    }
+    
+    .group {
+      padding: 0.75rem 1rem;
+    }
+    
+    .group span {
+      display: none;
+    }
+  }
+</style> 

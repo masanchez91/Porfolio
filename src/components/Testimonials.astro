@@ -1,0 +1,232 @@
+---
+const testimonials = [
+  {
+    name: "Carlos Mendoza",
+    role: "CEO, TechStart México",
+    company: "TechStart México",
+    image: "/testimonials/carlos.webp",
+    testimonial: "The Holy Code transformó nuestra idea de startup en una plataforma real en tiempo récord. Su enfoque indie nos permitió mantener la agilidad mientras construíamos algo sólido y escalable.",
+    project: "MVP de plataforma e-commerce",
+    rating: 5,
+    featured: true
+  },
+  {
+    name: "María Elena Rodríguez",
+    role: "Administradora",
+    company: "Condominio Bosques del Valle",
+    image: "/testimonials/maria.webp",
+    testimonial: "La plataforma Kondominios revolucionó completamente nuestra gestión. Lo que antes tomaba días, ahora lo resolvemos en minutos. Mauro entendió exactamente nuestras necesidades.",
+    project: "Sistema de gestión Kondominios",
+    rating: 5,
+    featured: false
+  },
+  {
+    name: "Roberto Kim",
+    role: "Fundador & CTO",
+    company: "HealthTech Solutions",
+    image: "/testimonials/roberto.webp",
+    testimonial: "La consultoría técnica de The Holy Code fue crucial para escalar nuestro producto. Su experiencia en arquitectura nos ahorró meses de desarrollo y refactoring.",
+    project: "Consultoría técnica y arquitectura",
+    rating: 5,
+    featured: false
+  },
+  {
+    name: "Ana Sofía Morales",
+    role: "Product Manager",
+    company: "Innovación Digital",
+    image: "/testimonials/ana.webp",
+    testimonial: "Trabajar con The Holy Code fue como tener un cofundador técnico. Su compromiso con la calidad y la innovación superó todas nuestras expectativas.",
+    project: "Desarrollo de aplicación móvil",
+    rating: 5,
+    featured: false
+  }
+];
+
+const stats = [
+  {
+    number: "25+",
+    label: "Proyectos completados",
+    description: "Desde MVPs hasta productos escalables"
+  },
+  {
+    number: "98%",
+    label: "Satisfacción del cliente",
+    description: "Basado en feedback y recomendaciones"
+  },
+  {
+    number: "4.9/5",
+    label: "Rating promedio",
+    description: "Evaluación en proyectos completados"
+  },
+  {
+    number: "2-8",
+    label: "Semanas promedio",
+    description: "De idea a producto funcional"
+  }
+];
+
+const featuredTestimonial = testimonials.find(t => t.featured);
+const regularTestimonials = testimonials.filter(t => !t.featured);
+---
+
+<div class="max-w-6xl mx-auto space-y-16">
+  <!-- Header -->
+  <div class="text-center">
+    <h2 class="font-heading text-3xl md:text-4xl font-bold text-holy-text-primary mb-6">
+      Lo que dicen nuestros clientes
+    </h2>
+    <p class="text-holy-neutral text-lg leading-relaxed max-w-3xl mx-auto">
+      Cada proyecto es una oportunidad de crear algo extraordinario. 
+      Estas son las historias de quienes confiaron en nosotros para transformar sus ideas en realidad.
+    </p>
+  </div>
+
+  <!-- Estadísticas -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+    {stats.map((stat) => (
+      <div class="text-center bg-holy-dark-secondary/20 backdrop-blur-sm rounded-xl p-6 border border-holy-neutral/20">
+        <div class="text-2xl md:text-3xl font-bold text-holy-action mb-2">
+          {stat.number}
+        </div>
+        <div class="font-heading font-semibold text-holy-text-primary mb-1">
+          {stat.label}
+        </div>
+        <div class="text-sm text-holy-text-secondary">
+          {stat.description}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Testimonial destacado -->
+  {featuredTestimonial && (
+    <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-holy-action/20 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-holy-action to-holy-action/50"></div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        <div class="md:col-span-2 space-y-6">
+          <!-- Estrellas -->
+          <div class="flex gap-1">
+            {Array.from({ length: featuredTestimonial.rating }).map((_, i) => (
+              <span class="text-holy-action text-xl">★</span>
+            ))}
+          </div>
+          
+          <!-- Testimonial -->
+          <blockquote class="text-lg md:text-xl text-holy-neutral leading-relaxed italic">
+            "{featuredTestimonial.testimonial}"
+          </blockquote>
+          
+          <!-- Proyecto -->
+          <div class="bg-holy-dark-primary/50 rounded-lg p-4 border border-holy-neutral/20">
+            <p class="text-holy-text-secondary text-sm">Proyecto:</p>
+            <p class="text-holy-text-primary font-semibold">{featuredTestimonial.project}</p>
+          </div>
+        </div>
+        
+        <!-- Autor -->
+        <div class="text-center md:text-left">
+          <div class="mb-4">
+            <img 
+              src={featuredTestimonial.image} 
+              alt={featuredTestimonial.name}
+              class="w-20 h-20 rounded-full mx-auto md:mx-0 object-cover border-2 border-holy-action/50"
+            />
+          </div>
+          <div class="space-y-1">
+            <p class="font-heading text-lg font-semibold text-holy-text-primary">
+              {featuredTestimonial.name}
+            </p>
+            <p class="text-holy-action font-medium">
+              {featuredTestimonial.role}
+            </p>
+            <p class="text-holy-text-secondary text-sm">
+              {featuredTestimonial.company}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Testimonials grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {regularTestimonials.map((testimonial) => (
+      <div class="bg-holy-dark-secondary/20 backdrop-blur-sm rounded-xl p-6 border border-holy-neutral/20 hover:border-holy-action/30 transition-all duration-300 group">
+        <!-- Header -->
+        <div class="flex items-center gap-4 mb-4">
+          <img 
+            src={testimonial.image} 
+            alt={testimonial.name}
+            class="w-12 h-12 rounded-full object-cover border border-holy-action/30"
+          />
+          <div class="flex-1">
+            <p class="font-heading font-semibold text-holy-text-primary">
+              {testimonial.name}
+            </p>
+            <p class="text-holy-action text-sm">
+              {testimonial.role}
+            </p>
+          </div>
+        </div>
+        
+        <!-- Estrellas -->
+        <div class="flex gap-1 mb-4">
+          {Array.from({ length: testimonial.rating }).map((_, i) => (
+            <span class="text-holy-action">★</span>
+          ))}
+        </div>
+        
+        <!-- Testimonial -->
+        <blockquote class="text-holy-neutral text-sm leading-relaxed italic mb-4">
+          "{testimonial.testimonial}"
+        </blockquote>
+        
+        <!-- Proyecto -->
+        <div class="pt-4 border-t border-holy-neutral/10">
+          <p class="text-holy-text-secondary text-xs">Proyecto:</p>
+          <p class="text-holy-text-primary text-sm font-medium">{testimonial.project}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Call to action -->
+  <div class="text-center bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20">
+    <h3 class="font-heading text-2xl font-semibold text-holy-text-primary mb-4">
+      ¿Listo para ser el próximo caso de éxito?
+    </h3>
+    <p class="text-holy-neutral mb-6 max-w-2xl mx-auto">
+      Cada gran producto comienza con una conversación. Cuéntanos tu visión 
+      y descubre cómo podemos transformarla en realidad.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a 
+        href="#contacto"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105"
+      >
+        Iniciar mi proyecto
+        <span class="transform transition-transform group-hover:translate-x-1">→</span>
+      </a>
+      <a 
+        href="/blog"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-holy-dark-secondary hover:bg-holy-dark-secondary/80 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105 border border-holy-neutral/20"
+      >
+        Ver más casos de éxito
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Animación sutil para las cards */
+  .group:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Efecto de hover en las estrellas */
+  .group:hover span {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+  }
+</style> 
