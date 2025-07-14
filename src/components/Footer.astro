@@ -1,27 +1,191 @@
 ---
+import GitHub from "./icons/GitHub.astro"
+import LinkedIn from "./icons/LinkedIn.astro"
+import Mail from "./icons/Mail.astro"
+import YouTube from "./icons/YouTube.astro"
+import X from "./icons/X.astro"
+import Twitch from "./icons/Twitch.astro"
+
 const currentYear = new Date().getFullYear()
 ---
 
-<footer
-  class="rounded-lg shadow m-4 bg-black/5 dark:bg-black/20 backdrop-blur-lg w-full mx-auto container lg:max-w-4xl md:max-w-2xl mb-10 flex justify-center"
->
-  <div
-    class="w-full max-w-screen-xl mx-auto md:flex md:items-center md:justify-between"
-  >
-    <span class="text-sm sm:text-center text-zinc-800/90 dark:text-zinc-200/90"
-      >{currentYear} ©
-      <a href="https://holy-code.com/" class="hover:underline">Holy Code</a>. Casi
-      todos los derechos reservados
-    </span>
-    <ul
-      class="flex flex-wrap items-center mt-3 text-sm font-medium dark:text-white/90 sm:mt-0"
-    >
-      <li>
-        <a href="/#sobre-mi" class="hover:underline me-4 md:me-6">Sobre mí</a>
-      </li>
-      <li>
-        <a href="mailto:mauro.sanchez.simental@gmail.com" class="hover:underline">Contacto</a>
-      </li>
-    </ul>
+<footer class="relative mt-20 bg-holy-dark-primary border-t border-holy-neutral/20">
+  <!-- Background gradient -->
+  <div class="absolute inset-0 bg-gradient-to-r from-holy-dark-primary via-holy-dark-secondary/50 to-holy-dark-primary"></div>
+  
+  <div class="relative max-w-6xl mx-auto px-4 py-16">
+    <!-- Main content -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+      
+      <!-- Brand section -->
+      <div class="space-y-6">
+        <div class="space-y-4">
+          <h3 class="font-heading text-2xl font-bold text-holy-text-primary">
+            The Holy Code
+          </h3>
+          <p class="text-holy-neutral leading-relaxed">
+            Transformando ideas en productos digitales que impactan. 
+            Cada línea de código cuenta una historia de innovación.
+          </p>
+        </div>
+        
+        <!-- Social links -->
+        <div class="flex flex-wrap gap-3">
+          <a 
+            href="https://github.com/masanchez91" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group p-3 bg-holy-dark-secondary/50 hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border border-holy-neutral/20 hover:border-holy-action/50"
+            aria-label="GitHub"
+          >
+            <GitHub class="size-5 text-holy-neutral group-hover:text-holy-action transition-colors" />
+          </a>
+          <a 
+            href="https://linkedin.com/in/mauro-sanchez-simental" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group p-3 bg-holy-dark-secondary/50 hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border border-holy-neutral/20 hover:border-holy-action/50"
+            aria-label="LinkedIn"
+          >
+            <LinkedIn class="size-5 text-holy-neutral group-hover:text-holy-action transition-colors" />
+          </a>
+          <a 
+            href="https://www.youtube.com/channel/UCROut3b1_tmEjGw4dX4fIOA" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group p-3 bg-holy-dark-secondary/50 hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border border-holy-neutral/20 hover:border-holy-action/50"
+            aria-label="YouTube"
+          >
+            <YouTube class="size-5 text-holy-neutral group-hover:text-holy-action transition-colors" />
+          </a>
+          <a 
+            href="https://www.twitch.tv/theholycode" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group p-3 bg-holy-dark-secondary/50 hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border border-holy-neutral/20 hover:border-holy-action/50"
+            aria-label="Twitch"
+          >
+            <Twitch class="size-5 text-holy-neutral group-hover:text-holy-action transition-colors" />
+          </a>
+          <a 
+            href="https://x.com/MauroSanchez25" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group p-3 bg-holy-dark-secondary/50 hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border border-holy-neutral/20 hover:border-holy-action/50"
+            aria-label="X (Twitter)"
+          >
+            <X class="size-5 text-holy-neutral group-hover:text-holy-action transition-colors" />
+          </a>
+          <a 
+            href="mailto:mauro@holy-code.com"
+            class="group p-3 bg-holy-dark-secondary/50 hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border border-holy-neutral/20 hover:border-holy-action/50"
+            aria-label="Email"
+          >
+            <Mail class="size-5 text-holy-neutral group-hover:text-holy-action transition-colors" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="space-y-6">
+        <h4 class="font-heading text-lg font-semibold text-holy-text-primary">
+          Navegación
+        </h4>
+        <nav class="space-y-3">
+          <a href="/#inicio" class="block text-holy-neutral hover:text-holy-action transition-colors">
+            Inicio
+          </a>
+          <a href="/#servicios" class="block text-holy-neutral hover:text-holy-action transition-colors">
+            Servicios
+          </a>
+          <a href="/#proyectos" class="block text-holy-neutral hover:text-holy-action transition-colors">
+            Proyectos
+          </a>
+          <a href="/#agencia" class="block text-holy-neutral hover:text-holy-action transition-colors">
+            Agencia
+          </a>
+          <a href="/#contacto" class="block text-holy-neutral hover:text-holy-action transition-colors">
+            Contacto
+          </a>
+          <a href="/blog" class="block text-holy-neutral hover:text-holy-action transition-colors">
+            Blog
+          </a>
+        </nav>
+      </div>
+
+      <!-- Contact info -->
+      <div class="space-y-6">
+        <h4 class="font-heading text-lg font-semibold text-holy-text-primary">
+          Contacto
+        </h4>
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="p-2 bg-holy-action/20 rounded-lg">
+              <Mail class="size-4 text-holy-action" />
+            </div>
+            <div>
+              <p class="text-holy-text-secondary text-sm">Email</p>
+              <a 
+                href="mailto:mauro@holy-code.com"
+                class="text-holy-text-primary hover:text-holy-action transition-colors font-medium"
+              >
+                mauro@holy-code.com
+              </a>
+            </div>
+          </div>
+          
+          <div class="bg-holy-dark-secondary/30 rounded-xl p-4 border border-holy-action/20">
+            <p class="text-holy-text-secondary text-sm mb-2">¿Listo para tu próximo proyecto?</p>
+            <a 
+              href="/#contacto"
+              class="inline-flex items-center gap-2 text-holy-action hover:text-holy-action/80 transition-colors font-semibold"
+            >
+              Hablemos
+              <span class="transform transition-transform group-hover:translate-x-1">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="w-full h-px bg-gradient-to-r from-transparent via-holy-neutral/30 to-transparent mb-8"></div>
+
+    <!-- Bottom section -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="text-center md:text-left">
+        <p class="text-holy-text-secondary text-sm">
+          {currentYear} © <span class="font-semibold text-holy-text-primary">The Holy Code</span>
+        </p>
+        <p class="text-holy-neutral text-sm mt-1">
+          Transformando ideas en productos digitales
+        </p>
+      </div>
+      
+      <div class="flex items-center gap-4 text-xs text-holy-text-secondary">
+        <span class="flex items-center gap-1">
+          <span class="w-2 h-2 bg-holy-action rounded-full animate-pulse"></span>
+          Disponible para proyectos
+        </span>
+      </div>
+    </div>
   </div>
 </footer>
+
+<style>
+  /* Subtle animations */
+  footer {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
