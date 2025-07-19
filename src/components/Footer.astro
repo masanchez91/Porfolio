@@ -9,9 +9,9 @@ import Twitch from "./icons/Twitch.astro"
 const currentYear = new Date().getFullYear()
 ---
 
-<footer class="relative mt-20 bg-holy-dark-primary border-t border-holy-neutral/20">
+<footer class="relative mt-20 footer-bg border-t footer-border">
   <!-- Background gradient -->
-  <div class="absolute inset-0 bg-gradient-to-r from-holy-dark-primary via-holy-dark-secondary/50 to-holy-dark-primary"></div>
+  <div class="absolute inset-0 footer-gradient"></div>
   
   <div class="relative max-w-6xl mx-auto px-4 py-16">
     <!-- Main content -->
@@ -35,7 +35,7 @@ const currentYear = new Date().getFullYear()
             href="https://github.com/masanchez91" 
             target="_blank"
             rel="noopener noreferrer"
-            class="group p-3 bg-holy-dark-secondary/50 hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border border-holy-neutral/20 hover:border-holy-action/50"
+            class="group p-3 social-btn hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border social-border hover:border-holy-action/50"
             aria-label="GitHub"
           >
             <GitHub class="size-5 text-holy-text-secondary group-hover:text-holy-action transition-colors" />
@@ -44,7 +44,7 @@ const currentYear = new Date().getFullYear()
             href="https://linkedin.com/in/mauro-sanchez-simental" 
             target="_blank"
             rel="noopener noreferrer"
-            class="group p-3 bg-holy-dark-secondary/50 hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border border-holy-neutral/20 hover:border-holy-action/50"
+            class="group p-3 social-btn hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border social-border hover:border-holy-action/50"
             aria-label="LinkedIn"
           >
             <LinkedIn class="size-5 text-holy-text-secondary group-hover:text-holy-action transition-colors" />
@@ -53,7 +53,7 @@ const currentYear = new Date().getFullYear()
             href="https://www.youtube.com/channel/UCROut3b1_tmEjGw4dX4fIOA" 
             target="_blank"
             rel="noopener noreferrer"
-            class="group p-3 bg-holy-dark-secondary/50 hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border border-holy-neutral/20 hover:border-holy-action/50"
+            class="group p-3 social-btn hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border social-border hover:border-holy-action/50"
             aria-label="YouTube"
           >
             <YouTube class="size-5 text-holy-text-secondary group-hover:text-holy-action transition-colors" />
@@ -62,7 +62,7 @@ const currentYear = new Date().getFullYear()
             href="https://www.twitch.tv/theholycode" 
             target="_blank"
             rel="noopener noreferrer"
-            class="group p-3 bg-holy-dark-secondary/50 hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border border-holy-border hover:border-holy-action/50"
+            class="group p-3 social-btn hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border social-border hover:border-holy-action/50"
             aria-label="Twitch"
           >
             <Twitch class="size-5 text-holy-text-secondary group-hover:text-holy-action transition-colors" />
@@ -71,14 +71,14 @@ const currentYear = new Date().getFullYear()
             href="https://x.com/MauroSanchez25" 
             target="_blank"
             rel="noopener noreferrer"
-            class="group p-3 bg-holy-dark-secondary/50 hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border border-holy-border hover:border-holy-action/50"
+            class="group p-3 social-btn hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border social-border hover:border-holy-action/50"
             aria-label="X (Twitter)"
           >
             <X class="size-5 text-holy-text-secondary group-hover:text-holy-action transition-colors" />
           </a>
           <a 
             href="mailto:mauro@holy-code.com"
-            class="group p-3 bg-holy-dark-secondary/50 hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border border-holy-border hover:border-holy-action/50"
+            class="group p-3 social-btn hover:bg-holy-action/20 rounded-full transition-all duration-300 hover:scale-110 border social-border hover:border-holy-action/50"
             aria-label="Email"
           >
             <Mail class="size-5 text-holy-text-secondary group-hover:text-holy-action transition-colors" />
@@ -134,7 +134,7 @@ const currentYear = new Date().getFullYear()
             </div>
           </div>
           
-          <div class="bg-holy-dark-secondary/30 rounded-xl p-4 border border-holy-action/20">
+          <div class="footer-cta rounded-xl p-4 border border-holy-action/20">
             <p class="text-holy-text-secondary text-sm mb-2">¿Listo para tu próximo proyecto?</p>
             <a 
               href="/#contacto"
@@ -149,7 +149,7 @@ const currentYear = new Date().getFullYear()
     </div>
 
     <!-- Divider -->
-    <div class="w-full h-px bg-gradient-to-r from-transparent via-holy-neutral/30 to-transparent mb-8"></div>
+    <div class="w-full h-px footer-divider mb-8"></div>
 
     <!-- Bottom section -->
     <div class="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -173,6 +173,119 @@ const currentYear = new Date().getFullYear()
 </footer>
 
 <style>
+  /* Footer styling for both themes */
+  
+  /* Default (Dark Mode) */
+  .footer-bg {
+    background-color: var(--holy-dark-primary);
+  }
+  
+  .footer-border {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer-gradient {
+    background: linear-gradient(135deg, var(--holy-dark-primary) 0%, var(--holy-dark-secondary) 50%, var(--holy-dark-primary) 100%);
+  }
+  
+  .social-btn {
+    background-color: rgba(22, 42, 63, 0.5);
+  }
+  
+  .social-border {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer-cta {
+    background-color: rgba(22, 42, 63, 0.3);
+  }
+  
+  .footer-divider {
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  }
+
+  /* Light Mode Overrides - ¡Espectacular! */
+  :root:not(.dark) .footer-bg {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+  
+  :root:not(.dark) .footer-border {
+    border-color: rgba(40, 167, 69, 0.2);
+  }
+  
+  :root:not(.dark) .footer-gradient {
+    background: linear-gradient(135deg, 
+      rgba(40, 167, 69, 0.05) 0%, 
+      rgba(255, 255, 255, 0.8) 20%,
+      rgba(40, 167, 69, 0.03) 50%,
+      rgba(255, 255, 255, 0.9) 80%,
+      rgba(40, 167, 69, 0.05) 100%
+    );
+  }
+  
+  :root:not(.dark) .social-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+    box-shadow: 
+      0 2px 8px rgba(40, 167, 69, 0.1),
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  
+  :root:not(.dark) .social-btn:hover {
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.1) 0%, rgba(255, 255, 255, 0.95) 100%);
+    box-shadow: 
+      0 4px 12px rgba(40, 167, 69, 0.15),
+      0 2px 6px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
+  
+  :root:not(.dark) .social-border {
+    border-color: rgba(40, 167, 69, 0.2);
+  }
+  
+  :root:not(.dark) .footer-cta {
+    background: linear-gradient(135deg, 
+      rgba(40, 167, 69, 0.08) 0%, 
+      rgba(255, 255, 255, 0.9) 100%
+    );
+    box-shadow: 
+      0 4px 12px rgba(40, 167, 69, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(40, 167, 69, 0.3);
+  }
+  
+  :root:not(.dark) .footer-divider {
+    background: linear-gradient(to right, 
+      transparent, 
+      rgba(40, 167, 69, 0.3), 
+      rgba(40, 167, 69, 0.5),
+      rgba(40, 167, 69, 0.3), 
+      transparent
+    );
+    height: 2px;
+  }
+
+  /* Enhanced animations for light mode */
+  :root:not(.dark) .social-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  :root:not(.dark) .social-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+  }
+  
+  /* Subtle sparkle effect for light mode */
+  :root:not(.dark) .footer-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(40, 167, 69, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(40, 167, 69, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(40, 167, 69, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
   /* Subtle animations */
   footer {
     animation: fadeInUp 0.6s ease-out;
