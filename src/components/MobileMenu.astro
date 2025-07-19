@@ -1,4 +1,6 @@
 ---
+const currentYear = new Date().getFullYear()
+
 const navItems = [
   {
     title: "Inicio",
@@ -56,10 +58,10 @@ const navItems = [
 <!-- Menú móvil -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 z-[9998] bg-gray-900 text-white hidden"
+  class="fixed inset-0 z-[9998] bg-gray-900 text-white hidden overflow-y-auto"
 >
-  <!-- Header -->
-  <div class="flex items-center justify-between p-6 border-b border-green-500">
+  <!-- Header fijo -->
+  <div class="sticky top-0 bg-gray-900 z-10 flex items-center justify-between p-6 border-b border-green-500">
     <div class="flex items-center space-x-3">
       <img
         src="/holycode.webp"
@@ -80,62 +82,65 @@ const navItems = [
     </button>
   </div>
 
-  <!-- Enlaces -->
-  <div class="p-6 space-y-4">
-    {navItems.map((item) => (
-      <a
-        href={item.url}
-        class="mobile-nav-link flex items-center space-x-4 p-6 rounded-xl bg-gray-800 border border-green-500 text-white hover:bg-green-600 transition-all"
-      >
-        <span class="text-2xl">
-          {item.icon}
-        </span>
-        <span class="font-medium text-xl">
-          {item.title}
-        </span>
-        <svg class="w-6 h-6 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-        </svg>
-      </a>
-    ))}
-  </div>
-
-  <!-- Theme Toggle Section -->
-  <div class="p-6 border-t border-green-500">
-    <div class="space-y-4">
-      <h3 class="text-white font-medium text-lg mb-4">🌙 Cambiar Tema</h3>
-      <div class="grid grid-cols-3 gap-3">
-        <button
-          class="theme-btn flex flex-col items-center p-4 bg-gray-800 border border-green-500 rounded-xl text-white hover:bg-green-600 transition-all"
-          data-theme="light"
+  <!-- Contenido scrolleable -->
+  <div class="flex flex-col min-h-full">
+    <!-- Enlaces -->
+    <div class="p-6 space-y-4">
+      {navItems.map((item) => (
+        <a
+          href={item.url}
+          class="mobile-nav-link flex items-center space-x-4 p-6 rounded-xl bg-gray-800 border border-green-500 text-white hover:bg-green-600 transition-all"
         >
-          <span class="text-2xl mb-2">☀️</span>
-          <span class="text-sm">Claro</span>
-        </button>
-        <button
-          class="theme-btn flex flex-col items-center p-4 bg-gray-800 border border-green-500 rounded-xl text-white hover:bg-green-600 transition-all"
-          data-theme="dark"
-        >
-          <span class="text-2xl mb-2">🌙</span>
-          <span class="text-sm">Oscuro</span>
-        </button>
-        <button
-          class="theme-btn flex flex-col items-center p-4 bg-gray-800 border border-green-500 rounded-xl text-white hover:bg-green-600 transition-all"
-          data-theme="system"
-        >
-          <span class="text-2xl mb-2">💻</span>
-          <span class="text-sm">Sistema</span>
-        </button>
-      </div>
+          <span class="text-2xl">
+            {item.icon}
+          </span>
+          <span class="font-medium text-xl">
+            {item.title}
+          </span>
+          <svg class="w-6 h-6 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      ))}
     </div>
-    
-    <div class="text-center mt-6">
-      <p class="text-xs text-gray-400">
-        © 2024 The Holy Code
-      </p>
-      <p class="text-xs text-gray-500 mt-1">
-        🚀 Desarrollando el futuro
-      </p>
+
+    <!-- Theme Toggle Section - SIEMPRE VISIBLE -->
+    <div class="p-6 border-t border-green-500 bg-gray-900">
+      <div class="space-y-4">
+        <h3 class="text-white font-medium text-lg mb-4 text-center">🌙 Cambiar Tema</h3>
+        <div class="grid grid-cols-3 gap-3">
+          <button
+            class="theme-btn flex flex-col items-center p-3 bg-gray-800 border-2 border-green-500 rounded-xl text-white hover:bg-green-600 transition-all min-h-[80px]"
+            data-theme="light"
+          >
+            <span class="text-2xl mb-1">☀️</span>
+            <span class="text-sm font-medium">Claro</span>
+          </button>
+          <button
+            class="theme-btn flex flex-col items-center p-3 bg-gray-800 border-2 border-green-500 rounded-xl text-white hover:bg-green-600 transition-all min-h-[80px]"
+            data-theme="dark"
+          >
+            <span class="text-2xl mb-1">🌙</span>
+            <span class="text-sm font-medium">Oscuro</span>
+          </button>
+          <button
+            class="theme-btn flex flex-col items-center p-3 bg-gray-800 border-2 border-green-500 rounded-xl text-white hover:bg-green-600 transition-all min-h-[80px]"
+            data-theme="system"
+          >
+            <span class="text-2xl mb-1">💻</span>
+            <span class="text-sm font-medium">Sistema</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="text-center mt-6 pb-4">
+        <p class="text-xs text-gray-400">
+          © {currentYear} The Holy Code
+        </p>
+        <p class="text-xs text-gray-500 mt-1">
+          🚀 Desarrollando el futuro
+        </p>
+      </div>
     </div>
   </div>
 </div>
