@@ -84,7 +84,7 @@ const regularTestimonials = testimonials.filter(t => !t.featured);
   <!-- Estadísticas -->
   <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
     {stats.map((stat) => (
-      <div class="text-center bg-holy-dark-secondary/20 backdrop-blur-sm rounded-xl p-6 border border-holy-neutral/20">
+      <div class="text-center testimonial-stat-card backdrop-blur-sm rounded-xl p-6 border testimonial-border">
         <div class="text-2xl md:text-3xl font-bold text-holy-action mb-2">
           {stat.number}
         </div>
@@ -100,7 +100,7 @@ const regularTestimonials = testimonials.filter(t => !t.featured);
 
   <!-- Testimonial destacado -->
   {featuredTestimonial && (
-    <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-holy-action/20 relative overflow-hidden">
+    <div class="testimonial-featured-container backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-holy-action/20 relative overflow-hidden">
       <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-holy-action to-holy-action/50"></div>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -118,20 +118,43 @@ const regularTestimonials = testimonials.filter(t => !t.featured);
           </blockquote>
           
           <!-- Proyecto -->
-          <div class="bg-holy-dark-primary/50 rounded-lg p-4 border border-holy-neutral/20">
+          <div class="testimonial-project-card rounded-lg p-4 border testimonial-border">
             <p class="text-holy-text-secondary text-sm">Proyecto:</p>
             <p class="text-holy-text-primary font-semibold">{featuredTestimonial.project}</p>
           </div>
         </div>
         
-        <!-- Autor -->
+        <!-- Autor con Avatar Espectacular -->
         <div class="text-center md:text-left">
-          <div class="mb-4">
-            <img 
-              src={featuredTestimonial.image} 
-              alt={featuredTestimonial.name}
-              class="w-20 h-20 rounded-full mx-auto md:mx-0 object-cover border-2 border-holy-action/50"
-            />
+          <div class="mb-6 flex justify-center md:justify-start">
+            <div class="relative group">
+              <!-- Avatar principal con efectos espectaculares -->
+              <div class="relative">
+                <img 
+                  src={featuredTestimonial.image} 
+                  alt={featuredTestimonial.name}
+                  class="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover transition-all duration-500 group-hover:scale-105"
+                  style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
+                />
+                <!-- Borde con gradiente espectacular -->
+                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-holy-action via-purple-500 to-blue-500 p-1">
+                  <div class="w-full h-full rounded-full bg-holy-background"></div>
+                </div>
+                <!-- Imagen sobre el borde -->
+                <img 
+                  src={featuredTestimonial.image} 
+                  alt={featuredTestimonial.name}
+                  class="absolute inset-1 w-[calc(100%-8px)] h-[calc(100%-8px)] rounded-full object-cover transition-all duration-500 group-hover:scale-105 shadow-2xl"
+                  style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
+                />
+              </div>
+              
+              <!-- Sombra brillante animada -->
+              <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-holy-action/30 via-purple-500/30 to-blue-500/30 blur-xl group-hover:blur-2xl transition-all duration-500 -z-10 scale-110 group-hover:scale-125"></div>
+              
+              <!-- Efecto de resplandor -->
+              <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-holy-action/10 via-transparent to-blue-500/10 group-hover:from-holy-action/20 group-hover:to-blue-500/20 transition-all duration-500"></div>
+            </div>
           </div>
           <div class="space-y-1">
             <p class="font-heading text-lg font-semibold text-holy-text-primary">
@@ -152,14 +175,34 @@ const regularTestimonials = testimonials.filter(t => !t.featured);
   <!-- Testimonials grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {regularTestimonials.map((testimonial) => (
-      <div class="bg-holy-dark-secondary/20 backdrop-blur-sm rounded-xl p-6 border border-holy-neutral/20 hover:border-holy-action/30 transition-all duration-300 group">
-        <!-- Header -->
+      <div class="testimonial-card backdrop-blur-sm rounded-xl p-6 border testimonial-border hover:border-holy-action/30 transition-all duration-300 group">
+        <!-- Header con Avatar Mejorado -->
         <div class="flex items-center gap-4 mb-4">
-          <img 
-            src={testimonial.image} 
-            alt={testimonial.name}
-            class="w-12 h-12 rounded-full object-cover border border-holy-action/30"
-          />
+          <div class="relative group/avatar">
+            <!-- Avatar con efectos profesionales -->
+            <div class="relative">
+              <img 
+                src={testimonial.image} 
+                alt={testimonial.name}
+                class="w-16 h-16 rounded-full object-cover transition-all duration-300 group-hover/avatar:scale-110"
+                style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
+              />
+              <!-- Borde con gradiente sutil -->
+              <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-holy-action/50 via-purple-400/30 to-blue-400/50 p-0.5">
+                <div class="w-full h-full rounded-full bg-holy-background"></div>
+              </div>
+              <!-- Imagen sobre el borde -->
+              <img 
+                src={testimonial.image} 
+                alt={testimonial.name}
+                class="absolute inset-0.5 w-[calc(100%-4px)] h-[calc(100%-4px)] rounded-full object-cover transition-all duration-300 group-hover/avatar:scale-110 shadow-lg"
+                style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
+              />
+            </div>
+            
+            <!-- Sombra brillante sutil -->
+            <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-holy-action/20 via-purple-400/10 to-blue-400/20 blur-lg group-hover/avatar:blur-xl transition-all duration-300 -z-10 scale-110 group-hover/avatar:scale-125"></div>
+          </div>
           <div class="flex-1">
             <p class="font-heading font-semibold text-holy-text-primary">
               {testimonial.name}
@@ -178,12 +221,12 @@ const regularTestimonials = testimonials.filter(t => !t.featured);
         </div>
         
         <!-- Testimonial -->
-                    <blockquote class="text-holy-text-secondary text-sm leading-relaxed italic mb-4">
+        <blockquote class="text-holy-text-secondary text-sm leading-relaxed italic mb-4">
           "{testimonial.testimonial}"
         </blockquote>
         
         <!-- Proyecto -->
-        <div class="pt-4 border-t border-holy-neutral/10">
+        <div class="pt-4 border-t testimonial-divider">
           <p class="text-holy-text-secondary text-xs">Proyecto:</p>
           <p class="text-holy-text-primary text-sm font-medium">{testimonial.project}</p>
         </div>
@@ -192,41 +235,150 @@ const regularTestimonials = testimonials.filter(t => !t.featured);
   </div>
 
   <!-- Call to action -->
-  <div class="text-center bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20">
+  <div class="text-center testimonial-cta-container backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20">
     <h3 class="font-heading text-2xl font-semibold text-holy-text-primary mb-4">
       ¿Listo para ser el próximo caso de éxito?
     </h3>
-            <p class="text-holy-text-secondary mb-6 max-w-2xl mx-auto">
+    <p class="text-holy-text-secondary mb-6 max-w-2xl mx-auto">
       Cada gran producto comienza con una conversación. Cuéntanos tu visión 
-      y descubre cómo podemos transformarla en realidad.
+      y descubre cómo podemos transformarla en una solución digital excepcional.
     </p>
-    <div class="flex flex-wrap justify-center gap-4">
+    
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a 
-        href="#contacto"
-        class="inline-flex items-center gap-2 px-6 py-3 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105"
+        href="#contacto" 
+        class="inline-flex items-center justify-center px-6 py-3 bg-holy-action text-white font-medium rounded-lg hover:bg-holy-action/90 transition-colors"
       >
-        Iniciar mi proyecto
-        <span class="transform transition-transform group-hover:translate-x-1">→</span>
+        Conversemos sobre tu proyecto
       </a>
       <a 
-        href="/blog"
-        class="inline-flex items-center gap-2 px-6 py-3 bg-holy-dark-secondary hover:bg-holy-dark-secondary/80 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105 border border-holy-neutral/20"
+        href="#servicios" 
+        class="inline-flex items-center justify-center px-6 py-3 border border-holy-action/30 text-holy-action font-medium rounded-lg hover:bg-holy-action/10 transition-colors"
       >
-        Ver más casos de éxito
+        Ver nuestros servicios
       </a>
     </div>
   </div>
 </div>
 
 <style>
-  /* Animación sutil para las cards */
-  .group:hover {
-    transform: translateY(-2px);
+  /* Estilos base para testimoniales */
+  .testimonial-stat-card {
+    background: var(--holy-background-secondary);
+    border-color: var(--holy-border);
+    transition: all 0.3s ease;
   }
-  
-  /* Efecto de hover en las estrellas */
-  .group:hover span {
-    transform: scale(1.1);
-    transition: transform 0.2s ease;
+
+  .testimonial-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(var(--holy-action-rgb), 0.1);
+  }
+
+  .testimonial-featured-container {
+    background: var(--holy-background-secondary);
+    box-shadow: 0 20px 40px rgba(var(--holy-action-rgb), 0.1);
+  }
+
+  .testimonial-project-card {
+    background: var(--holy-background);
+    border-color: var(--holy-border);
+  }
+
+  .testimonial-card {
+    background: var(--holy-background-secondary);
+    border-color: var(--holy-border);
+    transition: all 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(var(--holy-action-rgb), 0.1);
+  }
+
+  .testimonial-border {
+    border-color: var(--holy-border);
+  }
+
+  .testimonial-divider {
+    border-color: var(--holy-border);
+  }
+
+  .testimonial-cta-container {
+    background: var(--holy-background-secondary);
+  }
+
+  /* Mejoras para modo claro */
+  :global(html.light) .testimonial-stat-card {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(139, 92, 246, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  :global(html.light) .testimonial-featured-container {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(139, 92, 246, 0.2);
+    backdrop-filter: blur(20px);
+  }
+
+  :global(html.light) .testimonial-project-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(139, 92, 246, 0.15);
+    backdrop-filter: blur(10px);
+  }
+
+  :global(html.light) .testimonial-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(139, 92, 246, 0.1);
+    backdrop-filter: blur(15px);
+  }
+
+  :global(html.light) .testimonial-cta-container {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(139, 92, 246, 0.2);
+    backdrop-filter: blur(20px);
+  }
+
+  /* Efectos de sparkle para modo claro */
+  :global(html.light) .testimonial-stat-card::before,
+  :global(html.light) .testimonial-card::before,
+  :global(html.light) .testimonial-featured-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(139, 92, 246, 0.03) 50%, transparent 70%);
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  :global(html.light) .testimonial-stat-card:hover::before,
+  :global(html.light) .testimonial-card:hover::before,
+  :global(html.light) .testimonial-featured-container:hover::before {
+    opacity: 1;
+  }
+
+  /* Animación de resplandor para avatares */
+  @keyframes avatar-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px rgba(var(--holy-action-rgb), 0.3); 
+    }
+    50% { 
+      box-shadow: 0 0 30px rgba(var(--holy-action-rgb), 0.5), 0 0 40px rgba(139, 92, 246, 0.3); 
+    }
+  }
+
+  .group:hover .avatar-glow {
+    animation: avatar-glow 2s ease-in-out infinite;
+  }
+
+  /* Optimización de imágenes */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    image-rendering: crisp-edges;
   }
 </style> 
