@@ -16,7 +16,7 @@ import MailIcon from "./icons/Mail.astro";
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
     <!-- Formulario -->
-    <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20">
+    <div class="form-container backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20">
       <form
         action="https://formspree.io/f/xwpkwjpk"
         method="POST"
@@ -42,7 +42,7 @@ import MailIcon from "./icons/Mail.astro";
             id="name"
             name="name"
             required
-            class="w-full px-4 py-3 bg-holy-dark-primary/50 border border-holy-neutral/30 rounded-lg text-holy-text-primary placeholder-holy-neutral/50 focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
+            class="w-full px-4 py-3 form-field rounded-lg text-holy-text-primary form-placeholder focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
             placeholder="Tu nombre"
           />
         </div>
@@ -57,7 +57,7 @@ import MailIcon from "./icons/Mail.astro";
             id="email"
             name="email"
             required
-            class="w-full px-4 py-3 bg-holy-dark-primary/50 border border-holy-neutral/30 rounded-lg text-holy-text-primary placeholder-holy-neutral/50 focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
+            class="w-full px-4 py-3 form-field rounded-lg text-holy-text-primary form-placeholder focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
             placeholder="tu@email.com"
           />
         </div>
@@ -71,7 +71,7 @@ import MailIcon from "./icons/Mail.astro";
             type="text"
             id="subject"
             name="subject"
-            class="w-full px-4 py-3 bg-holy-dark-primary/50 border border-holy-neutral/30 rounded-lg text-holy-text-primary placeholder-holy-neutral/50 focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
+            class="w-full px-4 py-3 form-field rounded-lg text-holy-text-primary form-placeholder focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
             placeholder="¿En qué puedo ayudarte?"
           />
         </div>
@@ -84,7 +84,7 @@ import MailIcon from "./icons/Mail.astro";
           <select
             id="project-type"
             name="project-type"
-            class="w-full px-4 py-3 bg-holy-dark-primary/50 border border-holy-neutral/30 rounded-lg text-holy-text-primary focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
+            class="w-full px-4 py-3 form-field rounded-lg text-holy-text-primary focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
           >
             <option value="">Seleccionar...</option>
             <option value="desarrollo-web">Desarrollo Web/App</option>
@@ -105,7 +105,7 @@ import MailIcon from "./icons/Mail.astro";
             name="message"
             rows="6"
             required
-            class="w-full px-4 py-3 bg-holy-dark-primary/50 border border-holy-neutral/30 rounded-lg text-holy-text-primary placeholder-holy-neutral/50 focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors resize-none"
+            class="w-full px-4 py-3 form-field rounded-lg text-holy-text-primary form-placeholder focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors resize-none"
             placeholder="Cuéntame sobre tu proyecto, idea o pregunta. Mientras más detalles compartas, mejor podré ayudarte."
           ></textarea>
         </div>
@@ -124,7 +124,7 @@ import MailIcon from "./icons/Mail.astro";
     <!-- Información de contacto -->
     <div class="space-y-8">
       <!-- Contacto directo -->
-      <div class="bg-holy-dark-secondary/20 backdrop-blur-sm rounded-2xl p-6 border border-holy-neutral/20">
+      <div class="form-info-card backdrop-blur-sm rounded-2xl p-6 border form-info-border">
         <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
           Contacto directo
         </h3>
@@ -147,7 +147,7 @@ import MailIcon from "./icons/Mail.astro";
       </div>
 
       <!-- Tiempo de respuesta -->
-      <div class="bg-holy-dark-secondary/20 backdrop-blur-sm rounded-2xl p-6 border border-holy-neutral/20">
+      <div class="form-info-card backdrop-blur-sm rounded-2xl p-6 border form-info-border">
         <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
           Tiempo de respuesta
         </h3>
@@ -168,7 +168,7 @@ import MailIcon from "./icons/Mail.astro";
       </div>
 
       <!-- Proceso -->
-      <div class="bg-holy-dark-secondary/20 backdrop-blur-sm rounded-2xl p-6 border border-holy-neutral/20">
+      <div class="form-info-card backdrop-blur-sm rounded-2xl p-6 border form-info-border">
         <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
           ¿Qué sigue?
         </h3>
@@ -201,8 +201,136 @@ import MailIcon from "./icons/Mail.astro";
 </div>
 
 <style>
-  /* Animaciones para campos de formulario */
-  input:focus, textarea:focus, select:focus {
+  /* === FORM STYLING FOR BOTH THEMES === */
+  
+  /* Default (Dark Mode) - Already perfect */
+  .form-container {
+    background-color: rgba(22, 42, 63, 0.3);
+  }
+  
+  .form-field {
+    background-color: rgba(15, 31, 46, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .form-placeholder::placeholder {
+    color: rgba(176, 190, 197, 0.5);
+  }
+  
+  .form-info-card {
+    background-color: rgba(22, 42, 63, 0.2);
+  }
+  
+  .form-info-border {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* === LIGHT MODE - BEAUTIFUL GLASSMORPHISM === */
+  :root:not(.dark) .form-container {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.9) 0%, 
+      rgba(248, 250, 252, 0.8) 50%,
+      rgba(40, 167, 69, 0.05) 100%
+    );
+    box-shadow: 
+      0 8px 32px rgba(40, 167, 69, 0.1),
+      0 4px 16px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(40, 167, 69, 0.2);
+  }
+  
+  :root:not(.dark) .form-field {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(248, 250, 252, 0.9) 100%
+    );
+    border: 1px solid rgba(40, 167, 69, 0.2);
+    box-shadow: 
+      0 2px 8px rgba(40, 167, 69, 0.08),
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  :root:not(.dark) .form-field:focus {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.98) 0%, 
+      rgba(248, 250, 252, 0.95) 100%
+    );
+    border-color: var(--holy-action);
+    box-shadow: 
+      0 4px 12px rgba(40, 167, 69, 0.15),
+      0 2px 6px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      0 0 0 3px rgba(40, 167, 69, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  :root:not(.dark) .form-field:hover:not(:focus) {
+    border-color: rgba(40, 167, 69, 0.4);
+    box-shadow: 
+      0 3px 10px rgba(40, 167, 69, 0.12),
+      0 1px 4px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    transform: translateY(-1px);
+  }
+  
+  :root:not(.dark) .form-placeholder::placeholder {
+    color: rgba(71, 85, 105, 0.6);
+    font-weight: 400;
+  }
+  
+  :root:not(.dark) .form-info-card {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.9) 0%, 
+      rgba(248, 250, 252, 0.8) 50%,
+      rgba(40, 167, 69, 0.03) 100%
+    );
+    box-shadow: 
+      0 4px 16px rgba(40, 167, 69, 0.08),
+      0 2px 8px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+  }
+  
+  :root:not(.dark) .form-info-card:hover {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(248, 250, 252, 0.9) 50%,
+      rgba(40, 167, 69, 0.05) 100%
+    );
+    box-shadow: 
+      0 6px 20px rgba(40, 167, 69, 0.12),
+      0 3px 10px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+  }
+  
+  :root:not(.dark) .form-info-border {
+    border-color: rgba(40, 167, 69, 0.2);
+  }
+
+  /* === SELECT SPECIFIC STYLING FOR LIGHT MODE === */
+  :root:not(.dark) select.form-field {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2328A745' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    appearance: none;
+  }
+  
+  :root:not(.dark) select.form-field option {
+    background-color: white;
+    color: var(--holy-text-primary);
+    padding: 8px 12px;
+  }
+
+  /* === ENHANCED ANIMATIONS === */
+  .form-field {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .form-field:focus {
     transform: translateY(-1px);
   }
   
@@ -210,12 +338,34 @@ import MailIcon from "./icons/Mail.astro";
     transform: translateY(-2px);
   }
   
-  /* Estilos para validación */
-  input:invalid:not(:placeholder-shown) {
-    border-color: #ef4444;
+  /* === VALIDATION STYLES === */
+  .form-field:invalid:not(:placeholder-shown) {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
   }
   
-  input:valid:not(:placeholder-shown) {
-    border-color: #28A745;
+  .form-field:valid:not(:placeholder-shown) {
+    border-color: #28A745 !important;
+  }
+  
+  :root:not(.dark) .form-field:valid:not(:placeholder-shown) {
+    box-shadow: 
+      0 2px 8px rgba(40, 167, 69, 0.15),
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 0 0 3px rgba(40, 167, 69, 0.1) !important;
+  }
+
+  /* === SPARKLE EFFECT FOR LIGHT MODE === */
+  :root:not(.dark) .form-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 15% 15%, rgba(40, 167, 69, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 85% 85%, rgba(40, 167, 69, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(40, 167, 69, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    border-radius: inherit;
   }
 </style> 
