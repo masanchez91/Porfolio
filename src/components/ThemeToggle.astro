@@ -78,8 +78,6 @@ const THEMES = ["Light", "Dark", "System"]
       matchMedia.removeEventListener("change", state.mediaQueryListener);
       state.mediaQueryListener = null;
     }
-    
-    console.log('🧹 Theme toggle cleanup completed');
   }
 
   function initThemeToggle() {
@@ -88,11 +86,8 @@ const THEMES = ["Light", "Dark", "System"]
     
     // Evitar reinicialización muy frecuente (menos de 50ms)
     if (state.initialized && (now - state.lastThemeChange) < 50) {
-      console.log('⏰ Skipping reinit - too frequent');
       return;
     }
-    
-    console.log('🎨 Initializing theme toggle...');
     
     // Limpiar estado anterior
     cleanupThemeToggle();
@@ -102,7 +97,6 @@ const THEMES = ["Light", "Dark", "System"]
     const getThemePreference = () => {
       if (typeof localStorage !== "undefined") {
         const stored = localStorage.getItem("theme");
-        console.log('📦 Stored theme:', stored);
         return stored || "system";
       }
       return "system";
@@ -111,7 +105,6 @@ const THEMES = ["Light", "Dark", "System"]
     const updateIcon = (themePreference) => {
       // Buscar iconos cada vez para asegurar que existan en la nueva página
       const icons = document.querySelectorAll(".theme-toggle-icon");
-      console.log(`🔍 Found ${icons.length} theme icons`);
       
       icons.forEach((element) => {
         if (element && element.id) {
@@ -121,7 +114,6 @@ const THEMES = ["Light", "Dark", "System"]
     }
 
     const applyTheme = (isDark) => {
-      console.log('🔄 Applying theme:', isDark ? 'dark' : 'light');
       document.documentElement.classList.toggle("dark", isDark);
     }
 
@@ -134,7 +126,6 @@ const THEMES = ["Light", "Dark", "System"]
         }
 
         const themePreference = getThemePreference();
-        console.log('🎯 Current theme preference:', themePreference);
         
         let isDark = false;
         
@@ -150,7 +141,6 @@ const THEMES = ["Light", "Dark", "System"]
             isDark = matchMedia.matches;
             // Recrear listener para system theme
             state.mediaQueryListener = (e) => {
-              console.log('🔄 System theme changed:', e.matches);
               applyTheme(e.matches);
             };
             matchMedia.addEventListener("change", state.mediaQueryListener);
@@ -181,9 +171,6 @@ const THEMES = ["Light", "Dark", "System"]
           if (themesMenu) {
             const isOpen = themesMenu.classList.contains("open");
             themesMenu.classList.toggle("open", !isOpen);
-            console.log('🔄 Menu toggled:', !isOpen);
-          } else {
-            console.warn('⚠️ Themes menu not found');
           }
           return;
         }
@@ -192,7 +179,6 @@ const THEMES = ["Light", "Dark", "System"]
         const themeOption = e.target.closest(".themes-menu-option");
         if (themeOption) {
           const newTheme = themeOption.innerText.toLowerCase().trim();
-          console.log('🎨 Theme selected:', newTheme);
           
           try {
             localStorage.setItem("theme", newTheme);
@@ -220,7 +206,6 @@ const THEMES = ["Light", "Dark", "System"]
       };
       
       document.addEventListener("click", state.clickHandler);
-      console.log('👆 Click handlers attached');
     };
 
     // Inicializar
@@ -228,12 +213,10 @@ const THEMES = ["Light", "Dark", "System"]
     setupClickHandlers();
     
     state.initialized = true;
-    console.log('✅ Theme toggle initialized successfully');
   }
 
   // Función de reinicialización más robusta
   function forceReinitThemeToggle() {
-    console.log('🔄 Force reinitializing theme toggle...');
     window.themeToggleState.initialized = false;
     
     // Limpiar completamente
@@ -254,18 +237,15 @@ const THEMES = ["Light", "Dark", "System"]
 
   // Manejo robusto de navegación SPA
   document.addEventListener('astro:page-load', () => {
-    console.log('🚀 Astro page load detected');
     forceReinitThemeToggle();
   });
 
   document.addEventListener('astro:after-swap', () => {
-    console.log('🔄 Astro after swap detected');
     forceReinitThemeToggle();
   });
 
   // Manejo adicional para el caso específico reportado
   document.addEventListener('astro:before-preparation', () => {
-    console.log('📝 Astro before preparation - cleaning up');
     cleanupThemeToggle();
   });
 
@@ -276,7 +256,6 @@ const THEMES = ["Light", "Dark", "System"]
       const icons = document.querySelectorAll(".theme-toggle-icon");
       
       if (!toggleBtn || icons.length === 0) {
-        console.log('🔧 Backup: Theme elements not found, reinitializing...');
         forceReinitThemeToggle();
       }
     }, 200);

@@ -232,24 +232,13 @@ const navItems = [
 
 <script>
   function initMobileMenu() {
-    console.log('📱 Initializing SIMPLE mobile menu...');
-    
     const menuButton = document.getElementById('mobile-menu-button');
     const menu = document.getElementById('mobile-menu');
     const closeButton = document.getElementById('mobile-menu-close');
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelectorAll('.mobile-nav-link');
     
-    console.log('🔍 Found elements:', {
-      menuButton: !!menuButton,
-      menu: !!menu,
-      closeButton: !!closeButton,
-      hamburger: !!hamburger,
-      navLinksCount: navLinks.length
-    });
-    
     if (!menuButton || !menu || !closeButton || !hamburger) {
-      console.error('❌ Missing elements');
       return;
     }
 
@@ -257,8 +246,6 @@ const navItems = [
 
     function openMenu() {
       if (!menu || !hamburger) return;
-      
-      console.log('🔓 OPENING menu - SIMPLE VERSION');
       
       // Mostrar menú
       menu.style.display = 'block';
@@ -271,13 +258,10 @@ const navItems = [
       document.body.classList.add('menu-open');
       
       isOpen = true;
-      console.log('✅ Menu should be visible now');
     }
 
     function closeMenu() {
       if (!menu || !hamburger) return;
-      
-      console.log('🔒 CLOSING menu');
       
       // Ocultar menú
       menu.style.display = 'none';
@@ -290,14 +274,12 @@ const navItems = [
       document.body.classList.remove('menu-open');
       
       isOpen = false;
-      console.log('✅ Menu closed');
     }
 
     // Event listeners
     menuButton.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      console.log('🔘 Menu button clicked, isOpen:', isOpen);
       
       if (isOpen) {
         closeMenu();
@@ -309,7 +291,6 @@ const navItems = [
     closeButton.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      console.log('❌ Close button clicked');
       closeMenu();
     });
 
@@ -317,7 +298,6 @@ const navItems = [
     navLinks.forEach((link, index) => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
-        console.log(`🔗 Link ${index} clicked: ${link.textContent?.trim()} -> ${href}`);
         
         if (href) {
           if (href === '/blog' || href === '/') {
@@ -336,7 +316,6 @@ const navItems = [
                   behavior: 'smooth',
                   block: 'start'
                 });
-                console.log(`✅ Scrolled to section: ${targetId}`);
               } else {
                 // Fallback - ir a la página principal con el hash
                 window.location.href = href;
@@ -355,7 +334,6 @@ const navItems = [
     themeButtons.forEach(button => {
       button.addEventListener('click', () => {
         const theme = button.getAttribute('data-theme');
-        console.log(`🎨 Theme selected: ${theme}`);
         
         if (theme) {
           try {
@@ -372,8 +350,6 @@ const navItems = [
                  button.style.background = '#1f2937';
                }, 200);
              }
-            
-            console.log(`✅ Theme applied: ${theme}`);
           } catch (error) {
             console.error('❌ Error setting theme:', error);
           }
@@ -387,8 +363,6 @@ const navItems = [
         closeMenu();
       }
     });
-
-    console.log('✅ SIMPLE mobile menu initialized with navigation and theme support');
   }
 
   // Initialize

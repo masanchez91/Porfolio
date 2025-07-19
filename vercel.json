@@ -2,14 +2,5 @@
   "framework": "astro",
   "buildCommand": "pnpm run build",
   "outputDirectory": "dist",
-  "installCommand": "pnpm install --frozen-lockfile",
-  "devCommand": "pnpm run dev",
-  "functions": {
-    "*.js": {
-      "runtime": "nodejs22.x"
-    }
-  },
-  "env": {
-    "NODE_VERSION": "22"
-  }
+  "installCommand": "pnpm install --frozen-lockfile"
 } 
