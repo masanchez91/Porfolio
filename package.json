@@ -9,6 +9,10 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=9.0.0"
+  },
   "dependencies": {
     "@astrojs/check": "0.9.4",
     "@astrojs/mdx": "^4.3.0",
