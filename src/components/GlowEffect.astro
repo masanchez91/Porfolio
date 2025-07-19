@@ -1,0 +1,336 @@
+---
+// Sistema de Resplandor Dinámico - The Holy Code
+// Animaciones sutiles e innovadoras para una experiencia mágica
+---
+
+<style is:global>
+  /* === SISTEMA DE RESPLANDOR DINÁMICO === */
+  
+  /* Elementos que pueden tener resplandor */
+  .glow-element {
+    position: relative;
+    overflow: visible;
+    transition: all 0.3s ease;
+  }
+  
+  /* Resplandor base adaptable al tema */
+  .glow-element::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: radial-gradient(
+      circle at center,
+      var(--holy-action) 0%,
+      rgba(40, 167, 69, 0.4) 30%,
+      rgba(40, 167, 69, 0.1) 60%,
+      transparent 100%
+    );
+    border-radius: inherit;
+    opacity: 0;
+    z-index: -1;
+    transition: all 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+    pointer-events: none;
+  }
+  
+  /* Activación en hover (desktop) */
+  @media (hover: hover) and (pointer: fine) {
+    .glow-element:hover::before {
+      opacity: 0.6;
+      animation: pulseGlow 1.5s ease-out;
+    }
+    
+    .glow-element:hover {
+      transform: translateY(-1px);
+    }
+  }
+  
+  /* Activación en touch (móvil) */
+  @media (hover: none) and (pointer: coarse) {
+    .glow-element:active::before {
+      opacity: 0.4;
+      animation: touchGlow 0.8s ease-out;
+    }
+  }
+  
+  /* Animación de pulso suave */
+  @keyframes pulseGlow {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+    100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+  }
+  
+  /* Animación para dispositivos táctiles */
+  @keyframes touchGlow {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    30% {
+      opacity: 0.6;
+      transform: scale(1.02);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+  
+  /* Variantes de resplandor por tipo de elemento */
+  
+  /* Botones principales */
+  .glow-button::before {
+    background: radial-gradient(
+      ellipse at center,
+      var(--holy-action) 0%,
+      rgba(40, 167, 69, 0.6) 20%,
+      rgba(40, 167, 69, 0.3) 40%,
+      rgba(40, 167, 69, 0.1) 70%,
+      transparent 100%
+    );
+    border-radius: 2rem;
+  }
+  
+  /* Cards y contenedores */
+  .glow-card::before {
+    background: linear-gradient(
+      135deg,
+      rgba(40, 167, 69, 0.1) 0%,
+      rgba(40, 167, 69, 0.3) 50%,
+      rgba(40, 167, 69, 0.1) 100%
+    );
+    border-radius: 1rem;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+  }
+  
+  /* Imágenes y elementos visuales */
+  .glow-image::before {
+    background: radial-gradient(
+      circle at center,
+      rgba(40, 167, 69, 0.2) 0%,
+      rgba(40, 167, 69, 0.4) 40%,
+      rgba(40, 167, 69, 0.1) 80%,
+      transparent 100%
+    );
+    border-radius: inherit;
+    filter: blur(8px);
+  }
+  
+  /* Títulos y elementos de texto importantes */
+  .glow-text::before {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(40, 167, 69, 0.1) 25%,
+      rgba(40, 167, 69, 0.3) 50%,
+      rgba(40, 167, 69, 0.1) 75%,
+      transparent 100%
+    );
+    height: 2px;
+    top: auto;
+    bottom: -4px;
+    border-radius: 1px;
+  }
+  
+  /* Resplandor en scroll - se activa cuando el elemento entra en vista */
+  .glow-on-scroll {
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .glow-on-scroll.in-view::before {
+    opacity: 0.4;
+    animation: scrollGlow 2s ease-out;
+  }
+  
+  @keyframes scrollGlow {
+    0% {
+      opacity: 0;
+      transform: scale(0.95) translateY(10px);
+    }
+    40% {
+      opacity: 0.6;
+      transform: scale(1.02) translateY(-2px);
+    }
+    100% {
+      opacity: 0.4;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  /* Resplandor adaptativo al tema */
+  :root:not(.dark) .glow-element::before {
+    background: radial-gradient(
+      circle at center,
+      rgba(40, 167, 69, 0.3) 0%,
+      rgba(40, 167, 69, 0.15) 30%,
+      rgba(40, 167, 69, 0.05) 60%,
+      transparent 100%
+    );
+  }
+  
+  :root:not(.dark) .glow-card::before {
+    background: linear-gradient(
+      135deg,
+      rgba(40, 167, 69, 0.05) 0%,
+      rgba(40, 167, 69, 0.15) 50%,
+      rgba(40, 167, 69, 0.05) 100%
+    );
+    box-shadow: 0 8px 32px rgba(40, 167, 69, 0.1);
+  }
+  
+  /* Efectos especiales para elementos críticos */
+  .glow-cta {
+    --glow-color: var(--holy-action);
+    --glow-spread: 20px;
+    position: relative;
+  }
+  
+  .glow-cta::before {
+    background: radial-gradient(
+      circle at center,
+      var(--glow-color) 0%,
+      rgba(40, 167, 69, 0.8) 20%,
+      rgba(40, 167, 69, 0.4) 40%,
+      rgba(40, 167, 69, 0.1) 80%,
+      transparent 100%
+    );
+    top: calc(-1 * var(--glow-spread));
+    left: calc(-1 * var(--glow-spread));
+    right: calc(-1 * var(--glow-spread));
+    bottom: calc(-1 * var(--glow-spread));
+    border-radius: 2rem;
+    filter: blur(4px);
+  }
+  
+  @media (hover: hover) {
+    .glow-cta:hover::before {
+      opacity: 0.8;
+      animation: ctaGlow 2s ease-in-out infinite;
+    }
+  }
+  
+  @keyframes ctaGlow {
+    0%, 100% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+  
+  /* Resplandor de navegación */
+  .glow-nav::before {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(40, 167, 69, 0.2) 50%,
+      transparent 100%
+    );
+    height: 100%;
+    border-radius: inherit;
+  }
+  
+  /* Evitar resplandor en elementos específicos */
+  .no-glow::before {
+    display: none !important;
+  }
+  
+  /* Reducir animaciones para usuarios que prefieren menos movimiento */
+  @media (prefers-reduced-motion: reduce) {
+    .glow-element::before {
+      transition: opacity 0.3s ease;
+      animation: none !important;
+    }
+    
+    .glow-element:hover::before {
+      animation: none;
+    }
+    
+    .glow-on-scroll.in-view::before {
+      animation: none;
+      opacity: 0.3;
+    }
+  }
+  
+  /* Resplandor especial para el logo */
+  .glow-logo::before {
+    background: conic-gradient(
+      from 0deg at 50% 50%,
+      var(--holy-action) 0deg,
+      rgba(40, 167, 69, 0.5) 120deg,
+      rgba(40, 167, 69, 0.2) 240deg,
+      var(--holy-action) 360deg
+    );
+    border-radius: 50%;
+    filter: blur(6px);
+  }
+  
+  @media (hover: hover) {
+    .glow-logo:hover::before {
+      animation: logoSpin 3s linear infinite;
+    }
+  }
+  
+  @keyframes logoSpin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<script is:inline>
+  // Sistema de Scroll Glow - Detecta cuando elementos entran en vista
+  function initScrollGlow() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -100px 0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          // Solo ejecutar la animación una vez
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observar todos los elementos con glow-on-scroll
+    document.querySelectorAll('.glow-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollGlow);
+  } else {
+    initScrollGlow();
+  }
+
+  // Re-inicializar en navegación SPA
+  document.addEventListener('astro:page-load', initScrollGlow);
+
+  console.log('✨ Sistema de Resplandor Dinámico iniciado');
+</script> 

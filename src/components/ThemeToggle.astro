@@ -56,57 +56,229 @@ const THEMES = ["Light", "Dark", "System"]
 </style>
 
 <script is:inline>
-  let remove = null
-  const matchMedia = window.matchMedia("(prefers-color-scheme: dark)")
-  const themesMenu = document.getElementById("themes-menu")
+  // Variables globales para manejo de estado
+  window.themeToggleState = window.themeToggleState || {
+    initialized: false,
+    clickHandler: null,
+    mediaQueryListener: null,
+    lastThemeChange: 0
+  };
 
-  const getThemePreference = () => {
-    if (typeof localStorage !== "undefined") {
-      return localStorage.getItem("theme") ?? "system"
+  function cleanupThemeToggle() {
+    const state = window.themeToggleState;
+    
+    // Limpiar event listeners existentes
+    if (state.clickHandler) {
+      document.removeEventListener("click", state.clickHandler);
+      state.clickHandler = null;
     }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light"
+    
+    if (state.mediaQueryListener) {
+      const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
+      matchMedia.removeEventListener("change", state.mediaQueryListener);
+      state.mediaQueryListener = null;
+    }
+    
+    console.log('🧹 Theme toggle cleanup completed');
   }
 
-  const updateIcon = (themePreference) => {
-    document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
-      element.style.scale = element.id === themePreference ? "1" : "0"
-    })
+  function initThemeToggle() {
+    const state = window.themeToggleState;
+    const now = Date.now();
+    
+    // Evitar reinicialización muy frecuente (menos de 50ms)
+    if (state.initialized && (now - state.lastThemeChange) < 50) {
+      console.log('⏰ Skipping reinit - too frequent');
+      return;
+    }
+    
+    console.log('🎨 Initializing theme toggle...');
+    
+    // Limpiar estado anterior
+    cleanupThemeToggle();
+    
+    const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const getThemePreference = () => {
+      if (typeof localStorage !== "undefined") {
+        const stored = localStorage.getItem("theme");
+        console.log('📦 Stored theme:', stored);
+        return stored || "system";
+      }
+      return "system";
+    }
+
+    const updateIcon = (themePreference) => {
+      // Buscar iconos cada vez para asegurar que existan en la nueva página
+      const icons = document.querySelectorAll(".theme-toggle-icon");
+      console.log(`🔍 Found ${icons.length} theme icons`);
+      
+      icons.forEach((element) => {
+        if (element && element.id) {
+          element.style.scale = element.id === themePreference ? "1" : "0";
+        }
+      });
+    }
+
+    const applyTheme = (isDark) => {
+      console.log('🔄 Applying theme:', isDark ? 'dark' : 'light');
+      document.documentElement.classList.toggle("dark", isDark);
+    }
+
+    const updateTheme = (forceUpdate = false) => {
+      try {
+        // Limpiar listener anterior
+        if (state.mediaQueryListener) {
+          matchMedia.removeEventListener("change", state.mediaQueryListener);
+          state.mediaQueryListener = null;
+        }
+
+        const themePreference = getThemePreference();
+        console.log('🎯 Current theme preference:', themePreference);
+        
+        let isDark = false;
+        
+        switch (themePreference) {
+          case "dark":
+            isDark = true;
+            break;
+          case "light":
+            isDark = false;
+            break;
+          case "system":
+          default:
+            isDark = matchMedia.matches;
+            // Recrear listener para system theme
+            state.mediaQueryListener = (e) => {
+              console.log('🔄 System theme changed:', e.matches);
+              applyTheme(e.matches);
+            };
+            matchMedia.addEventListener("change", state.mediaQueryListener);
+            break;
+        }
+
+        updateIcon(themePreference);
+        applyTheme(isDark);
+        
+        if (forceUpdate) {
+          state.lastThemeChange = Date.now();
+        }
+        
+      } catch (error) {
+        console.error('❌ Error updating theme:', error);
+      }
+    }
+
+    const setupClickHandlers = () => {
+      state.clickHandler = (e) => {
+        // Verificar que los elementos existan en el momento del clic
+        const themeToggleBtn = document.getElementById("theme-toggle-btn");
+        const themesMenu = document.getElementById("themes-menu");
+        
+        // Toggle del menú
+        if (e.target.closest("#theme-toggle-btn")) {
+          e.stopPropagation();
+          if (themesMenu) {
+            const isOpen = themesMenu.classList.contains("open");
+            themesMenu.classList.toggle("open", !isOpen);
+            console.log('🔄 Menu toggled:', !isOpen);
+          } else {
+            console.warn('⚠️ Themes menu not found');
+          }
+          return;
+        }
+        
+        // Selección de tema
+        const themeOption = e.target.closest(".themes-menu-option");
+        if (themeOption) {
+          const newTheme = themeOption.innerText.toLowerCase().trim();
+          console.log('🎨 Theme selected:', newTheme);
+          
+          try {
+            localStorage.setItem("theme", newTheme);
+            
+            // Pequeño delay para asegurar que el localStorage se guarde
+            setTimeout(() => {
+              updateTheme(true);
+              
+              // Cerrar menú
+              if (themesMenu) {
+                themesMenu.classList.remove("open");
+              }
+            }, 10);
+            
+          } catch (error) {
+            console.error('❌ Error setting theme:', error);
+          }
+          return;
+        }
+        
+        // Cerrar menú si se hace clic fuera
+        if (themesMenu && !e.target.closest("#themes-menu")) {
+          themesMenu.classList.remove("open");
+        }
+      };
+      
+      document.addEventListener("click", state.clickHandler);
+      console.log('👆 Click handlers attached');
+    };
+
+    // Inicializar
+    updateTheme();
+    setupClickHandlers();
+    
+    state.initialized = true;
+    console.log('✅ Theme toggle initialized successfully');
   }
 
-  const updateTheme = () => {
-    if (remove != null) {
-      remove()
-    }
-    matchMedia.addEventListener("change", updateTheme)
-    remove = () => {
-      matchMedia.removeEventListener("change", updateTheme)
-    }
-
-    const themePreference = getThemePreference()
-    const isDark =
-      themePreference === "dark" ||
-      (themePreference === "system" && matchMedia.matches)
-
-    updateIcon(themePreference)
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark")
+  // Función de reinicialización más robusta
+  function forceReinitThemeToggle() {
+    console.log('🔄 Force reinitializing theme toggle...');
+    window.themeToggleState.initialized = false;
+    
+    // Limpiar completamente
+    cleanupThemeToggle();
+    
+    // Reinicializar después de un pequeño delay
+    setTimeout(() => {
+      initThemeToggle();
+    }, 20);
   }
 
-  updateTheme()
+  // Inicialización inicial
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
 
-  document.addEventListener("click", () => themesMenu.classList.remove("open"))
+  // Manejo robusto de navegación SPA
+  document.addEventListener('astro:page-load', () => {
+    console.log('🚀 Astro page load detected');
+    forceReinitThemeToggle();
+  });
 
-  document.getElementById("theme-toggle-btn").addEventListener("click", (e) => {
-    e.stopPropagation()
-    const isClosed = !themesMenu.classList.contains("open")
-    themesMenu.classList[isClosed ? "add" : "remove"]("open")
-  })
+  document.addEventListener('astro:after-swap', () => {
+    console.log('🔄 Astro after swap detected');
+    forceReinitThemeToggle();
+  });
 
-  document.querySelectorAll(".themes-menu-option").forEach((element) => {
-    element.addEventListener("click", (e) => {
-      localStorage.setItem("theme", e.target.innerText.toLowerCase().trim())
-      updateTheme()
-    })
-  })
+  // Manejo adicional para el caso específico reportado
+  document.addEventListener('astro:before-preparation', () => {
+    console.log('📝 Astro before preparation - cleaning up');
+    cleanupThemeToggle();
+  });
+
+  // Backup: Reinicializar si no hay elementos de tema después de 200ms
+  document.addEventListener('astro:page-load', () => {
+    setTimeout(() => {
+      const toggleBtn = document.getElementById("theme-toggle-btn");
+      const icons = document.querySelectorAll(".theme-toggle-icon");
+      
+      if (!toggleBtn || icons.length === 0) {
+        console.log('🔧 Backup: Theme elements not found, reinitializing...');
+        forceReinitThemeToggle();
+      }
+    }, 200);
+  });
 </script>

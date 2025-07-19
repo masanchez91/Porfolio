@@ -21,7 +21,7 @@ const recentPosts = sortedPosts.slice(1);
         <h1 class="font-heading text-4xl md:text-5xl font-bold text-holy-text-primary mb-6">
           Blog de The Holy Code
         </h1>
-        <p class="text-xl text-holy-neutral leading-relaxed max-w-2xl mx-auto">
+        <p class="text-xl text-holy-text-secondary leading-relaxed max-w-2xl mx-auto">
           Reflexiones sobre desarrollo, tecnología y creatividad. 
           Comparto experiencias, aprendizajes y la filosofía detrás de cada línea de código.
         </p>
@@ -33,7 +33,7 @@ const recentPosts = sortedPosts.slice(1);
           <h2 class="font-heading text-2xl font-semibold text-holy-text-primary mb-8">
             Artículo Destacado
           </h2>
-          <article class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20 hover:border-holy-action/40 transition-all duration-300">
+          <article class="bg-holy-card-bg backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20 hover:border-holy-action/40 transition-all duration-300">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div class="space-y-6">
                 <div class="flex flex-wrap gap-2">
@@ -50,7 +50,7 @@ const recentPosts = sortedPosts.slice(1);
                   </a>
                 </h3>
                 
-                <p class="text-holy-neutral leading-relaxed">
+                <p class="text-holy-text-secondary leading-relaxed">
                   {featuredPost.data.description}
                 </p>
                 
@@ -97,7 +97,7 @@ const recentPosts = sortedPosts.slice(1);
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {recentPosts.map((post) => (
-              <article class="group bg-holy-dark-secondary/20 backdrop-blur-sm rounded-2xl p-6 border border-holy-neutral/20 hover:border-holy-action/30 transition-all duration-300 hover:shadow-lg hover:shadow-holy-action/10">
+              <article class="group bg-holy-card-bg backdrop-blur-sm rounded-2xl p-6 border border-holy-border hover:border-holy-action/30 transition-all duration-300 hover:shadow-lg hover:shadow-holy-action/10">
                 {post.data.heroImage && (
                   <img 
                     src={post.data.heroImage} 
@@ -121,11 +121,11 @@ const recentPosts = sortedPosts.slice(1);
                     </a>
                   </h3>
                   
-                  <p class="text-holy-neutral text-sm leading-relaxed">
+                  <p class="text-holy-text-secondary text-sm leading-relaxed">
                     {post.data.description}
                   </p>
                   
-                  <div class="flex items-center justify-between text-xs text-holy-text-secondary pt-2 border-t border-holy-neutral/10">
+                  <div class="flex items-center justify-between text-xs text-holy-text-secondary pt-2 border-t border-holy-border">
                     <span>{post.data.author}</span>
                     <time datetime={post.data.pubDate.toISOString()}>
                       {post.data.pubDate.toLocaleDateString('es-ES', {
@@ -144,11 +144,11 @@ const recentPosts = sortedPosts.slice(1);
 
       <!-- Newsletter/CTA -->
       <section class="mt-16 text-center">
-        <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20 max-w-2xl mx-auto">
+        <div class="bg-holy-card-bg backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20 max-w-2xl mx-auto">
           <h3 class="font-heading text-2xl font-semibold text-holy-text-primary mb-4">
             ¿Quieres más contenido como este?
           </h3>
-          <p class="text-holy-neutral mb-6">
+          <p class="text-holy-text-secondary mb-6">
             Comparte tus preguntas, ideas o temas que te gustaría que cubra. 
             La mejor inspiración viene de la conversación.
           </p>

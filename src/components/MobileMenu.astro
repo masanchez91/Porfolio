@@ -1,0 +1,452 @@
+---
+import ThemeToggle from "./ThemeToggle.astro"
+
+const navItems = [
+  {
+    title: "Inicio",
+    label: "inicio",
+    url: "/",
+    icon: "🏠"
+  },
+  {
+    title: "Servicios",
+    label: "servicios", 
+    url: "/#servicios",
+    icon: "⚙️"
+  },
+  {
+    title: "Proyectos",
+    label: "proyectos",
+    url: "/#proyectos", 
+    icon: "🚀"
+  },
+  {
+    title: "Agencia",
+    label: "agencia",
+    url: "/#agencia",
+    icon: "👥"
+  },
+  {
+    title: "Contacto",
+    label: "contacto",
+    url: "/#contacto",
+    icon: "📧"
+  },
+  {
+    title: "Blog",
+    label: "blog",
+    url: "/blog",
+    icon: "📝"
+  },
+]
+---
+
+<!-- Botón hamburguesa -->
+<button
+  id="mobile-menu-button"
+  class="md:hidden flex items-center justify-center w-12 h-12 rounded-xl bg-holy-dark-secondary/90 border-2 border-holy-action/30 backdrop-blur-sm transition-all duration-200 hover:bg-holy-action/20 hover:border-holy-action/60 z-[1000] shadow-lg touch-manipulation"
+  aria-label="Menú"
+  aria-expanded="false"
+  type="button"
+>
+  <div class="hamburger-icon">
+    <span class="line line-1"></span>
+    <span class="line line-2"></span>
+    <span class="line line-3"></span>
+  </div>
+</button>
+
+<!-- Overlay -->
+<div
+  id="mobile-menu-overlay"
+  class="fixed inset-0 bg-black/70 backdrop-blur-md z-[998] opacity-0 invisible transition-all duration-300 pointer-events-none"
+  aria-hidden="true"
+>
+</div>
+
+<!-- Menú móvil -->
+<nav
+  id="mobile-menu"
+  class="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-holy-dark-primary/98 backdrop-blur-xl border-l-2 border-holy-action/30 z-[999] transform translate-x-full transition-all duration-300 ease-out shadow-2xl"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menú de navegación"
+>
+  <!-- Header del menú -->
+  <div class="flex items-center justify-between p-6 border-b-2 border-holy-action/20 bg-holy-dark-secondary/50">
+    <div class="flex items-center space-x-3">
+      <img
+        src="/holycode.webp"
+        alt="The Holy Code"
+        class="w-10 h-10 rounded-full border-2 border-holy-action/30"
+      />
+      <span class="font-bold text-lg text-holy-text-primary">The Holy Code</span>
+    </div>
+    <button
+      id="mobile-menu-close"
+      class="flex items-center justify-center w-10 h-10 rounded-lg text-holy-text-secondary hover:text-holy-text-primary hover:bg-holy-action/20 transition-colors border border-holy-border touch-manipulation"
+      aria-label="Cerrar"
+      type="button"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Enlaces de navegación -->
+  <div class="p-6 space-y-2 overflow-y-auto max-h-[60vh]">
+    {navItems.map((item, index) => (
+      <a
+        href={item.url}
+        class="mobile-nav-item flex items-center space-x-4 p-4 rounded-xl text-holy-text-primary hover:bg-holy-action/20 hover:border-holy-action/30 transition-all duration-200 group border border-transparent min-h-[56px] touch-manipulation"
+        style={`animation-delay: ${index * 50}ms`}
+        role="menuitem"
+      >
+        <span class="text-2xl group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
+          {item.icon}
+        </span>
+        <span class="font-medium text-lg group-hover:text-holy-action transition-colors">
+          {item.title}
+        </span>
+      </a>
+    ))}
+  </div>
+
+  <!-- Controles del menú -->
+  <div class="absolute bottom-6 left-6 right-6">
+    <div class="flex items-center justify-between p-4 bg-holy-dark-secondary/50 rounded-xl border-2 border-holy-action/20">
+      <span class="text-holy-text-secondary text-sm font-medium">
+        Tema
+      </span>
+      <ThemeToggle />
+    </div>
+    
+    <!-- Info adicional -->
+    <div class="mt-4 text-center">
+      <p class="text-xs text-holy-text-secondary">
+        © 2024 The Holy Code
+      </p>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    width: 24px;
+    height: 18px;
+    position: relative;
+  }
+
+  .line {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--holy-text-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .line-1 {
+    position: absolute;
+    top: 0;
+  }
+
+  .line-2 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .line-3 {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .hamburger-active .line-1 {
+    transform: rotate(45deg) translateY(8px);
+    background-color: var(--holy-action);
+  }
+
+  .hamburger-active .line-2 {
+    opacity: 0;
+  }
+
+  .hamburger-active .line-3 {
+    transform: rotate(-45deg) translateY(-8px);
+    background-color: var(--holy-action);
+  }
+
+  .mobile-nav-item {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  .menu-open .mobile-nav-item {
+    animation: slideInFromRight 0.4s ease-out forwards;
+  }
+
+  @keyframes slideInFromRight {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Estados del menú */
+  .menu-open #mobile-menu {
+    transform: translateX(0);
+  }
+
+  .menu-open #mobile-menu-overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Asegurar que el menú se vea bien en modo claro */
+  :root:not(.dark) #mobile-menu {
+    background-color: rgba(255, 255, 255, 0.98);
+    border-left: 2px solid rgba(40, 167, 69, 0.3);
+  }
+
+  :root:not(.dark) #mobile-menu-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  :root:not(.dark) .mobile-nav-item:hover {
+    background-color: rgba(40, 167, 69, 0.1);
+  }
+
+  /* Mejoras para móvil */
+  @media (max-width: 480px) {
+    #mobile-menu {
+      width: 100vw;
+      max-width: none;
+    }
+  }
+
+  /* Mejorar área táctil en móviles */
+  @media (hover: none) and (pointer: coarse) {
+    .mobile-nav-item {
+      min-height: 60px;
+      font-size: 1.125rem;
+    }
+    
+    #mobile-menu-button {
+      width: 48px;
+      height: 48px;
+    }
+    
+    #mobile-menu-close {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  /* Animación de slide in más fluida */
+  #mobile-menu {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Prevenir scroll del body cuando el menú está abierto */
+  body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+</style>
+
+<script is:inline>
+  function initMobileMenu() {
+    console.log('🚀 Initializing enhanced mobile menu...');
+    
+    const menuButton = document.getElementById('mobile-menu-button');
+    const menuOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose = document.getElementById('mobile-menu-close');
+    const hamburgerIcon = document.querySelector('.hamburger-icon');
+    const body = document.body;
+
+    console.log('📱 Menu elements:', {
+      menuButton: !!menuButton,
+      menuOverlay: !!menuOverlay,
+      mobileMenu: !!mobileMenu,
+      menuClose: !!menuClose,
+      hamburgerIcon: !!hamburgerIcon
+    });
+
+    if (!menuButton || !menuOverlay || !mobileMenu || !menuClose) {
+      console.error('❌ Mobile menu elements not found');
+      return;
+    }
+
+    let isMenuOpen = false;
+
+    const openMenu = (e) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      
+      if (isMenuOpen) return;
+      
+      console.log('🔓 Opening mobile menu');
+      isMenuOpen = true;
+      
+      body.classList.add('menu-open');
+      menuButton.setAttribute('aria-expanded', 'true');
+      hamburgerIcon?.classList.add('hamburger-active');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      menuOverlay.setAttribute('aria-hidden', 'false');
+      
+      // Prevenir scroll del body
+      const scrollY = window.scrollY;
+      body.style.position = 'fixed';
+      body.style.top = `-${scrollY}px`;
+      body.style.width = '100%';
+      
+      // Focus management
+      mobileMenu.focus();
+    };
+
+    const closeMenu = (e) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      
+      if (!isMenuOpen) return;
+      
+      console.log('🔒 Closing mobile menu');
+      isMenuOpen = false;
+      
+      body.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      hamburgerIcon?.classList.remove('hamburger-active');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      menuOverlay.setAttribute('aria-hidden', 'true');
+      
+      // Restaurar scroll del body
+      const scrollY = body.style.top;
+      body.style.position = '';
+      body.style.top = '';
+      body.style.width = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+      
+      // Return focus to button
+      menuButton.focus();
+    };
+
+    // Event listeners mejorados
+    menuButton.addEventListener('click', openMenu, { passive: false });
+    menuButton.addEventListener('touchstart', openMenu, { passive: false });
+    
+    menuClose.addEventListener('click', closeMenu, { passive: false });
+    menuClose.addEventListener('touchstart', closeMenu, { passive: false });
+    
+    menuOverlay.addEventListener('click', closeMenu, { passive: false });
+
+    // Cerrar con tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        console.log('⌨️ Escape key pressed');
+        closeMenu();
+      }
+    });
+
+    // Trap focus within menu
+    mobileMenu.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab' && isMenuOpen) {
+        const focusableElements = mobileMenu.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            lastElement.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            firstElement.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    });
+
+    // Cerrar menú al hacer clic en un enlace de navegación
+    const navItems = document.querySelectorAll('.mobile-nav-item');
+    console.log(`🔗 Found ${navItems.length} navigation items`);
+    
+    navItems.forEach((item, index) => {
+      const handleNavClick = (e) => {
+        console.log(`🔗 Navigation item ${index} clicked: ${item.href}`);
+        
+        // Añadir pequeño delay para mejor UX
+        setTimeout(() => {
+          closeMenu();
+        }, 150);
+      };
+      
+      item.addEventListener('click', handleNavClick, { passive: true });
+      item.addEventListener('touchstart', handleNavClick, { passive: true });
+    });
+
+    // Manejar cambios de orientación/tamaño
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (window.innerWidth >= 768 && isMenuOpen) {
+          console.log('📱 Screen size changed to desktop, closing menu');
+          closeMenu();
+        }
+      }, 100);
+    });
+
+    // Prevenir scroll accidental en iOS
+    let startY = 0;
+    mobileMenu.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    mobileMenu.addEventListener('touchmove', (e) => {
+      const y = e.touches[0].clientY;
+      const scrollTop = mobileMenu.scrollTop;
+      const scrollHeight = mobileMenu.scrollHeight;
+      const height = mobileMenu.offsetHeight;
+      const atTop = scrollTop <= 0;
+      const atBottom = scrollTop >= scrollHeight - height;
+
+      if ((atTop && y > startY) || (atBottom && y < startY)) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    console.log('✅ Enhanced mobile menu initialized successfully');
+  }
+
+  // Múltiples métodos de inicialización para máxima compatibilidad
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+
+  // Re-inicializar en navegación SPA
+  document.addEventListener('astro:page-load', initMobileMenu);
+  document.addEventListener('astro:after-swap', initMobileMenu);
+  
+  // Backup con múltiples intentos
+  setTimeout(initMobileMenu, 500);
+  setTimeout(initMobileMenu, 1000);
+</script> 

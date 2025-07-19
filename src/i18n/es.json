@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "services": "Servicios",
+    "projects": "Proyectos",
+    "blog": "Blog",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "title": "Desarrollador Full Stack & Indie Creator",
+    "subtitle": "Transformo ideas en productos digitales exitosos. Especializado en MVPs, aplicaciones web y consultoría técnica para startups y empresas.",
+    "cta": "Ver mis proyectos",
+    "contact": "Contactarme"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "description": "Desarrollador Full Stack con más de 5 años de experiencia creando soluciones digitales. Fundador de The Holy Code, ayudo a startups y empresas a materializar sus ideas.",
+    "experience": "años de experiencia",
+    "projects": "proyectos completados",
+    "clients": "clientes satisfechos"
+  },
+  "services": {
+    "title": "Servicios",
+    "subtitle": "Soluciones completas para tu proyecto digital",
+    "mvp": {
+      "title": "Desarrollo de MVP",
+      "description": "Valida tu idea de negocio con un producto mínimo viable bien ejecutado."
+    },
+    "webapp": {
+      "title": "Aplicaciones Web",
+      "description": "Desarrollo de aplicaciones web modernas, escalables y optimizadas."
+    },
+    "consulting": {
+      "title": "Consultoría Técnica",
+      "description": "Arquitectura de software, code review y estrategia tecnológica."
+    }
+  },
+  "projects": {
+    "title": "Proyectos destacados",
+    "subtitle": "Algunos trabajos que demuestran mi experiencia",
+    "viewProject": "Ver proyecto",
+    "liveDemo": "Demo en vivo",
+    "sourceCode": "Código fuente"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Artículos sobre desarrollo, tecnología y emprendimiento",
+    "readMore": "Leer más",
+    "shareArticle": "¡Comparte este artículo!",
+    "didYouLike": "¿Te gustó este artículo?",
+    "backToBlog": "← Volver al blog",
+    "publishedOn": "Publicado el",
+    "readingTime": "min de lectura"
+  },
+  "contact": {
+    "title": "¿Listo para trabajar juntos?",
+    "subtitle": "Cuéntame sobre tu proyecto y hagámoslo realidad",
+    "name": "Nombre",
+    "email": "Email",
+    "message": "Mensaje",
+    "send": "Enviar mensaje",
+    "success": "¡Mensaje enviado exitosamente!",
+    "error": "Error al enviar el mensaje. Inténtalo de nuevo."
+  },
+  "footer": {
+    "description": "Desarrollador Full Stack especializado en crear productos digitales exitosos.",
+    "quickLinks": "Enlaces rápidos",
+    "social": "Sígueme",
+    "rights": "Todos los derechos reservados."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "close": "Cerrar",
+    "open": "Abrir",
+    "menu": "Menú",
+    "language": "Idioma",
+    "theme": "Tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema"
+  },
+  "meta": {
+    "title": "The Holy Code - Desarrollador Full Stack & Consultor Técnico",
+    "description": "Transformo ideas en productos digitales exitosos. Desarrollo MVPs, aplicaciones web y ofrezco consultoría técnica para startups y empresas en México y LATAM.",
+    "keywords": "desarrollo web, MVP, aplicaciones web, consultoría técnica, full stack developer, React, Next.js, startup, México, LATAM"
+  }
+} 

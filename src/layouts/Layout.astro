@@ -8,212 +8,307 @@ import "@fontsource/inter/600.css"
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
 import FloatingCTA from "../components/FloatingCTA.astro"
+import GlowEffect from "../components/GlowEffect.astro"
 import { ViewTransitions } from "astro:transitions"
 
 interface Props {
-  title: string
-  description: string
-  image?: string; // Opcional: URL de la imagen para redes sociales
+  title?: string
+  description?: string
+  image?: string
+  keywords?: string
+  ogType?: string
 }
 
-const { description, title } = Astro.props
-// Usar imagen por defecto si no se provee. Asegúrate de que esta imagen exista en public/
-const image = new URL(Astro.props.image ?? "/default-og-image.png", Astro.site).href;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site); // Construir la URL canónica
+const {
+  title = "The Holy Code - Desarrollador Full Stack & Consultor Técnico",
+  description = "Transformo ideas en productos digitales exitosos. Desarrollo MVPs, aplicaciones web y ofrezco consultoría técnica para startups y empresas en México y LATAM.",
+  keywords = "desarrollo web, MVP, aplicaciones web, consultoría técnica, full stack developer, React, Next.js, startup, México, LATAM",
+  image = "/holycode.webp",
+  ogType = "website"
+} = Astro.props
+
+// Construir URLs y metadatos
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const imageURL = new URL(image, Astro.site).href
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-MX">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content={keywords} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
     <!-- Canonical URL -->
-    <link rel="canonical" href={canonicalURL} />
+    <link rel="canonical" href={canonicalURL.href} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={image} />
-    <meta property="og:type" content="website" /> 
-    <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content="The Holy Code - Agencia de Desarrollo" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:image" content={imageURL} />
+    <meta property="og:image:alt" content={`${title} - The Holy Code`} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="The Holy Code" />
     
-    <!-- Additional SEO Meta Tags -->
-    <meta name="keywords" content="desarrollo web, agencia desarrollo, MVP, startup, aplicaciones web, React, Next.js, consultoría técnica, indie developer, México, LATAM" />
-    <meta name="author" content="Mauro Sánchez - The Holy Code" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#28A745" />
-    <meta name="msapplication-navbutton-color" content="#28A745" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="#28A745" /> {/* Cambia esto si el nombre del sitio es diferente */} 
-
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content={imageURL} />
     <meta name="twitter:site" content="@holycode_dev" />
-    <meta name="twitter:creator" content="@maurosanchez91" /> 
+    <meta name="twitter:creator" content="@maurosanchez91" />
+
+    <!-- SEO adicional -->
+    <meta name="author" content="Mauro Sánchez - The Holy Code" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#28A745" />
+    <meta name="msapplication-navbutton-color" content="#28A745" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="mobile-web-app-capable" content="yes" />
 
     <title>{title}</title>
     <ViewTransitions />
 
-    {/* Schema Markup (JSON-LD) */}
-    <script type="application/ld+json" set:html={JSON.stringify(
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Organization",
-            "name": "The Holy Code",
-            "alternateName": "Holy Code",
-            "url": canonicalURL.href,
-            "logo": {
-              "@type": "ImageObject",
-              "url": new URL("/holycode.webp", Astro.site).href,
-              "caption": "The Holy Code Logo"
-            },
-            "description": "Agencia de desarrollo especializada en transformar ideas en productos digitales. Creamos MVPs, aplicaciones web y soluciones técnicas innovadoras.",
-            "foundingDate": "2020",
-            "foundingLocation": {
-              "@type": "Place",
-              "name": "Zapopan, Jalisco, México"
-            },
-            "founder": {
-              "@type": "Person",
-              "name": "Mauro Sánchez",
-              "jobTitle": "Founder & Lead Developer",
-              "sameAs": [
-                "https://linkedin.com/in/mesanchez91",
-                "https://twitch.tv/holycode"
-              ]
-            },
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "telephone": "+52",
-              "contactType": "customer service",
-              "email": "mauro@holy-code.com",
-              "availableLanguage": ["Spanish", "English"]
-            },
-            "areaServed": {
-              "@type": "Place",
-              "name": "LATAM"
-            },
-            "serviceType": [
-              "Web Development",
-              "Mobile App Development", 
-              "MVP Development",
-              "Technical Consulting",
-              "Software Architecture"
-            ],
+    <!-- Schema Markup JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "The Holy Code",
+          "alternateName": "Holy Code",
+          "url": canonicalURL.href,
+          "logo": {
+            "@type": "ImageObject",
+            "url": new URL("/holycode.webp", Astro.site).href,
+            "caption": "The Holy Code Logo"
+          },
+          "description": description,
+          "foundingDate": "2020",
+          "foundingLocation": {
+            "@type": "Place",
+            "name": "Zapopan, Jalisco, México"
+          },
+          "founder": {
+            "@type": "Person",
+            "name": "Mauro Sánchez",
+            "jobTitle": "Founder & Lead Developer",
             "sameAs": [
               "https://linkedin.com/in/mesanchez91",
-              "https://github.com/masanchez91",
               "https://twitch.tv/holycode"
             ]
           },
-          {
-            "@type": "WebSite",
-            "url": canonicalURL.href,
-            "name": "The Holy Code - Agencia de Desarrollo",
-            "description": description,
-            "publisher": {
-              "@type": "Organization",
-              "name": "The Holy Code"
-            },
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": canonicalURL.href + "/blog?search={search_term_string}",
-              "query-input": "required name=search_term_string"
-            }
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+52",
+            "contactType": "customer service",
+            "email": "mauro@holy-code.com",
+            "availableLanguage": ["Spanish"]
           },
-          {
-            "@type": "ProfessionalService",
-            "name": "The Holy Code",
-            "serviceType": "Software Development Agency",
-            "provider": {
-              "@type": "Organization",
-              "name": "The Holy Code"
+          "areaServed": {
+            "@type": "Place",
+            "name": "LATAM"
+          },
+          "serviceType": [
+            "Web Development",
+            "Mobile App Development", 
+            "MVP Development",
+            "Technical Consulting",
+            "Software Architecture"
+          ],
+          "sameAs": [
+            "https://linkedin.com/in/mesanchez91",
+            "https://github.com/masanchez91",
+            "https://twitch.tv/holycode"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "url": canonicalURL.href,
+          "name": title,
+          "description": description,
+          "inLanguage": "es-MX",
+          "publisher": {
+            "@type": "Organization",
+            "name": "The Holy Code"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": `${canonicalURL.origin}/blog?search={search_term_string}`
             },
-            "areaServed": {
-              "@type": "Place", 
-              "name": "LATAM"
-            },
-            "hasOfferCatalog": {
-              "@type": "OfferCatalog",
-              "name": "Development Services",
-              "itemListElement": [
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "MVP Development",
-                    "description": "Minimum Viable Product development for startups"
-                  }
-                },
-                {
-                  "@type": "Offer", 
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Web Application Development",
-                    "description": "Custom web applications with modern technologies"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service", 
-                    "name": "Technical Consulting",
-                    "description": "Architecture and technical strategy consulting"
-                  }
-                }
-              ]
-            }
+            "query-input": "required name=search_term_string"
           }
-        ]
-      }
-    )} />
+        },
+        {
+          "@type": "WebPage",
+          "url": canonicalURL.href,
+          "name": title,
+          "description": description,
+          "inLanguage": "es-MX",
+          "isPartOf": {
+            "@type": "WebSite",
+            "url": canonicalURL.href
+          },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Inicio",
+                "item": Astro.site?.href
+              }
+            ]
+          }
+        }
+      ]
+    })} />
 
   </head>
 
-  <body class="relative text-holy-text-primary bg-holy-dark-primary">
+  <body class="relative text-holy-text-primary bg-gradient-adaptive">
     <div
-      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-holy-dark-primary
-      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(22,42,63,0.8),rgba(15,31,46,0.9))]"
+      class="fixed top-0 left-0 w-full h-full z-[-2] bg-gradient-adaptive"
+      style="background: var(--holy-dark-primary); background-image: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(40, 167, 69, 0.1), transparent);"
     >
     </div>
+    
+    <!-- Sistema de Resplandor Dinámico -->
+    <GlowEffect />
+    
     <Header />
-    <slot />
+    <main>
+      <slot />
+    </main>
     <Footer />
     <FloatingCTA />
+    
     <style is:global>
       :root {
         color-scheme: light dark;
+        /* Variables principales */
+        --holy-action: #28A745;
+        --holy-neutral: #5A6C7E;
+        
+        /* Tema oscuro por defecto */
+        --holy-dark-primary: #0F1F2E;
+        --holy-dark-secondary: #162A3F;
+        --holy-text-primary: #FFFFFF;
+        --holy-text-secondary: #B0BEC5;
+        --holy-border: rgba(255, 255, 255, 0.1);
+        --holy-card-bg: rgba(22, 42, 63, 0.5);
+      }
+
+      /* Tema claro */
+      :root:not(.dark) {
+        --holy-dark-primary: #FFFFFF;
+        --holy-dark-secondary: #F8F9FA;
+        --holy-text-primary: #1A202C;
+        --holy-text-secondary: #4A5568;
+        --holy-border: rgba(0, 0, 0, 0.1);
+        --holy-card-bg: rgba(255, 255, 255, 0.8);
+        --holy-neutral: #718096;
+      }
+
+      /* Aplicar en modo auto cuando el sistema prefiere claro */
+      @media (prefers-color-scheme: light) {
+        :root:not(.dark) {
+          --holy-dark-primary: #FFFFFF;
+          --holy-dark-secondary: #F8F9FA;
+          --holy-text-primary: #1A202C;
+          --holy-text-secondary: #4A5568;
+          --holy-border: rgba(0, 0, 0, 0.1);
+          --holy-card-bg: rgba(255, 255, 255, 0.8);
+        }
       }
 
       html {
         font-family: "Inter", system-ui, sans-serif;
         scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      @media (max-width: 640px) {
+        html {
+          font-size: 14px;
+        }
       }
 
       body {
-        color: rgba(255, 255, 255, 0.9);
+        color: var(--holy-text-primary);
+        background-color: var(--holy-dark-primary);
         display: flex;
         flex-direction: column;
         min-height: 100vh;
         overscroll-behavior: none;
-        background-color: #0F1F2E;
+        line-height: 1.6;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      /* Utilidades de color que se adaptan automáticamente */
+      .text-holy-text-primary {
+        color: var(--holy-text-primary) !important;
+      }
+
+      .text-holy-text-secondary {
+        color: var(--holy-text-secondary) !important;
+      }
+
+      .text-holy-neutral {
+        color: var(--holy-neutral) !important;
+      }
+
+      .text-holy-action {
+        color: var(--holy-action) !important;
+      }
+
+      .bg-holy-dark-primary {
+        background-color: var(--holy-dark-primary) !important;
+      }
+
+      .bg-holy-dark-secondary {
+        background-color: var(--holy-dark-secondary) !important;
+      }
+
+      .border-holy-border {
+        border-color: var(--holy-border) !important;
+      }
+
+      /* Fondo principal adaptativo */
+      .bg-gradient-adaptive {
+        background: var(--holy-dark-primary);
+      }
+
+      /* En tema claro, cambiar el gradiente de fondo */
+      :root:not(.dark) .bg-gradient-adaptive {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
       }
 
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
         }
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
       }
 
+      /* Mejoras de accesibilidad */
+      :focus-visible {
+        outline: 2px solid var(--holy-action);
+        outline-offset: 2px;
+      }
+
+      /* Animaciones del header */
       #header-nav {
         animation: blur linear both 0.5s;
         animation-timeline: scroll();
@@ -224,40 +319,273 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site); // Construir la UR
         to {
           backdrop-filter: blur(20px);
           border-width: 1px;
-          border-color: rgba(0, 0, 0);
+          border-color: var(--holy-border);
           padding: 0.25rem 0.75rem;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          background-color: rgb(229, 229, 229);
+          background-color: var(--holy-card-bg);
           border-radius: 9999px;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
       }
 
-      @media (prefers-color-scheme: dark) {
-        @keyframes blur {
-          from {
-            border: 0px;
-          }
-          to {
-            box-shadow:
-              0px 5px 50px -5px rgba(0, 0, 0, 0.1),
-              0px 0px 0 1px rgba(0, 0, 0, 0.3);
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            border-width: 1px;
-            border-color: rgba(0, 0, 0);
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 9999px;
-          }
+      /* Estilos responsive mejorados */
+      @media (max-width: 768px) {
+        #header-nav {
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          padding: 0.5rem 1rem;
         }
+        
+        #header-nav a {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.875rem;
+          white-space: nowrap;
+        }
+
+        /* Ocultar algunos elementos del nav en móvil */
+        #header-nav a:nth-child(n+4) {
+          display: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        #header-nav {
+          padding: 0.5rem;
+        }
+        
+        #header-nav a {
+          padding: 0.375rem 0.5rem;
+          font-size: 0.8rem;
+        }
+
+        /* En móvil, mostrar solo los más importantes */
+        #header-nav a:nth-child(n+3) {
+          display: none;
+        }
+      }
+
+      /* Mejorar legibilidad de texto */
+      .text-balance {
+        text-wrap: balance;
+      }
+
+      /* Animaciones suaves para cambios de tema */
+      * {
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+
+      /* Estilos específicos para modo claro */
+      :root:not(.dark) .bg-holy-dark-secondary\/50 {
+        background-color: rgba(248, 249, 250, 0.5) !important;
+      }
+
+      :root:not(.dark) .bg-holy-dark-secondary\/80 {
+        background-color: rgba(248, 249, 250, 0.8) !important;
+      }
+
+      /* Ajustes para componentes específicos en modo claro */
+      :root:not(.dark) .backdrop-blur-sm {
+        background-color: rgba(255, 255, 255, 0.8) !important;
+      }
+
+      :root:not(.dark) .border-holy-neutral\/20 {
+        border-color: rgba(113, 128, 150, 0.2) !important;
+      }
+
+      :root:not(.dark) .border-holy-neutral\/30 {
+        border-color: rgba(113, 128, 150, 0.3) !important;
+      }
+
+      /* === UTILIDADES PARA LAYOUTS FLEXIBLES === */
+      
+      /* Contenedores flexibles que se adaptan al contenido */
+      .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .flex-container > * {
+        flex: 1 1 auto;
+        min-width: 0; /* Evita overflow */
+      }
+
+      /* Grid responsivo que se adapta al contenido */
+      .responsive-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      @media (max-width: 640px) {
+        .responsive-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+      }
+
+      /* Texto que se adapta al idioma */
+      .adaptive-text {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+        text-wrap: balance;
+        line-height: 1.6;
+      }
+
+      /* Contenedores que previenen overflow */
+      .safe-container {
+        max-width: 100%;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+
+      /* Elementos que se comprimen cuando es necesario */
+      .flexible-element {
+        flex: 1 1 0%;
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      /* Botones y enlaces responsivos */
+      .responsive-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        text-decoration: none;
+        min-height: 2.5rem;
+      }
+
+      @media (max-width: 640px) {
+        .responsive-button {
+          padding: 0.625rem 1.25rem;
+          font-size: 0.875rem;
+          min-height: 2.25rem;
+        }
+      }
+
+      /* Tipografía responsiva */
+      .responsive-heading {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        line-height: 1.2;
+        font-weight: 700;
+        text-wrap: balance;
+      }
+
+      .responsive-subheading {
+        font-size: clamp(1.125rem, 3vw, 1.5rem);
+        line-height: 1.4;
+        font-weight: 600;
+        text-wrap: balance;
+      }
+
+      .responsive-body {
+        font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+        line-height: 1.6;
+        text-wrap: pretty;
+      }
+
+      /* Cards responsivas */
+      .responsive-card {
+        background: var(--holy-card-bg);
+        border: 1px solid var(--holy-border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        backdrop-filter: blur(8px);
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+
+      @media (max-width: 640px) {
+        .responsive-card {
+          padding: 1rem;
+          border-radius: 0.75rem;
+        }
+      }
+
+      .responsive-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Espaciado inteligente */
+      .smart-spacing > * + * {
+        margin-top: 1rem;
+      }
+
+      @media (max-width: 640px) {
+        .smart-spacing > * + * {
+          margin-top: 0.75rem;
+        }
+      }
+
+      /* Navegación responsiva */
+      .responsive-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @media (min-width: 768px) {
+        .responsive-nav {
+          justify-content: flex-start;
+        }
+      }
+
+      /* Imágenes adaptativas */
+      .adaptive-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .adaptive-image:hover {
+        transform: scale(1.02);
+      }
+
+      /* Utilidades para prevenir problemas de layout */
+      .prevent-overflow {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .multi-line-ellipsis {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Contenedores con aspect ratio fijo */
+      .aspect-container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        overflow: hidden;
+        border-radius: 0.5rem;
+      }
+
+      .aspect-container > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     </style>
   </body>

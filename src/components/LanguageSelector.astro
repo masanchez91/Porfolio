@@ -1,0 +1,92 @@
+---
+import { LANGUAGES, getLangFromUrl, getAlternateLanguageLink, useTranslations, type Language } from '../i18n/utils';
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const languages = Object.entries(LANGUAGES).map(([code, name]) => ({
+  code: code as Language,
+  name,
+  url: getAlternateLanguageLink(Astro.url, code as Language),
+  current: code === currentLang
+}));
+---
+
+<div class="relative">
+  <button
+    id="language-toggle"
+    class="flex items-center space-x-2 px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
+    aria-label={t('common.language')}
+  >
+    <span class="text-xl">🌐</span>
+    <span class="hidden sm:inline">{LANGUAGES[currentLang]}</span>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+  
+  <div
+    id="language-dropdown"
+    class="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 dark:ring-gray-700 opacity-0 scale-95 transform transition-all duration-200 ease-out origin-top-right invisible"
+  >
+    <div class="py-1">
+      {languages.map(({ code, name, url, current }) => (
+        <a
+          href={url}
+          class={`block px-4 py-2 text-sm transition-colors ${
+            current 
+              ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white font-medium' 
+              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+          }`}
+          aria-current={current ? 'page' : undefined}
+        >
+          <span class="flex items-center">
+            <span class="mr-2">{code === 'es' ? '🇲🇽' : '🇺🇸'}</span>
+            {name}
+            {current && (
+              <svg class="ml-auto w-4 h-4 text-holy-action" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+            )}
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('language-toggle');
+    const dropdown = document.getElementById('language-dropdown');
+    
+    if (!toggle || !dropdown) return;
+    
+    const showDropdown = () => {
+      dropdown.classList.remove('opacity-0', 'scale-95', 'invisible');
+      dropdown.classList.add('opacity-100', 'scale-100', 'visible');
+    };
+    
+    const hideDropdown = () => {
+      dropdown.classList.remove('opacity-100', 'scale-100', 'visible');
+      dropdown.classList.add('opacity-0', 'scale-95', 'invisible');
+    };
+    
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (dropdown.classList.contains('visible')) {
+        hideDropdown();
+      } else {
+        showDropdown();
+      }
+    });
+    
+    document.addEventListener('click', () => {
+      hideDropdown();
+    });
+    
+    dropdown.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  });
+</script> 

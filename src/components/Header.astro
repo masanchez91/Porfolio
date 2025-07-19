@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro"
+import MobileMenu from "./MobileMenu.astro"
 
 const navItems = [
   {
@@ -8,19 +9,14 @@ const navItems = [
     url: "/",
   },
   {
-    title: "Servicios",
+    title: "Servicios", 
     label: "servicios",
     url: "/#servicios",
   },
   {
     title: "Proyectos",
-    label: "proyectos",
+    label: "proyectos", 
     url: "/#proyectos",
-  },
-  {
-    title: "Agencia",
-    label: "agencia",
-    url: "/#agencia",
   },
   {
     title: "Contacto",
@@ -36,11 +32,21 @@ const navItems = [
 ---
 
 <header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
+  class="fixed top-0 z-50 flex items-center justify-center w-full mx-auto mt-2"
 >
+  <!-- Logo/Brand solo visible en móvil -->
+  <div class="md:hidden fixed top-4 left-4 z-50">
+    <img 
+      src="/holycode.webp" 
+      alt="The Holy Code" 
+      class="w-8 h-8 rounded-full"
+    />
+  </div>
+
+  <!-- Menú desktop -->
   <nav
     id="header-nav"
-    class="flex px-4 py-2 text-sm font-medium rounded-full text-holy-neutral justify-center items-center backdrop-blur-sm bg-holy-dark-secondary/80 border border-holy-neutral/20"
+    class="hidden md:flex px-4 py-2 text-sm font-medium rounded-full text-holy-text-secondary justify-center items-center backdrop-blur-sm bg-holy-dark-secondary/80 border border-holy-border"
   >
     {
       navItems.map((link) => (
@@ -53,7 +59,20 @@ const navItems = [
         </a>
       ))
     }
+    
+    <!-- Separador visual -->
+    <div class="w-px h-6 bg-holy-neutral/30 mx-2"></div>
+    
+    <!-- Control de tema -->
+    <div class="flex items-center">
+      <ThemeToggle />
+    </div>
   </nav>
+
+  <!-- Menú móvil - posicionado en la esquina superior derecha -->
+  <div class="md:hidden fixed top-4 right-4 z-50">
+    <MobileMenu />
+  </div>
 </header>
 
 <script>
@@ -67,10 +86,10 @@ const navItems = [
           navItems.forEach((item) => {
             if (item.getAttribute("aria-label") == entry.target.id) {
               item.classList.add("text-holy-action")
-              item.classList.remove("text-holy-neutral")
+              item.classList.remove("text-holy-text-secondary")
             } else {
               item.classList.remove("text-holy-action")
-              item.classList.add("text-holy-neutral")
+              item.classList.add("text-holy-text-secondary")
             }
           })
         }
@@ -106,6 +125,20 @@ const navItems = [
   @keyframes nav-shadown {
     to {
       @apply shadow-lg ring-1 backdrop-blur-md bg-holy-dark-secondary/90 ring-holy-action/20;
+    }
+  }
+
+  /* Responsive breakpoints mejorados */
+  @media (max-width: 1024px) {
+    #header-nav a {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #header-nav {
+      display: none !important;
     }
   }
 </style>

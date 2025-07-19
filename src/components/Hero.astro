@@ -1,53 +1,62 @@
 ---
-const personalImageAlt = "The Holy Code - Mauro Sánchez"
 import MailIcon from "@/components/icons/Mail.astro"
 import SocialPill from "@/components/SocialPill.astro"
+
+const personalImageAlt = "The Holy Code - Mauro Sánchez"
 ---
 
 <div class="max-w-4xl">
-  <div class="flex gap-4 mb-6">
+  <div class="flex flex-col sm:flex-row gap-4 mb-6">
     <img
-      class="rounded-full shadow-lg size-20"
+      class="rounded-full shadow-lg size-16 sm:size-20 mx-auto sm:mx-0 flex-shrink-0 glow-logo glow-on-scroll"
       src="/holycode.webp"
       alt={personalImageAlt}
     />
-    <div class="flex flex-col justify-center">
-      <div class="flex items-center gap-2">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-holy-action/20 text-holy-action rounded-full text-sm font-semibold border border-holy-action/30">
-          <span class="w-2 h-2 bg-holy-action rounded-full animate-pulse"></span>
-          ✨ Disponible para proyectos
+    <div class="flex flex-col justify-center text-center sm:text-left min-w-0 flex-1">
+      <div class="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-holy-action/20 text-holy-action rounded-full text-sm font-semibold border border-holy-action/30 glow-element glow-on-scroll">
+          <span class="w-2 h-2 bg-holy-action rounded-full animate-pulse flex-shrink-0"></span>
+          <span class="whitespace-nowrap">
+            ✨ Disponible para proyectos
+          </span>
         </div>
       </div>
-      <p class="text-sm text-holy-neutral mt-1">🚀 Indie Creator & Agencia</p>
+      <p class="text-sm text-holy-text-secondary mt-1">
+        🚀 Indie Creator & Agencia
+      </p>
     </div>
   </div>
 
   <div class="space-y-6">
-    <h1 class="font-heading text-hero font-bold tracking-tight text-holy-text-primary leading-tight">
+    <h1 class="font-heading text-hero sm:text-hero md:text-6xl lg:text-7xl font-bold tracking-tight text-holy-text-primary leading-tight text-balance glow-text glow-on-scroll">
       Donde las ideas se vuelven código.
     </h1>
     
-    <p class="text-xl font-heading font-semibold text-holy-action">
+    <p class="text-lg sm:text-xl lg:text-2xl font-heading font-semibold text-holy-action text-balance glow-on-scroll">
       The Holy Code transforma lo imposible en producto digital.
     </p>
     
-    <p class="text-lg text-holy-neutral leading-relaxed max-w-3xl">
-      Somos una agencia especializada en crear <strong class="text-holy-text-primary font-semibold">MVPs revolucionarios</strong>, 
-      <strong class="text-holy-text-primary font-semibold">aplicaciones web innovadoras</strong> y 
-      <strong class="text-holy-text-primary font-semibold">soluciones digitales únicas</strong> 
-      que cautivan usuarios y transforman ideas en productos exitosos.
-    </p>
+    <div class="prose prose-lg max-w-none text-holy-text-secondary leading-relaxed glow-on-scroll">
+      <p class="text-base sm:text-lg text-balance">
+        Somos una agencia especializada en crear <strong class="text-holy-text-primary font-semibold">MVPs revolucionarios</strong>, 
+        <strong class="text-holy-text-primary font-semibold">aplicaciones web innovadoras</strong> y 
+        <strong class="text-holy-text-primary font-semibold">soluciones digitales únicas</strong> 
+        que cautivan usuarios y transforman ideas en productos exitosos.
+      </p>
 
-    <p class="text-base text-holy-text-secondary">
-      Con más de 10 años de experiencia, liderados por Mauro Sánchez, 
-      combinamos la agilidad de un indie creator con la solidez de una agencia establecida.
-    </p>
+      <p class="text-sm sm:text-base text-holy-text-secondary text-balance">
+        Con más de 10 años de experiencia, liderados por Mauro Sánchez, 
+        combinamos la agilidad de un indie creator con la solidez de una agencia establecida.
+      </p>
+    </div>
   </div>
 
-  <nav class="flex flex-wrap gap-4 mt-10">
+  <nav class="flex flex-wrap gap-4 mt-8 sm:mt-10 justify-center sm:justify-start">
     <SocialPill href="mailto:mauro@holy-code.com">
-      <MailIcon class="size-4" />
-      💡 ¿Tienes una idea? → Contáctame
+      <MailIcon class="size-4 flex-shrink-0" />
+      <span class="whitespace-nowrap">
+        💡 ¿Tienes una idea? → Contáctame
+      </span>
     </SocialPill>
   </nav>
 </div>
@@ -67,5 +76,38 @@ import SocialPill from "@/components/SocialPill.astro"
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Ajustes para texto más largo */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Responsive typography */
+  @media (max-width: 640px) {
+    h1 {
+      font-size: clamp(2rem, 8vw, 3rem) !important;
+      line-height: 1.2;
+    }
+    
+    .text-lg {
+      font-size: clamp(1rem, 4vw, 1.125rem);
+    }
+  }
+
+  /* Evitar overflow en contenedores */
+  .prose {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Mejorar spacing en diferentes idiomas */
+  .prose p {
+    margin-bottom: 1rem;
+  }
+
+  .prose p:last-child {
+    margin-bottom: 0;
   }
 </style>
