@@ -1,167 +1,89 @@
-<svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg">
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0f1f2e;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#162a3f;stop-opacity:1" />
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
     </linearGradient>
-    
-    <linearGradient id="mvpPhase" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#28a745;stop-opacity:0.3" />
-      <stop offset="100%" style="stop-color:#28a745;stop-opacity:0.1" />
+    <linearGradient id="primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#28a745"/>
+      <stop offset="100%" style="stop-color:#20c997"/>
     </linearGradient>
-    
-    <linearGradient id="iterationPhase" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.3" />
-      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.1" />
+    <linearGradient id="secondary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6c63ff"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
     </linearGradient>
-    
-    <linearGradient id="growthPhase" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
-      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.1" />
-    </linearGradient>
-    
-    <filter id="shadow">
-      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.3"/>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
   </defs>
   
   <!-- Background -->
-  <rect width="1000" height="400" fill="url(#bgGrad)"/>
+  <rect width="800" height="600" fill="url(#bg)"/>
   
-  <!-- Title -->
-  <text x="500" y="40" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="24" font-weight="bold">
-    Caso de Estudio: MealMate+ 
-  </text>
-  <text x="500" y="65" text-anchor="middle" fill="#a0aec0" font-family="Poppins, sans-serif" font-size="16">
-    De MVP a Producto Escalable - Estrategia de Iteración
-  </text>
+  <!-- Title Area -->
+  <rect x="40" y="40" width="720" height="100" rx="20" fill="#1e293b" stroke="#28a745" stroke-width="2" opacity="0.8"/>
+  <text x="400" y="75" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Caso de Estudio: MealMate+</text>
+  <text x="400" y="105" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="16">De MVP a Producto Escalable</text>
   
-  <!-- Timeline Line -->
-  <line x1="100" y1="350" x2="900" y2="350" stroke="#a0aec0" stroke-width="3"/>
+  <!-- Left Section - Before (MVP) -->
+  <rect x="60" y="170" width="320" height="360" rx="15" fill="#262626" stroke="#6b7280" stroke-width="1"/>
+  <text x="220" y="200" text-anchor="middle" fill="#f3f4f6" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Fase MVP (8 semanas)</text>
   
-  <!-- Phase 1: MVP Launch -->
-  <g transform="translate(80, 120)">
-    <rect x="0" y="0" width="200" height="180" rx="15" fill="url(#mvpPhase)" stroke="#28a745" stroke-width="2" filter="url(#shadow)"/>
-    
-    <!-- Phase marker -->
-    <circle cx="100" cy="230" r="10" fill="#28a745"/>
-    <text x="100" y="250" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">Semana 8</text>
-    
-    <!-- Icon -->
-    <circle cx="100" cy="30" r="15" fill="#28a745"/>
-    <text x="100" y="37" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14">🚀</text>
-    
-    <!-- Title -->
-    <text x="100" y="65" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">MVP LAUNCH</text>
-    
-    <!-- Features -->
-    <g transform="translate(15, 80)">
-      <text x="85" y="15" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">Funcionalidades:</text>
-      <text x="5" y="35" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">• Food tracking básico</text>
-      <text x="5" y="50" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">• Info nutricional simple</text>
-      <text x="5" y="65" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">• Dashboard básico</text>
-      
-      <text x="85" y="85" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">Resultado:</text>
-      <text x="5" y="105" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">✅ 500 usuarios en 2 semanas</text>
-      <text x="5" y="120" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">✅ Retención del 65%</text>
-    </g>
-  </g>
+  <!-- MVP Features -->
+  <circle cx="100" cy="240" r="8" fill="#28a745"/>
+  <text x="120" y="245" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="14">Tracking básico de comidas</text>
   
-  <!-- Phase 2: Iteration & Pivots -->
-  <g transform="translate(320, 120)">
-    <rect x="0" y="0" width="200" height="180" rx="15" fill="url(#iterationPhase)" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)"/>
-    
-    <!-- Phase marker -->
-    <circle cx="100" cy="230" r="10" fill="#3b82f6"/>
-    <text x="100" y="250" text-anchor="middle" fill="#3b82f6" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">Semanas 9-20</text>
-    
-    <!-- Icon -->
-    <circle cx="100" cy="30" r="15" fill="#3b82f6"/>
-    <text x="100" y="37" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14">🔄</text>
-    
-    <!-- Title -->
-    <text x="100" y="65" text-anchor="middle" fill="#3b82f6" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">ITERACIÓN</text>
-    
-    <!-- Features -->
-    <g transform="translate(15, 80)">
-      <text x="85" y="15" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">Feedback del Usuario:</text>
-      <text x="5" y="35" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">• "Falta planificación"</text>
-      <text x="5" y="50" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">• "Quiero compartir logros"</text>
-      
-      <text x="85" y="70" text-anchor="middle" fill="#3b82f6" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">Pivots Realizados:</text>
-      <text x="5" y="90" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">✨ Meal planning agregado</text>
-      <text x="5" y="105" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">✨ Social features</text>
-      <text x="5" y="120" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">✨ Gamificación básica</text>
-    </g>
-  </g>
+  <circle cx="100" cy="270" r="8" fill="#28a745"/>
+  <text x="120" y="275" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="14">Info nutricional simple</text>
   
-  <!-- Phase 3: Growth & Scale -->
-  <g transform="translate(560, 120)">
-    <rect x="0" y="0" width="200" height="180" rx="15" fill="url(#growthPhase)" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
-    
-    <!-- Phase marker -->
-    <circle cx="100" cy="230" r="10" fill="#8b5cf6"/>
-    <text x="100" y="250" text-anchor="middle" fill="#8b5cf6" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">Mes 6</text>
-    
-    <!-- Icon -->
-    <circle cx="100" cy="30" r="15" fill="#8b5cf6"/>
-    <text x="100" y="37" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14">📈</text>
-    
-    <!-- Title -->
-    <text x="100" y="65" text-anchor="middle" fill="#8b5cf6" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">CRECIMIENTO</text>
-    
-    <!-- Features -->
-    <g transform="translate(15, 80)">
-      <text x="85" y="15" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">Métricas Finales:</text>
-      <text x="5" y="35" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">📊 15,000 usuarios activos</text>
-      <text x="5" y="50" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">📊 Retención del 78%</text>
-      <text x="5" y="65" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">📊 NPS: 8.2/10</text>
-      
-      <text x="85" y="85" text-anchor="middle" fill="#8b5cf6" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">Nuevas Features:</text>
-      <text x="5" y="105" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">🎯 IA para recomendaciones</text>
-      <text x="5" y="120" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">🎯 Integración con wearables</text>
-    </g>
-  </g>
+  <circle cx="100" cy="300" r="8" fill="#28a745"/>
+  <text x="120" y="305" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="14">Dashboard minimalista</text>
   
-  <!-- Results Box -->
-  <g transform="translate(800, 120)">
-    <rect x="0" y="0" width="180" height="180" rx="15" fill="rgba(40, 167, 69, 0.1)" stroke="#28a745" stroke-width="2" filter="url(#shadow)"/>
-    
-    <!-- Icon -->
-    <circle cx="90" cy="30" r="15" fill="#28a745"/>
-    <text x="90" y="37" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14">🏆</text>
-    
-    <!-- Title -->
-    <text x="90" y="65" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">RESULTADO</text>
-    
-    <!-- Success metrics -->
-    <g transform="translate(15, 80)">
-      <text x="75" y="15" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">Éxito del MVP:</text>
-      <text x="5" y="35" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">⚡ Validación rápida</text>
-      <text x="5" y="50" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">⚡ 3 pivots exitosos</text>
-      <text x="5" y="65" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">⚡30x crecimiento</text>
-      <text x="5" y="80" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">⚡ Producto-mercado fit</text>
-      
-      <text x="75" y="100" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">Inversión:</text>
-      <text x="5" y="120" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11">💰 Solo €25K inicial</text>
-    </g>
-  </g>
+  <!-- Metrics Box -->
+  <rect x="80" y="330" width="280" height="120" rx="10" fill="#1f2937" stroke="#28a745" stroke-width="1"/>
+  <text x="220" y="350" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Resultados MVP</text>
   
-  <!-- Arrows connecting phases -->
-  <path d="M280 210 L320 210" stroke="#a0aec0" stroke-width="2" marker-end="url(#arrow)"/>
-  <path d="M520 210 L560 210" stroke="#a0aec0" stroke-width="2" marker-end="url(#arrow)"/>
-  <path d="M760 210 L800 210" stroke="#a0aec0" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="100" y="375" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">• 500 usuarios beta</text>
+  <text x="100" y="395" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">• 78% retención semanal</text>
+  <text x="100" y="415" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">• Feedback: "Falta planificación"</text>
+  <text x="100" y="435" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">• Pivote necesario</text>
   
-  <!-- Arrow marker -->
+  <!-- Arrow -->
+  <path d="M390 350 L410 350" stroke="#28a745" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#a0aec0"/>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#28a745"/>
     </marker>
   </defs>
   
-  <!-- Key lesson -->
-  <rect x="200" y="370" width="600" height="25" rx="12" fill="rgba(40, 167, 69, 0.1)" stroke="#28a745" stroke-width="1"/>
-  <text x="500" y="387" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="14" font-weight="bold">
-    Clave del éxito: MVP simple + iteración rápida basada en feedback real
-  </text>
+  <!-- Right Section - After (Scaled Product) -->
+  <rect x="420" y="170" width="320" height="360" rx="15" fill="#262626" stroke="#a855f7" stroke-width="1"/>
+  <text x="580" y="200" text-anchor="middle" fill="#f3f4f6" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Producto Escalado</text>
+  
+  <!-- Scaled Features -->
+  <circle cx="460" cy="240" r="8" fill="#a855f7"/>
+  <text x="480" y="245" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="14">Planificación de comidas</text>
+  
+  <circle cx="460" cy="270" r="8" fill="#a855f7"/>
+  <text x="480" y="275" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="14">Características sociales</text>
+  
+  <circle cx="460" cy="300" r="8" fill="#a855f7"/>
+  <text x="480" y="305" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="14">Recomendaciones IA</text>
+  
+  <!-- Success Metrics Box -->
+  <rect x="440" y="330" width="280" height="120" rx="10" fill="#1f2937" stroke="#a855f7" stroke-width="1"/>
+  <text x="580" y="350" text-anchor="middle" fill="#a855f7" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Resultados Escalados</text>
+  
+  <text x="460" y="375" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">• 15,000+ usuarios activos</text>
+  <text x="460" y="395" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">• 85% retención mensual</text>
+  <text x="460" y="415" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">• 4.8⭐ rating en stores</text>
+  <text x="460" y="435" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">• Crecimiento +300%</text>
+  
+  <!-- Bottom Timeline -->
+  <rect x="100" y="550" width="600" height="30" rx="15" fill="#1f2937" stroke="#28a745" stroke-width="1"/>
+  <text x="400" y="570" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Estrategia MVP → Éxito: Validar Rápido, Iterar Inteligente</text>
 </svg> 

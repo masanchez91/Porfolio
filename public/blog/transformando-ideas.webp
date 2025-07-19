@@ -1,176 +1,104 @@
-<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0f1f2e;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#162a3f;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0f1f2e;stop-opacity:1" />
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
     </linearGradient>
-    
-    <linearGradient id="ideaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.3" />
-      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.1" />
+    <linearGradient id="primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#28a745"/>
+      <stop offset="100%" style="stop-color:#20c997"/>
     </linearGradient>
-    
-    <linearGradient id="processGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.3" />
-      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.1" />
+    <linearGradient id="secondary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6c63ff"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
     </linearGradient>
-    
-    <linearGradient id="productGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#28a745;stop-opacity:0.3" />
-      <stop offset="100%" style="stop-color:#10b981;stop-opacity:0.1" />
-    </linearGradient>
-    
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-      <feMerge> 
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    
-    <filter id="shadow">
-      <feDropShadow dx="3" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
-    </filter>
   </defs>
   
   <!-- Background -->
-  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  <rect width="800" height="400" fill="url(#bg)"/>
   
-  <!-- Title -->
-  <text x="600" y="80" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="36" font-weight="bold">
-    Transformando Ideas en Productos Digitales
-  </text>
-  <text x="600" y="110" text-anchor="middle" fill="#3b82f6" font-family="Poppins, sans-serif" font-size="18">
-    La Filosofía de The Holy Code
-  </text>
+  <!-- Title Area -->
+  <rect x="40" y="40" width="720" height="80" rx="20" fill="#1e293b" stroke="#28a745" stroke-width="2" opacity="0.8"/>
+  <text x="400" y="70" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Transformando Ideas en Productos Digitales</text>
+  <text x="400" y="95" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="16">La Filosofía de The Holy Code</text>
   
   <!-- Process Flow -->
-  
-  <!-- Step 1: IDEA -->
-  <g transform="translate(80, 180)">
-    <rect x="0" y="0" width="280" height="200" rx="20" fill="url(#ideaGrad)" stroke="#f59e0b" stroke-width="3" filter="url(#shadow)"/>
-    
-    <!-- Lightbulb icon -->
-    <circle cx="140" cy="60" r="25" fill="#f59e0b" filter="url(#glow)"/>
-    <text x="140" y="70" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24">💡</text>
-    
-    <!-- Title -->
-    <text x="140" y="110" text-anchor="middle" fill="#f59e0b" font-family="Poppins, sans-serif" font-size="24" font-weight="bold">IDEA</text>
-    
-    <!-- Description -->
-    <g transform="translate(20, 130)">
-      <text x="120" y="15" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14" font-weight="bold">Concepto Inicial</text>
-      <text x="15" y="35" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">• Visión clara del problema</text>
-      <text x="15" y="50" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">• Identificación del mercado</text>
-      <text x="15" y="65" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">• Valor único propuesto</text>
-    </g>
-  </g>
+  <!-- Step 1: Idea -->
+  <circle cx="120" cy="200" r="30" fill="#1f2937" stroke="#28a745" stroke-width="2"/>
+  <text x="120" y="190" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="16">💡</text>
+  <text x="120" y="210" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12" font-weight="bold">IDEA</text>
+  <text x="120" y="250" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="11">Concepto inicial</text>
   
   <!-- Arrow 1 -->
-  <path d="M360 280 L400 280" stroke="#a0aec0" stroke-width="4" marker-end="url(#arrow)"/>
-  <text x="380" y="270" text-anchor="middle" fill="#a0aec0" font-family="Poppins, sans-serif" font-size="12">PROCESO</text>
+  <path d="M150 200 L180 200" stroke="#28a745" stroke-width="3" marker-end="url(#arrow)"/>
   
-  <!-- Step 2: DEVELOPMENT -->
-  <g transform="translate(400, 180)">
-    <rect x="0" y="0" width="280" height="200" rx="20" fill="url(#processGrad)" stroke="#3b82f6" stroke-width="3" filter="url(#shadow)"/>
-    
-    <!-- Gear icon -->
-    <circle cx="140" cy="60" r="25" fill="#3b82f6" filter="url(#glow)"/>
-    <text x="140" y="70" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24">⚙️</text>
-    
-    <!-- Title -->
-    <text x="140" y="110" text-anchor="middle" fill="#3b82f6" font-family="Poppins, sans-serif" font-size="22" font-weight="bold">DESARROLLO</text>
-    
-    <!-- Description -->
-    <g transform="translate(20, 130)">
-      <text x="120" y="15" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14" font-weight="bold">Ejecución Técnica</text>
-      <text x="15" y="35" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">• Arquitectura escalable</text>
-      <text x="15" y="50" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">• Desarrollo ágil</text>
-      <text x="15" y="65" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">• Calidad premium</text>
-    </g>
-  </g>
+  <!-- Step 2: Analysis -->
+  <circle cx="220" cy="200" r="30" fill="#1f2937" stroke="#28a745" stroke-width="2"/>
+  <text x="220" y="190" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="16">🔍</text>
+  <text x="220" y="210" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12" font-weight="bold">ANÁLISIS</text>
+  <text x="220" y="250" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="11">Investigación</text>
   
   <!-- Arrow 2 -->
-  <path d="M680 280 L720 280" stroke="#a0aec0" stroke-width="4" marker-end="url(#arrow)"/>
-  <text x="700" y="270" text-anchor="middle" fill="#a0aec0" font-family="Poppins, sans-serif" font-size="12">RESULTADO</text>
+  <path d="M250 200 L280 200" stroke="#28a745" stroke-width="3" marker-end="url(#arrow)"/>
   
-  <!-- Step 3: PRODUCT -->
-  <g transform="translate(720, 180)">
-    <rect x="0" y="0" width="280" height="200" rx="20" fill="url(#productGrad)" stroke="#28a745" stroke-width="3" filter="url(#shadow)"/>
-    
-    <!-- Rocket icon -->
-    <circle cx="140" cy="60" r="25" fill="#28a745" filter="url(#glow)"/>
-    <text x="140" y="70" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24">🚀</text>
-    
-    <!-- Title -->
-    <text x="140" y="110" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="22" font-weight="bold">PRODUCTO</text>
-    
-    <!-- Description -->
-    <g transform="translate(20, 130)">
-      <text x="120" y="15" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14" font-weight="bold">Solución Digital</text>
-      <text x="15" y="35" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">• Impacto real en usuarios</text>
-      <text x="15" y="50" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">• Escalabilidad probada</text>
-      <text x="15" y="65" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">• Éxito sostenible</text>
-    </g>
-  </g>
+  <!-- Step 3: Design -->
+  <circle cx="320" cy="200" r="30" fill="#1f2937" stroke="#a855f7" stroke-width="2"/>
+  <text x="320" y="190" text-anchor="middle" fill="#a855f7" font-family="Arial, sans-serif" font-size="16">🎨</text>
+  <text x="320" y="210" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12" font-weight="bold">DISEÑO</text>
+  <text x="320" y="250" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="11">Arquitectura</text>
   
-  <!-- The Holy Code Philosophy Box -->
-  <g transform="translate(200, 420)">
-    <rect x="0" y="0" width="800" height="120" rx="20" fill="rgba(40, 167, 69, 0.1)" stroke="#28a745" stroke-width="2" filter="url(#shadow)"/>
-    
-    <!-- Logo area -->
-    <circle cx="80" cy="60" r="30" fill="#28a745" filter="url(#glow)"/>
-    <text x="80" y="70" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20">✨</text>
-    
-    <!-- Content -->
-    <g transform="translate(120, 20)">
-      <text x="0" y="25" fill="#28a745" font-family="Poppins, sans-serif" font-size="20" font-weight="bold">La Filosofía de The Holy Code</text>
-      <text x="0" y="50" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14">Combinamos creatividad, tecnología y estrategia para transformar</text>
-      <text x="0" y="70" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14">conceptos ambiciosos en productos digitales excepcionales.</text>
-      <text x="0" y="90" fill="#3b82f6" font-family="Poppins, sans-serif" font-size="12" font-style="italic">"La distancia entre una idea y un producto exitoso se mide en iteraciones, no en tiempo"</text>
-    </g>
-  </g>
+  <!-- Arrow 3 -->
+  <path d="M350 200 L380 200" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow)"/>
   
-  <!-- Key Success Factors -->
-  <g transform="translate(80, 560)">
-    <!-- Creatividad -->
-    <g>
-      <circle cx="15" cy="15" r="8" fill="#f59e0b"/>
-      <text x="30" y="20" fill="#f59e0b" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">CREATIVIDAD</text>
-    </g>
-    
-    <!-- Tecnología -->
-    <g transform="translate(200, 0)">
-      <circle cx="15" cy="15" r="8" fill="#3b82f6"/>
-      <text x="30" y="20" fill="#3b82f6" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">TECNOLOGÍA</text>
-    </g>
-    
-    <!-- Estrategia -->
-    <g transform="translate(400, 0)">
-      <circle cx="15" cy="15" r="8" fill="#8b5cf6"/>
-      <text x="30" y="20" fill="#8b5cf6" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">ESTRATEGIA</text>
-    </g>
-    
-    <!-- Ejecución -->
-    <g transform="translate(600, 0)">
-      <circle cx="15" cy="15" r="8" fill="#28a745"/>
-      <text x="30" y="20" fill="#28a745" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">EJECUCIÓN</text>
-    </g>
-  </g>
+  <!-- Step 4: Development -->
+  <circle cx="420" cy="200" r="30" fill="#1f2937" stroke="#a855f7" stroke-width="2"/>
+  <text x="420" y="190" text-anchor="middle" fill="#a855f7" font-family="Arial, sans-serif" font-size="16">⚡</text>
+  <text x="420" y="210" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12" font-weight="bold">DESARROLLO</text>
+  <text x="420" y="250" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="11">Construcción</text>
+  
+  <!-- Arrow 4 -->
+  <path d="M450 200 L480 200" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow)"/>
+  
+  <!-- Step 5: Iteration -->
+  <circle cx="520" cy="200" r="30" fill="#1f2937" stroke="#6c63ff" stroke-width="2"/>
+  <text x="520" y="190" text-anchor="middle" fill="#6c63ff" font-family="Arial, sans-serif" font-size="16">🔄</text>
+  <text x="520" y="210" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12" font-weight="bold">ITERACIÓN</text>
+  <text x="520" y="250" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="11">Mejora continua</text>
+  
+  <!-- Arrow 5 -->
+  <path d="M550 200 L580 200" stroke="#6c63ff" stroke-width="3" marker-end="url(#arrow)"/>
+  
+  <!-- Step 6: Success -->
+  <circle cx="620" cy="200" r="30" fill="#1f2937" stroke="#6c63ff" stroke-width="2"/>
+  <text x="620" y="190" text-anchor="middle" fill="#6c63ff" font-family="Arial, sans-serif" font-size="16">🚀</text>
+  <text x="620" y="210" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12" font-weight="bold">ÉXITO</text>
+  <text x="620" y="250" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="11">Producto digital</text>
+  
+  <!-- Key Values -->
+  <rect x="50" y="300" width="160" height="70" rx="10" fill="#262626" stroke="#28a745" stroke-width="1"/>
+  <text x="130" y="320" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Creatividad</text>
+  <text x="130" y="340" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">Sin límites</text>
+  <text x="130" y="355" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">corporativos</text>
+  
+  <rect x="230" y="300" width="160" height="70" rx="10" fill="#262626" stroke="#a855f7" stroke-width="1"/>
+  <text x="310" y="320" text-anchor="middle" fill="#a855f7" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Tecnología</text>
+  <text x="310" y="340" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">De vanguardia</text>
+  <text x="310" y="355" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">y escalable</text>
+  
+  <rect x="410" y="300" width="160" height="70" rx="10" fill="#262626" stroke="#6c63ff" stroke-width="1"/>
+  <text x="490" y="320" text-anchor="middle" fill="#6c63ff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Estrategia</text>
+  <text x="490" y="340" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">Pensamiento</text>
+  <text x="490" y="355" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">a largo plazo</text>
+  
+  <rect x="590" y="300" width="160" height="70" rx="10" fill="#262626" stroke="#28a745" stroke-width="1"/>
+  <text x="670" y="320" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Resultado</text>
+  <text x="670" y="340" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">Productos</text>
+  <text x="670" y="355" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">extraordinarios</text>
   
   <!-- Arrow marker definition -->
   <defs>
-    <marker id="arrow" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
-      <polygon points="0 0, 12 4, 0 8" fill="#a0aec0"/>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#28a745"/>
     </marker>
   </defs>
-  
-  <!-- Background geometric elements -->
-  <g opacity="0.3">
-    <circle cx="100" cy="100" r="4" fill="#28a745"/>
-    <circle cx="1100" cy="150" r="3" fill="#3b82f6"/>
-    <circle cx="150" cy="500" r="5" fill="#f59e0b"/>
-    <circle cx="1050" cy="450" r="4" fill="#8b5cf6"/>
-  </g>
 </svg> 
