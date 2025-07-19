@@ -61,9 +61,11 @@ const { title, description, pubDate, updatedDate, heroImage, tags, author } = po
             
             <div class="flex flex-wrap items-center gap-6 text-sm text-holy-text-secondary pt-4">
               <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-holy-action rounded-full flex items-center justify-center">
-                  <span class="text-white text-xs font-semibold">MS</span>
-                </div>
+                <img 
+                  src="/authors/mauro.webp" 
+                  alt={author}
+                  class="w-8 h-8 rounded-full object-cover border-2 border-holy-action shadow-lg"
+                />
                 <span class="font-medium">Por {author}</span>
               </div>
               <div class="flex items-center gap-2">

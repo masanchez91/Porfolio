@@ -1,0 +1,148 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f1f2e;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#162a3f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f1f2e;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="creativityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#28a745;stop-opacity:0.3" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <linearGradient id="indieGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="shadow">
+      <feDropShadow dx="3" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Floating creative elements -->
+  <g opacity="0.6">
+    <circle cx="150" cy="150" r="8" fill="#28a745"/>
+    <circle cx="1050" cy="480" r="6" fill="#8b5cf6"/>
+    <circle cx="950" cy="180" r="4" fill="#3b82f6"/>
+    <circle cx="200" cy="500" r="5" fill="#f59e0b"/>
+    <circle cx="850" cy="100" r="3" fill="#ef4444"/>
+  </g>
+  
+  <!-- Main Title -->
+  <text x="600" y="120" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="42" font-weight="bold">
+    El Arte del Desarrollo Indie
+  </text>
+  <text x="600" y="160" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="20">
+    Creatividad Sin Límites
+  </text>
+  
+  <!-- Central creative area -->
+  <g transform="translate(300, 200)">
+    <rect x="0" y="0" width="600" height="300" rx="25" fill="url(#creativityGrad)" stroke="#28a745" stroke-width="2" filter="url(#shadow)"/>
+    
+    <!-- Creative brain icon -->
+    <g transform="translate(250, 50)">
+      <circle cx="50" cy="50" r="40" fill="#8b5cf6" filter="url(#glow)"/>
+      <path d="M30 40 Q50 20 70 40 Q50 60 30 40" fill="#ffffff"/>
+      <circle cx="40" cy="45" r="3" fill="#8b5cf6"/>
+      <circle cx="60" cy="45" r="3" fill="#8b5cf6"/>
+    </g>
+    
+    <!-- Indie philosophy points -->
+    <g transform="translate(50, 140)">
+      <!-- Libertad Creativa -->
+      <g>
+        <circle cx="15" cy="15" r="10" fill="#28a745" filter="url(#glow)"/>
+        <text x="15" y="21" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">🎨</text>
+        <text x="40" y="12" fill="#28a745" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">Libertad Creativa</text>
+        <text x="40" y="30" fill="#ffffff" font-family="Poppins, sans-serif" font-size="13">Sin limitaciones corporativas</text>
+      </g>
+      
+      <!-- Innovación Rápida -->
+      <g transform="translate(0, 60)">
+        <circle cx="15" cy="15" r="10" fill="#3b82f6" filter="url(#glow)"/>
+        <text x="15" y="21" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">⚡</text>
+        <text x="40" y="12" fill="#3b82f6" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">Innovación Rápida</text>
+        <text x="40" y="30" fill="#ffffff" font-family="Poppins, sans-serif" font-size="13">Iteración continua y experimental</text>
+      </g>
+      
+      <!-- Pasión por el Código -->
+      <g transform="translate(0, 120)">
+        <circle cx="15" cy="15" r="10" fill="#f59e0b" filter="url(#glow)"/>
+        <text x="15" y="21" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">💖</text>
+        <text x="40" y="12" fill="#f59e0b" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">Pasión por el Código</text>
+        <text x="40" y="30" fill="#ffffff" font-family="Poppins, sans-serif" font-size="13">Cada línea cuenta una historia</text>
+      </g>
+    </g>
+    
+    <!-- Right side - Benefits -->
+    <g transform="translate(320, 140)">
+      <!-- Productos Únicos -->
+      <g>
+        <circle cx="15" cy="15" r="10" fill="#8b5cf6" filter="url(#glow)"/>
+        <text x="15" y="21" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">🌟</text>
+        <text x="40" y="12" fill="#8b5cf6" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">Productos Únicos</text>
+        <text x="40" y="30" fill="#ffffff" font-family="Poppins, sans-serif" font-size="13">Diferenciación real en el mercado</text>
+      </g>
+      
+      <!-- Flexibilidad Total -->
+      <g transform="translate(0, 60)">
+        <circle cx="15" cy="15" r="10" fill="#ef4444" filter="url(#glow)"/>
+        <text x="15" y="21" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">🔄</text>
+        <text x="40" y="12" fill="#ef4444" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">Flexibilidad Total</text>
+        <text x="40" y="30" fill="#ffffff" font-family="Poppins, sans-serif" font-size="13">Adaptación instantánea a cambios</text>
+      </g>
+      
+      <!-- Impacto Directo -->
+      <g transform="translate(0, 120)">
+        <circle cx="15" cy="15" r="10" fill="#10b981" filter="url(#glow)"/>
+        <text x="15" y="21" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">🎯</text>
+        <text x="40" y="12" fill="#10b981" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">Impacto Directo</text>
+        <text x="40" y="30" fill="#ffffff" font-family="Poppins, sans-serif" font-size="13">De la idea al usuario final</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Left creative element -->
+  <g transform="translate(50, 300)">
+    <rect x="0" y="0" width="200" height="120" rx="15" fill="url(#indieGrad)" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+    <circle cx="100" cy="30" r="15" fill="#f59e0b" filter="url(#glow)"/>
+    <text x="100" y="37" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="16">🚀</text>
+    <text x="100" y="60" text-anchor="middle" fill="#f59e0b" font-family="Poppins, sans-serif" font-size="14" font-weight="bold">FILOSOFÍA INDIE</text>
+    <text x="100" y="80" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Pequeño equipo,</text>
+    <text x="100" y="95" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">grandes resultados</text>
+  </g>
+  
+  <!-- Right creative element -->
+  <g transform="translate(950, 300)">
+    <rect x="0" y="0" width="200" height="120" rx="15" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+    <circle cx="100" cy="30" r="15" fill="#8b5cf6" filter="url(#glow)"/>
+    <text x="100" y="37" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="16">✨</text>
+    <text x="100" y="60" text-anchor="middle" fill="#8b5cf6" font-family="Poppins, sans-serif" font-size="14" font-weight="bold">THE HOLY CODE</text>
+    <text x="100" y="80" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Desarrolladores indie</text>
+    <text x="100" y="95" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">con mentalidad pro</text>
+  </g>
+  
+  <!-- Bottom quote -->
+  <rect x="200" y="560" width="800" height="50" rx="25" fill="rgba(40, 167, 69, 0.1)" stroke="#28a745" stroke-width="1"/>
+  <text x="600" y="580" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">
+    "En el desarrollo indie, cada proyecto es una obra de arte personal"
+  </text>
+  <text x="600" y="600" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14">
+    - Mauro Sánchez, The Holy Code
+  </text>
+</svg> 

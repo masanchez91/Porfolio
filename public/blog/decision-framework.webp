@@ -1,0 +1,146 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f1f2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#162a3f;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="questionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#28a745;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#28a745;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <linearGradient id="mvpResult" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#28a745;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#28a745;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <linearGradient id="fullResult" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <linearGradient id="hybridResult" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="24" font-weight="bold">
+    Framework de Decisión: MVP vs Producto Completo
+  </text>
+  
+  <!-- Start Node -->
+  <g transform="translate(350, 80)">
+    <circle cx="50" cy="30" r="25" fill="#28a745" filter="url(#shadow)"/>
+    <text x="50" y="37" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14" font-weight="bold">START</text>
+  </g>
+  
+  <!-- Arrow down -->
+  <path d="M400 135 L400 160" stroke="#a0aec0" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Question 1: Market Risk -->
+  <g transform="translate(250, 160)">
+    <rect x="0" y="0" width="300" height="80" rx="15" fill="url(#questionGrad)" stroke="#28a745" stroke-width="2" filter="url(#shadow)"/>
+    <text x="150" y="25" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">¿Mercado incierto?</text>
+    <text x="150" y="45" text-anchor="middle" fill="#a0aec0" font-family="Poppins, sans-serif" font-size="12">¿Necesitas validar la demanda?</text>
+    <text x="150" y="60" text-anchor="middle" fill="#a0aec0" font-family="Poppins, sans-serif" font-size="12">¿Es una idea innovadora?</text>
+  </g>
+  
+  <!-- Yes/No branches from Q1 -->
+  <path d="M400 240 L400 270" stroke="#a0aec0" stroke-width="2"/>
+  <path d="M400 270 L200 270 L200 300" stroke="#28a745" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M400 270 L600 270 L600 300" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <text x="300" y="285" fill="#28a745" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">SÍ</text>
+  <text x="500" y="285" fill="#8b5cf6" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">NO</text>
+  
+  <!-- Question 2: Resources (Left branch) -->
+  <g transform="translate(50, 300)">
+    <rect x="0" y="0" width="300" height="80" rx="15" fill="url(#questionGrad)" stroke="#28a745" stroke-width="2" filter="url(#shadow)"/>
+    <text x="150" y="25" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">¿Recursos limitados?</text>
+    <text x="150" y="45" text-anchor="middle" fill="#a0aec0" font-family="Poppins, sans-serif" font-size="12">¿Presupuesto ajustado?</text>
+    <text x="150" y="60" text-anchor="middle" fill="#a0aec0" font-family="Poppins, sans-serif" font-size="12">¿Equipo pequeño?</text>
+  </g>
+  
+  <!-- Question 3: Standards (Right branch) -->
+  <g transform="translate(450, 300)">
+    <rect x="0" y="0" width="300" height="80" rx="15" fill="url(#questionGrad)" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+    <text x="150" y="25" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">¿Estándares altos?</text>
+    <text x="150" y="45" text-anchor="middle" fill="#a0aec0" font-family="Poppins, sans-serif" font-size="12">¿Mercado maduro?</text>
+    <text x="150" y="60" text-anchor="middle" fill="#a0aec0" font-family="Poppins, sans-serif" font-size="12">¿Competencia establecida?</text>
+  </g>
+  
+  <!-- Arrows to results -->
+  <path d="M200 380 L200 420" stroke="#a0aec0" stroke-width="2"/>
+  <path d="M200 420 L120 420 L120 450" stroke="#28a745" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M200 420 L280 420 L280 450" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <path d="M600 380 L600 450" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <text x="160" y="435" fill="#28a745" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">SÍ</text>
+  <text x="240" y="435" fill="#3b82f6" font-family="Poppins, sans-serif" font-size="12" font-weight="bold">NO</text>
+  
+  <!-- Results -->
+  <!-- MVP Result -->
+  <g transform="translate(20, 450)">
+    <rect x="0" y="0" width="200" height="100" rx="15" fill="url(#mvpResult)" stroke="#28a745" stroke-width="3" filter="url(#shadow)"/>
+    <text x="100" y="30" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="20" font-weight="bold">MVP</text>
+    <text x="100" y="50" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Validación rápida</text>
+    <text x="100" y="65" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Feedback del mercado</text>
+    <text x="100" y="80" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Iteración basada en datos</text>
+  </g>
+  
+  <!-- Hybrid Result -->
+  <g transform="translate(240, 450)">
+    <rect x="0" y="0" width="200" height="100" rx="15" fill="url(#hybridResult)" stroke="#3b82f6" stroke-width="3" filter="url(#shadow)"/>
+    <text x="100" y="30" text-anchor="middle" fill="#3b82f6" font-family="Poppins, sans-serif" font-size="18" font-weight="bold">MVP PLUS</text>
+    <text x="100" y="50" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Funcionalidad mínima</text>
+    <text x="100" y="65" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Experiencia visual completa</text>
+    <text x="100" y="80" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Arquitectura escalable</text>
+  </g>
+  
+  <!-- Full Product Result -->
+  <g transform="translate(500, 450)">
+    <rect x="0" y="0" width="200" height="100" rx="15" fill="url(#fullResult)" stroke="#8b5cf6" stroke-width="3" filter="url(#shadow)"/>
+    <text x="100" y="25" text-anchor="middle" fill="#8b5cf6" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">PRODUCTO</text>
+    <text x="100" y="40" text-anchor="middle" fill="#8b5cf6" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">COMPLETO</text>
+    <text x="100" y="60" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Todas las funcionalidades</text>
+    <text x="100" y="75" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Diferenciación inmediata</text>
+    <text x="100" y="90" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Ventaja competitiva</text>
+  </g>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a0aec0"/>
+    </marker>
+  </defs>
+  
+  <!-- Icons -->
+  <!-- Money icon for resources question -->
+  <g transform="translate(30, 320)">
+    <circle cx="10" cy="10" r="8" fill="#28a745"/>
+    <text x="10" y="14" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="10">💰</text>
+  </g>
+  
+  <!-- Star icon for standards question -->
+  <g transform="translate(430, 320)">
+    <circle cx="10" cy="10" r="8" fill="#8b5cf6"/>
+    <text x="10" y="14" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="10">⭐</text>
+  </g>
+  
+  <!-- Clock icon for timing -->
+  <g transform="translate(350, 180)">
+    <circle cx="10" cy="10" r="8" fill="#28a745"/>
+    <text x="10" y="14" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="10">⏰</text>
+  </g>
+</svg> 

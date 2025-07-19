@@ -1,0 +1,132 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f1f2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#162a3f;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="centerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#28a745;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#28a745;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <linearGradient id="feature1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#28a745;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#28a745;stop-opacity:0.05" />
+    </linearGradient>
+    
+    <linearGradient id="feature2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.05" />
+    </linearGradient>
+    
+    <linearGradient id="feature3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.05" />
+    </linearGradient>
+    
+    <linearGradient id="feature4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.05" />
+    </linearGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bg)"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="24" font-weight="bold">
+    Características de un MVP Exitoso
+  </text>
+  
+  <!-- Center Circle - MVP -->
+  <circle cx="400" cy="200" r="80" fill="url(#centerGrad)" stroke="#28a745" stroke-width="3" filter="url(#shadow)"/>
+  <text x="400" y="190" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="24" font-weight="bold">MVP</text>
+  <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14">Minimum</text>
+  <text x="400" y="225" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14">Viable Product</text>
+  
+  <!-- Feature 1: Funcionalidad Core (Top) -->
+  <g transform="translate(300, 80)">
+    <rect x="0" y="0" width="200" height="80" rx="15" fill="url(#feature1)" stroke="#28a745" stroke-width="2" filter="url(#shadow)"/>
+    <circle cx="30" cy="25" r="15" fill="#28a745" filter="url(#glow)"/>
+    <text x="30" y="32" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="16">⚡</text>
+    <text x="100" y="25" text-anchor="middle" fill="#28a745" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">Funcionalidad Core</text>
+    <text x="100" y="45" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Solo características</text>
+    <text x="100" y="60" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">esenciales</text>
+  </g>
+  
+  <!-- Feature 2: Feedback Rápido (Right) -->
+  <g transform="translate(520, 160)">
+    <rect x="0" y="0" width="200" height="80" rx="15" fill="url(#feature2)" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)"/>
+    <circle cx="30" cy="25" r="15" fill="#3b82f6" filter="url(#glow)"/>
+    <text x="30" y="32" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="16">💬</text>
+    <text x="100" y="25" text-anchor="middle" fill="#3b82f6" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">Feedback Rápido</text>
+    <text x="100" y="45" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Validación de</text>
+    <text x="100" y="60" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">hipótesis rápida</text>
+  </g>
+  
+  <!-- Feature 3: Escalabilidad (Bottom) -->
+  <g transform="translate(300, 280)">
+    <rect x="0" y="0" width="200" height="80" rx="15" fill="url(#feature3)" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+    <circle cx="30" cy="25" r="15" fill="#8b5cf6" filter="url(#glow)"/>
+    <text x="30" y="32" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="16">📈</text>
+    <text x="100" y="25" text-anchor="middle" fill="#8b5cf6" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">Escalabilidad</text>
+    <text x="100" y="45" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Arquitectura que</text>
+    <text x="100" y="60" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">permite crecimiento</text>
+  </g>
+  
+  <!-- Feature 4: Experiencia Completa (Left) -->
+  <g transform="translate(80, 160)">
+    <rect x="0" y="0" width="200" height="80" rx="15" fill="url(#feature4)" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+    <circle cx="30" cy="25" r="15" fill="#f59e0b" filter="url(#glow)"/>
+    <text x="30" y="32" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="16">✨</text>
+    <text x="100" y="25" text-anchor="middle" fill="#f59e0b" font-family="Poppins, sans-serif" font-size="16" font-weight="bold">Experiencia Completa</text>
+    <text x="100" y="45" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">Aunque mínima,</text>
+    <text x="100" y="60" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-size="12">debe ser satisfactoria</text>
+  </g>
+  
+  <!-- Connecting Lines -->
+  <path d="M400 120 L400 120" stroke="#28a745" stroke-width="3" opacity="0.7"/>
+  <path d="M480 200 L520 200" stroke="#3b82f6" stroke-width="3" opacity="0.7"/>
+  <path d="M400 280 L400 280" stroke="#8b5cf6" stroke-width="3" opacity="0.7"/>
+  <path d="M320 200 L280 200" stroke="#f59e0b" stroke-width="3" opacity="0.7"/>
+  
+  <!-- Curved arrows pointing to center -->
+  <path d="M380 140 Q380 160 380 180" stroke="#28a745" stroke-width="2" fill="none" marker-end="url(#arrow1)"/>
+  <path d="M480 180 Q460 180 440 180" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrow2)"/>
+  <path d="M420 260 Q420 240 420 220" stroke="#8b5cf6" stroke-width="2" fill="none" marker-end="url(#arrow3)"/>
+  <path d="M320 220 Q340 220 360 220" stroke="#f59e0b" stroke-width="2" fill="none" marker-end="url(#arrow4)"/>
+  
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#28a745"/>
+    </marker>
+    <marker id="arrow2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrow3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrow4" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f59e0b"/>
+    </marker>
+  </defs>
+  
+  <!-- Bottom note -->
+  <text x="400" y="380" text-anchor="middle" fill="#a0aec0" font-family="Poppins, sans-serif" font-size="14">
+    Un MVP exitoso equilibra estas cuatro características clave
+  </text>
+</svg> 
