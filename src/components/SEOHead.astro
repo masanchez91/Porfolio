@@ -1,0 +1,165 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'profile';
+  publishedTime?: string;
+  modifiedTime?: string;
+  tags?: string[];
+  author?: string;
+}
+
+const {
+  title,
+  description,
+  image = "/holycode.webp",
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  tags = [],
+  author = "Mauro Sánchez - The Holy Code"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site).href;
+---
+
+<!-- Preload critical resources -->
+<link rel="preload" href="/holycode.webp" as="image" type="image/webp" />
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style" />
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" as="style" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//formspree.io" />
+
+<!-- Structured Data for Articles -->
+{type === 'article' && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "image": imageURL,
+    "author": {
+      "@type": "Person",
+      "name": author,
+      "url": "https://holy-code.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Holy Code",
+      "logo": {
+        "@type": "ImageObject",
+        "url": new URL("/holycode.webp", Astro.site).href
+      }
+    },
+    "datePublished": publishedTime,
+    "dateModified": modifiedTime || publishedTime,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalURL.href
+    },
+    "keywords": tags.join(", ")
+  })} />
+)}
+
+<!-- FAQ Schema for service pages -->
+{Astro.url.pathname.includes('servicios') && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tiempo toma desarrollar un MVP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Típicamente desarrollamos MVPs en 2-8 semanas, dependiendo de la complejidad y alcance del proyecto."
+        }
+      },
+      {
+        "@type": "Question", 
+        "name": "¿Qué tecnologías usan para desarrollo web?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Utilizamos tecnologías modernas como React, Next.js, TypeScript, Tailwind CSS y Node.js para crear aplicaciones web robustas y escalables."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Trabajan con startups internacionales?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, trabajamos con clientes en México, LATAM y a nivel internacional. Ofrecemos servicios remotos con comunicación en español e inglés."
+        }
+      }
+    ]
+  })} />
+)}
+
+<!-- Local Business Schema -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "The Holy Code",
+  "image": new URL("/holycode.webp", Astro.site).href,
+  "description": "Agencia de desarrollo web especializada en MVPs y aplicaciones web innovadoras",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Guadalajara",
+    "addressRegion": "Jalisco",
+    "postalCode": "44100",
+    "addressCountry": "MX"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 20.6597,
+    "longitude": -103.3496
+  },
+  "url": "https://holy-code.com",
+  "telephone": "+52",
+  "email": "mauro@holy-code.com",
+  "priceRange": "$$",
+  "openingHours": "Mo,Tu,We,Th,Fr 09:00-18:00",
+  "serviceArea": {
+    "@type": "Place",
+    "name": "México y LATAM"
+  },
+  "sameAs": [
+    "https://linkedin.com/in/mesanchez91",
+    "https://github.com/masanchez91",
+    "https://twitch.tv/holycode"
+  ]
+})} />
+
+<!-- Performance hints -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<meta name="supported-color-schemes" content="light dark" />
+
+<!-- Security headers -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta http-equiv="X-Frame-Options" content="DENY" />
+<meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+
+<!-- Cache control -->
+<meta http-equiv="Cache-Control" content="public, max-age=3600" />
+
+<style>
+  /* Critical CSS inline */
+  :root {
+    --holy-action: #28A745;
+    --holy-text-primary: #FFFFFF;
+    --holy-dark-primary: #0F1F2E;
+  }
+  
+  body {
+    background-color: var(--holy-dark-primary);
+    color: var(--holy-text-primary);
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+</style> 

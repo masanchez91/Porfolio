@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
+import BreadcrumbNav from "@/components/BreadcrumbNav.astro";
 import { getCollection } from "astro:content";
 
 const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -8,6 +9,12 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
 
 const featuredPost = sortedPosts[0];
 const recentPosts = sortedPosts.slice(1);
+
+// Breadcrumbs para SEO
+const breadcrumbItems = [
+  { name: "Inicio", href: "/" },
+  { name: "Blog" }
+];
 ---
 
 <Layout 
@@ -15,7 +22,12 @@ const recentPosts = sortedPosts.slice(1);
   description="Explora artículos sobre desarrollo indie, MVPs, tecnología y la filosofía detrás de The Holy Code. Reflexiones y aprendizajes de un desarrollador apasionado."
 >
   <main class="px-4">
-    <SectionContainer class="py-16 md:py-24">
+    <!-- Breadcrumbs -->
+    <SectionContainer class="pt-20 pb-8">
+      <BreadcrumbNav items={breadcrumbItems} />
+    </SectionContainer>
+    
+    <SectionContainer class="py-8 md:py-16">
       <!-- Hero del Blog -->
       <div class="max-w-4xl mx-auto text-center mb-16">
         <h1 class="font-heading text-4xl md:text-5xl font-bold text-holy-text-primary mb-6">

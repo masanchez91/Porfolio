@@ -12,11 +12,12 @@ import ContactForm from "@/components/ContactForm.astro"
 import Testimonials from "@/components/Testimonials.astro"
 import SectionContainer from "@/components/SectionContainer.astro"
 import Hero from "@/components/Hero.astro"
+import SocialShare from "@/components/SocialShare.astro"
 ---
 
 <Layout
-  title="The Holy Code - Agencia de Desarrollo | Donde las ideas se vuelven código"
-  description="The Holy Code transforma lo imposible en producto digital. Agencia especializada en MVPs, aplicaciones web innovadoras y soluciones digitales únicas que cautivan usuarios."
+  title="The Holy Code - Desarrollo Web y MVPs | México"
+  description="Transformamos ideas en productos digitales exitosos. Desarrollo de MVPs, apps web y consultoría técnica en México y LATAM. ¡Hablemos de tu proyecto!"
 >
   <main class="px-4">
     <SectionContainer class="py-16 md:py-36">
@@ -27,7 +28,7 @@ import Hero from "@/components/Hero.astro"
       <SectionContainer id="servicios">
         <h2 class="flex items-center mb-6 text-h2 font-heading font-semibold gap-x-3 text-holy-text-primary">
           <CodeIcon class="size-8 text-holy-action" />
-          Servicios
+          Servicios de Desarrollo Web
         </h2>
         <Services />
       </SectionContainer>
@@ -35,7 +36,7 @@ import Hero from "@/components/Hero.astro"
       <SectionContainer id="proyectos">
         <h2 class="flex items-center mb-6 text-h2 font-heading font-semibold gap-x-3 text-holy-text-primary">
           <Briefcase class="size-8 text-holy-action" />
-          Proyectos
+          Proyectos y Casos de Éxito
         </h2>
         <Projects />
       </SectionContainer>
@@ -43,7 +44,7 @@ import Hero from "@/components/Hero.astro"
       <SectionContainer id="agencia">
         <h2 class="flex items-center mb-6 text-h2 font-heading font-semibold gap-x-3 text-holy-text-primary">
           <ProfileCheck class="size-8 text-holy-action" />
-          Sobre la agencia
+          Nuestra Agencia
         </h2>
         <AboutMe />
       </SectionContainer>
@@ -55,6 +56,23 @@ import Hero from "@/components/Hero.astro"
       <SectionContainer id="contacto">
         <ContactForm />
       </SectionContainer>
+
+      <!-- Botones de compartir en redes sociales -->
+      <SectionContainer class="py-12">
+        <SocialShare className="bg-holy-card-bg backdrop-blur-md rounded-2xl p-8 border border-holy-border" />
+      </SectionContainer>
     </div>
   </main>
 </Layout>
+
+<!-- Business Info avanzada -->
+<meta name="business:contact_data:locality" content="Guadalajara" />
+<meta name="business:contact_data:region" content="Jalisco" />
+
+<!-- Performance optimizada -->
+<meta name="HandheldFriendly" content="true" />
+<meta name="format-detection" content="telephone=yes" />
+
+<!-- Twitter Cards mejorados -->
+<meta name="twitter:image:alt" content="..." />
+<meta name="twitter:domain" content="holy-code.com" />

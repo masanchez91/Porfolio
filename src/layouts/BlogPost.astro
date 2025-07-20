@@ -1,5 +1,6 @@
 ---
 import Layout from "./Layout.astro";
+import BreadcrumbNav from "../components/BreadcrumbNav.astro";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -8,32 +9,21 @@ interface Props {
 
 const { post } = Astro.props;
 const { title, description, pubDate, updatedDate, heroImage, tags, author } = post.data;
+
+// Breadcrumbs para el artículo
+const breadcrumbItems = [
+  { name: "Inicio", href: "/" },
+  { name: "Blog", href: "/blog" },
+  { name: title }
+];
 ---
 
 <Layout title={title} description={description}>
   <main class="min-h-screen bg-gradient-adaptive">
-    <!-- Breadcrumb -->
-    <nav class="pt-20 pb-8 px-4 max-w-4xl mx-auto">
-      <div class="bg-holy-card-bg backdrop-blur-md rounded-2xl p-4 border border-holy-border">
-        <ol class="flex items-center space-x-2 text-sm">
-          <li>
-            <a href="/" class="text-holy-text-secondary hover:text-holy-action transition-colors font-medium">
-              🏠 Inicio
-            </a>
-          </li>
-          <li class="text-holy-text-secondary opacity-60">•</li>
-          <li>
-            <a href="/blog" class="text-holy-text-secondary hover:text-holy-action transition-colors font-medium">
-              📝 Blog
-            </a>
-          </li>
-          <li class="text-holy-text-secondary opacity-60">•</li>
-          <li class="text-holy-text-primary font-semibold truncate">
-            {title}
-          </li>
-        </ol>
-      </div>
-    </nav>
+    <!-- Breadcrumb con Schema -->
+    <section class="pt-20 pb-8 px-4 max-w-4xl mx-auto">
+      <BreadcrumbNav items={breadcrumbItems} />
+    </section>
 
     <!-- Article Container -->
     <div class="px-4 max-w-4xl mx-auto pb-16">

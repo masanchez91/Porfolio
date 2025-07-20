@@ -1,0 +1,75 @@
+---
+interface Props {
+  items: Array<{
+    name: string;
+    href?: string;
+  }>;
+}
+
+const { items } = Astro.props;
+
+// Schema para breadcrumbs
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    ...(item.href && { "item": item.href })
+  }))
+};
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="flex items-center space-x-2 text-sm text-holy-text-secondary">
+    {items.map((item, index) => (
+      <li class="flex items-center">
+        {index > 0 && (
+          <span class="mx-2 text-holy-text-secondary opacity-60">•</span>
+        )}
+        {item.href ? (
+          <a 
+            href={item.href} 
+            class="hover:text-holy-action transition-colors font-medium"
+            aria-label={index === 0 ? 'Ir al inicio' : undefined}
+          >
+            {index === 0 && '🏠 '}{item.name}
+          </a>
+        ) : (
+          <span class="text-holy-text-primary font-semibold">
+            {item.name}
+          </span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+<style>
+  .breadcrumb-nav {
+    background: rgba(22, 42, 63, 0.3);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--holy-border);
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+  
+  .breadcrumb-nav ol {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .breadcrumb-nav li {
+    list-style: none;
+  }
+  
+  @media (max-width: 640px) {
+    .breadcrumb-nav {
+      padding: 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
+</style> 

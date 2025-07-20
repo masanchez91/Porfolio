@@ -9,6 +9,7 @@ import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
 import FloatingCTA from "../components/FloatingCTA.astro"
 import GlowEffect from "../components/GlowEffect.astro"
+import SEOHead from "../components/SEOHead.astro"
 import { ViewTransitions } from "astro:transitions"
 
 interface Props {
@@ -20,9 +21,9 @@ interface Props {
 }
 
 const {
-  title = "The Holy Code - Desarrollador Full Stack & Consultor Técnico",
-  description = "Transformo ideas en productos digitales exitosos. Desarrollo MVPs, aplicaciones web y ofrezco consultoría técnica para startups y empresas en México y LATAM.",
-  keywords = "desarrollo web, MVP, aplicaciones web, consultoría técnica, full stack developer, React, Next.js, startup, México, LATAM",
+  title = "The Holy Code - Desarrollo Web y MVPs | México",
+  description = "Desarrollo de MVPs, aplicaciones web y consultoría técnica. Transformamos ideas en productos digitales exitosos en México y LATAM.",
+  keywords = "desarrollo web México, MVP desarrollo, aplicaciones web, consultoría técnica, agencia desarrollo, React, Next.js, startup LATAM, donde ideas se vuelven código, The Holy Code",
   image = "/holycode.webp",
   ogType = "website"
 } = Astro.props
@@ -40,10 +41,16 @@ const imageURL = new URL(image, Astro.site).href
     <meta name="keywords" content={keywords} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL.href} />
+    
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -60,19 +67,62 @@ const imageURL = new URL(image, Astro.site).href
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageURL} />
+    <meta name="twitter:image:alt" content={`${title} - The Holy Code`} />
     <meta name="twitter:site" content="@holycode_dev" />
     <meta name="twitter:creator" content="@maurosanchez91" />
+    <meta name="twitter:domain" content="holy-code.com" />
+    
+    <!-- Additional Open Graph -->
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:updated_time" content={new Date().toISOString()} />
+    <meta property="article:publisher" content="https://www.facebook.com/holycode.dev" />
 
     <!-- SEO adicional -->
     <meta name="author" content="Mauro Sánchez - The Holy Code" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#28A745" />
     <meta name="msapplication-navbutton-color" content="#28A745" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="mobile-web-app-capable" content="yes" />
+    
+    <!-- Geo targeting -->
+    <meta name="geo.region" content="MX-JAL" />
+    <meta name="geo.placename" content="Guadalajara, México" />
+    <meta name="geo.position" content="20.6597;-103.3496" />
+    <meta name="ICBM" content="20.6597, -103.3496" />
+    
+    <!-- Language and locale -->
+    <meta name="language" content="es-MX" />
+    <link rel="alternate" hreflang="es-mx" href={canonicalURL.href} />
+    <link rel="alternate" hreflang="es" href={canonicalURL.href} />
+    
+    <!-- Additional SEO -->
+    <meta name="rating" content="general" />
+    <meta name="distribution" content="global" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="format-detection" content="telephone=yes" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="width" />
+    
+    <!-- Business Information -->
+    <meta name="business:contact_data:street_address" content="Guadalajara, Jalisco" />
+    <meta name="business:contact_data:locality" content="Guadalajara" />
+    <meta name="business:contact_data:region" content="Jalisco" />
+    <meta name="business:contact_data:postal_code" content="44100" />
+    <meta name="business:contact_data:country_name" content="México" />
 
     <title>{title}</title>
     <ViewTransitions />
+    
+    <!-- SEO Avanzado -->
+    <SEOHead 
+      title={title} 
+      description={description} 
+      image={image}
+      type={ogType as any}
+    />
 
     <!-- Schema Markup JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -121,6 +171,55 @@ const imageURL = new URL(image, Astro.site).href
             "Technical Consulting",
             "Software Architecture"
           ],
+          "makesOffer": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Desarrollo de MVPs",
+                "description": "Desarrollo de Productos Mínimos Viables para startups y empresas",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "The Holy Code"
+                }
+              },
+              "areaServed": {
+                "@type": "Place",
+                "name": "México y LATAM"
+              }
+            },
+            {
+              "@type": "Offer", 
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Desarrollo Web Personalizado",
+                "description": "Aplicaciones web custom con React, Next.js y tecnologías modernas",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "The Holy Code"
+                }
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service", 
+                "name": "Consultoría Técnica",
+                "description": "Asesoramiento experto en arquitectura y desarrollo de software",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "The Holy Code"
+                }
+              }
+            }
+          ],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "25",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
           "sameAs": [
             "https://linkedin.com/in/mesanchez91",
             "https://github.com/masanchez91",

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Página principal -->
+  <url>
+    <loc>https://holy-code.com/</loc>
+    <lastmod>2024-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es-mx" href="https://holy-code.com/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://holy-code.com/" />
+  </url>
+  
+  <!-- Blog principal -->
+  <url>
+    <loc>https://holy-code.com/blog</loc>
+    <lastmod>2024-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-mx" href="https://holy-code.com/blog" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://holy-code.com/blog" />
+  </url>
+  
+  <!-- Artículo: El arte del desarrollo indie -->
+  <url>
+    <loc>https://holy-code.com/blog/el-arte-del-desarrollo-indie</loc>
+    <lastmod>2024-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-mx" href="https://holy-code.com/blog/el-arte-del-desarrollo-indie" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://holy-code.com/blog/el-arte-del-desarrollo-indie" />
+  </url>
+  
+  <!-- Artículo: MVP vs Producto Completo -->
+  <url>
+    <loc>https://holy-code.com/blog/mvp-vs-producto-completo</loc>
+    <lastmod>2024-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-mx" href="https://holy-code.com/blog/mvp-vs-producto-completo" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://holy-code.com/blog/mvp-vs-producto-completo" />
+  </url>
+  
+  <!-- Artículo: Transformando ideas en productos digitales -->
+  <url>
+    <loc>https://holy-code.com/blog/transformando-ideas-en-productos-digitales</loc>
+    <lastmod>2024-12-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-mx" href="https://holy-code.com/blog/transformando-ideas-en-productos-digitales" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://holy-code.com/blog/transformando-ideas-en-productos-digitales" />
+  </url>
+  
+  <!-- Secciones de la página principal -->
+  <url>
+    <loc>https://holy-code.com/#servicios</loc>
+    <lastmod>2024-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://holy-code.com/#proyectos</loc>
+    <lastmod>2024-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://holy-code.com/#agencia</loc>
+    <lastmod>2024-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://holy-code.com/#contacto</loc>
+    <lastmod>2024-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset> 
