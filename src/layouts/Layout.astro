@@ -10,6 +10,7 @@ import Footer from "../components/Footer.astro"
 import FloatingCTA from "../components/FloatingCTA.astro"
 import GlowEffect from "../components/GlowEffect.astro"
 import SEOHead from "../components/SEOHead.astro"
+import GoogleSnippetOptimizer from "../components/GoogleSnippetOptimizer.astro"
 import { ViewTransitions } from "astro:transitions"
 
 interface Props {
@@ -21,8 +22,8 @@ interface Props {
 }
 
 const {
-  title = "The Holy Code - Desarrollo Web y MVPs | México",
-  description = "Desarrollo de MVPs, aplicaciones web y consultoría técnica. Transformamos ideas en productos digitales exitosos en México y LATAM.",
+  title = "The Holy Code - Agencia de Desarrollo | Ideas se vuelven código",
+  description = "Agencia especializada en desarrollo web y MVPs. Transformamos ideas en código funcional. Consultoría técnica, aplicaciones innovadoras en México.",
   keywords = "desarrollo web México, MVP desarrollo, aplicaciones web, consultoría técnica, agencia desarrollo, React, Next.js, startup LATAM, donde ideas se vuelven código, The Holy Code",
   image = "/holycode.webp",
   ogType = "website"
@@ -40,10 +41,12 @@ const imageURL = new URL(image, Astro.site).href
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Canonical URL -->
@@ -115,6 +118,14 @@ const imageURL = new URL(image, Astro.site).href
 
     <title>{title}</title>
     <ViewTransitions />
+    
+    <!-- Google Snippet Optimization -->
+    <GoogleSnippetOptimizer 
+      title={title}
+      description={description}
+      url={canonicalURL.href}
+      image={image}
+    />
     
     <!-- SEO Avanzado -->
     <SEOHead 
