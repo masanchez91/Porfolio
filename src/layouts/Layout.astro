@@ -22,7 +22,7 @@ interface Props {
 }
 
 const {
-  title = "The Holy Code - Agencia de Desarrollo | Ideas se vuelven código",
+  title = "The Holy Code | Desarrollo Web y MVPs",
   description = "Agencia especializada en desarrollo web y MVPs. Transformamos ideas en código funcional. Consultoría técnica, aplicaciones innovadoras en México.",
   keywords = "desarrollo web México, MVP desarrollo, aplicaciones web, consultoría técnica, agencia desarrollo, React, Next.js, startup LATAM, donde ideas se vuelven código, The Holy Code",
   image = "/holycode.webp",
@@ -38,9 +38,9 @@ const imageURL = new URL(image, Astro.site).href
 <html lang="es-MX">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
+    <!-- Description handled by GoogleSnippetOptimizer for better SEO -->
     <meta name="keywords" content={keywords} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Viewport handled by SEOHead component with viewport-fit=cover -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -81,6 +81,13 @@ const imageURL = new URL(image, Astro.site).href
     <meta property="og:image:type" content="image/webp" />
     <meta property="og:updated_time" content={new Date().toISOString()} />
     <meta property="article:publisher" content="https://www.facebook.com/holycode.dev" />
+    
+    <!-- Meta tags adicionales para widgets de redes sociales -->
+    <meta name="twitter:app:name:iphone" content="The Holy Code" />
+    <meta name="twitter:app:name:googleplay" content="The Holy Code" />
+    <meta property="fb:app_id" content="123456789" />
+    <meta property="og:see_also" content="https://twitter.com/holycode_dev" />
+    <meta property="og:see_also" content="https://www.linkedin.com/company/holy-code" />
 
     <!-- SEO adicional -->
     <meta name="author" content="Mauro Sánchez - The Holy Code" />

@@ -13,10 +13,11 @@ import Testimonials from "@/components/Testimonials.astro"
 import SectionContainer from "@/components/SectionContainer.astro"
 import Hero from "@/components/Hero.astro"
 import SocialShare from "@/components/SocialShare.astro"
+import FloatingSocialShare from "@/components/FloatingSocialShare.astro"
 ---
 
 <Layout
-  title="The Holy Code - Agencia de Desarrollo | Ideas se vuelven código"
+  title="The Holy Code | Desarrollo Web y MVPs"
   description="Agencia especializada en desarrollo web y MVPs. Transformamos ideas en código funcional. Consultoría técnica, aplicaciones innovadoras en México."
 >
   <main class="px-4">
@@ -63,4 +64,7 @@ import SocialShare from "@/components/SocialShare.astro"
       </SectionContainer>
     </div>
   </main>
+  
+  <!-- Botones flotantes de redes sociales -->
+  <FloatingSocialShare />
 </Layout>

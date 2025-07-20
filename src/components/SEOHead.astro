@@ -27,11 +27,8 @@ const imageURL = new URL(image, Astro.site).href;
 
 <!-- Preload critical resources -->
 <link rel="preload" href="/holycode.webp" as="image" type="image/webp" />
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style" />
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" as="style" />
 
-<!-- DNS prefetch for external resources -->
-<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<!-- Note: Fonts loaded locally via @fontsource for optimal performance -->
 <link rel="dns-prefetch" href="//www.google-analytics.com" />
 <link rel="dns-prefetch" href="//formspree.io" />
 
@@ -62,7 +59,11 @@ const imageURL = new URL(image, Astro.site).href;
       "@type": "WebPage",
       "@id": canonicalURL.href
     },
-    "keywords": tags.join(", ")
+    "keywords": tags.join(", "),
+    "potentialAction": {
+      "@type": "ShareAction",
+      "target": ["twitter.com", "facebook.com", "linkedin.com", "wa.me"]
+    }
   })} />
 )}
 
@@ -140,14 +141,14 @@ const imageURL = new URL(image, Astro.site).href;
 <meta name="color-scheme" content="light dark" />
 <meta name="supported-color-schemes" content="light dark" />
 
-<!-- Security headers -->
-<meta http-equiv="X-Content-Type-Options" content="nosniff" />
-<meta http-equiv="X-Frame-Options" content="DENY" />
-<meta http-equiv="X-XSS-Protection" content="1; mode=block" />
-<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+<!-- Note: Security headers like X-Frame-Options must be set at server level, not via meta tags -->
 
 <!-- Cache control -->
 <meta http-equiv="Cache-Control" content="public, max-age=3600" />
+
+<meta name="twitter:app:name:iphone" content="The Holy Code" />
+<meta property="fb:app_id" content="123456789" />
+<meta property="og:see_also" content="https://twitter.com/holycode_dev" />
 
 <style>
   /* Critical CSS inline */
@@ -162,4 +163,8 @@ const imageURL = new URL(image, Astro.site).href;
     color: var(--holy-text-primary);
     font-family: system-ui, -apple-system, sans-serif;
   }
-</style> 
+</style>
+
+<div role="group" aria-label="Compartir en redes sociales">
+<a aria-label="Compartir en Facebook" title="Compartir en Facebook">
+</div> 
