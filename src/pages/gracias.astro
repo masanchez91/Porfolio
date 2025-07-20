@@ -1,0 +1,101 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import LinkButton from "../components/LinkButton.astro";
+import Mail from "../components/icons/Mail.astro";
+---
+
+<Layout 
+  title="¡Gracias por tu mensaje! | The Holy Code"
+  description="Tu mensaje ha sido enviado exitosamente. Te responderemos pronto para hacer realidad tu proyecto digital."
+>
+  <SectionContainer class="py-24 md:py-32">
+    <div class="max-w-2xl mx-auto text-center">
+      <!-- Icono de éxito -->
+      <div class="mb-8">
+        <div class="mx-auto w-20 h-20 bg-holy-action/20 rounded-full flex items-center justify-center">
+          <svg class="w-10 h-10 text-holy-action" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Título principal -->
+      <h1 class="font-heading text-4xl md:text-5xl font-bold text-holy-text-primary mb-6">
+        ¡Mensaje enviado!
+      </h1>
+
+      <!-- Descripción -->
+      <p class="text-xl text-holy-text-secondary leading-relaxed mb-8">
+        Gracias por contactarnos. Tu mensaje ha llegado correctamente y lo revisaré personalmente. 
+        Te responderé en las próximas <strong class="text-holy-action">24-48 horas</strong> 
+        para comenzar a trabajar en tu proyecto.
+      </p>
+
+      <!-- Información de seguimiento -->
+      <div class="bg-holy-card-bg/50 backdrop-blur-sm rounded-2xl p-6 border border-holy-border mb-8">
+        <h2 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
+          ¿Qué sigue ahora?
+        </h2>
+        <div class="space-y-3 text-left">
+          <div class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-6 h-6 bg-holy-action text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+            <div>
+              <p class="text-holy-text-primary font-semibold">Revisión de tu mensaje</p>
+              <p class="text-holy-text-secondary text-sm">Analizaré tu proyecto y necesidades específicas</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-6 h-6 bg-holy-action text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+            <div>
+              <p class="text-holy-text-primary font-semibold">Respuesta personalizada</p>
+              <p class="text-holy-text-secondary text-sm">Te enviaré una respuesta detallada a tu email</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-6 h-6 bg-holy-action text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+            <div>
+              <p class="text-holy-text-primary font-semibold">Videollamada inicial</p>
+              <p class="text-holy-text-secondary text-sm">Conversaremos sobre tu visión y objetivos</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contacto urgente -->
+      <div class="bg-holy-action/10 border border-holy-action/20 rounded-xl p-4 mb-8">
+        <p class="text-holy-text-primary">
+          <strong>¿Tu proyecto es urgente?</strong> 
+          Escríbeme directamente a 
+          <a href="mailto:mauro@holy-code.com" class="text-holy-action hover:text-holy-action/80 font-semibold">
+            mauro@holy-code.com
+          </a>
+          para respuesta el mismo día.
+        </p>
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <LinkButton href="/">
+          Volver al inicio
+        </LinkButton>
+        
+        <LinkButton href="/blog" variant="secondary">
+          Leer nuestro blog
+        </LinkButton>
+      </div>
+
+      <!-- Información adicional -->
+      <div class="mt-12 text-center">
+        <p class="text-holy-text-secondary text-sm">
+          También puedes seguir nuestro progreso en 
+          <a href="https://twitch.tv/holycode" target="_blank" rel="noopener noreferrer" 
+             class="text-holy-action hover:text-holy-action/80 font-semibold">
+            Twitch
+          </a>
+          donde hacemos desarrollo en vivo.
+        </p>
+      </div>
+    </div>
+  </SectionContainer>
+</Layout> 
