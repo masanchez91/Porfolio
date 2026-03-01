@@ -18,8 +18,8 @@ const breadcrumbItems = [
 ---
 
 <Layout 
-  title="Blog - The Holy Code | Desarrollo, Tecnología y Creatividad"
-  description="Explora artículos sobre desarrollo indie, MVPs, tecnología y la filosofía detrás de The Holy Code. Reflexiones y aprendizajes de un desarrollador apasionado."
+  title="Blog | Mauro Sánchez · Product Builder"
+  description="Bitácora de producto de Mauro Sánchez: estrategia, arquitectura y ejecución detrás de proyectos reales."
 >
   <main class="px-4">
     <!-- Breadcrumbs -->
@@ -31,11 +31,11 @@ const breadcrumbItems = [
       <!-- Hero del Blog -->
       <div class="max-w-4xl mx-auto text-center mb-16">
         <h1 class="font-heading text-4xl md:text-5xl font-bold text-holy-text-primary mb-6">
-          Blog de The Holy Code
+          Blog de producto y ejecución
         </h1>
         <p class="text-xl text-holy-text-secondary leading-relaxed max-w-2xl mx-auto">
-          Reflexiones sobre desarrollo, tecnología y creatividad. 
-          Comparto experiencias, aprendizajes y la filosofía detrás de cada línea de código.
+          Comparto el trabajo que hago construyendo productos digitales:
+          decisiones estratégicas, arquitectura, marketing y aprendizajes reales.
         </p>
       </div>
 
@@ -43,7 +43,7 @@ const breadcrumbItems = [
       {featuredPost && (
         <section class="mb-16">
           <h2 class="font-heading text-2xl font-semibold text-holy-text-primary mb-8">
-            Artículo Destacado
+            Artículo destacado
           </h2>
           <article class="bg-holy-card-bg backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20 hover:border-holy-action/40 transition-all duration-300">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -105,7 +105,7 @@ const breadcrumbItems = [
       {recentPosts.length > 0 && (
         <section>
           <h2 class="font-heading text-2xl font-semibold text-holy-text-primary mb-8">
-            Artículos Recientes
+            Más publicaciones
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {recentPosts.map((post) => (
@@ -158,11 +158,11 @@ const breadcrumbItems = [
       <section class="mt-16 text-center">
         <div class="bg-holy-card-bg backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20 max-w-2xl mx-auto">
           <h3 class="font-heading text-2xl font-semibold text-holy-text-primary mb-4">
-            ¿Quieres más contenido como este?
+            ¿Quieres seguir mi proceso de construcción?
           </h3>
           <p class="text-holy-text-secondary mb-6">
-            Comparte tus preguntas, ideas o temas que te gustaría que cubra. 
-            La mejor inspiración viene de la conversación.
+            Si quieres que publique más casos, métricas o decisiones técnicas,
+            escríbeme y lo convierto en el próximo artículo.
           </p>
           <a 
             href="mailto:mauro@holy-code.com?subject=Sugerencia para el blog"

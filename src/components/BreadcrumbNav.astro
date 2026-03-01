@@ -22,7 +22,7 @@ const breadcrumbSchema = {
 ---
 
 <nav aria-label="Breadcrumb" class="breadcrumb-nav">
-  <ol class="flex items-center space-x-2 text-sm text-holy-text-secondary">
+  <ol class="flex flex-wrap items-center gap-y-1 text-sm text-holy-text-secondary">
     {items.map((item, index) => (
       <li class="flex items-center">
         {index > 0 && (
@@ -64,6 +64,19 @@ const breadcrumbSchema = {
   
   .breadcrumb-nav li {
     list-style: none;
+    min-width: 0;
+  }
+
+  .breadcrumb-nav span,
+  .breadcrumb-nav a {
+    overflow-wrap: anywhere;
+  }
+
+  :root:not(.dark) .breadcrumb-nav {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(15, 23, 42, 0.12);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    backdrop-filter: none;
   }
   
   @media (max-width: 640px) {
