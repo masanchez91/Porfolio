@@ -50,7 +50,7 @@ const navItems = [
 <!-- Botón hamburguesa -->
 <button
   id="mobile-menu-button"
-  class="md:hidden fixed top-4 right-4 z-[9999] flex items-center justify-center w-14 h-14 rounded-2xl bg-gray-900 border-2 border-green-500 text-white shadow-2xl"
+  class="lg:hidden fixed top-4 right-4 z-[9999] flex items-center justify-center w-14 h-14 rounded-2xl bg-gray-900 border-2 border-green-500 text-white shadow-2xl"
   aria-label="Abrir menú"
   type="button"
 >
@@ -248,7 +248,16 @@ const navItems = [
       return;
     }
 
+    // Evita listeners duplicados en navegación SPA
+    if (menuButton instanceof HTMLElement && menuButton.dataset.initialized === 'true') {
+      return;
+    }
+    if (menuButton instanceof HTMLElement) {
+      menuButton.dataset.initialized = 'true';
+    }
+
     let isOpen = false;
+    let scrollTop = 0;
 
     function openMenu() {
       if (!menu || !hamburger) return;
@@ -260,8 +269,10 @@ const navItems = [
       // Cambiar hamburger
       hamburger.classList.add('active');
       
-      // Prevenir scroll
+      // Prevenir scroll conservando posición actual
+      scrollTop = window.scrollY || window.pageYOffset || 0;
       document.body.classList.add('menu-open');
+      document.body.style.top = `-${scrollTop}px`;
       
       isOpen = true;
     }
@@ -278,6 +289,8 @@ const navItems = [
       
       // Restaurar scroll
       document.body.classList.remove('menu-open');
+      document.body.style.top = '';
+      window.scrollTo(0, scrollTop);
       
       isOpen = false;
     }

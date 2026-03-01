@@ -45,7 +45,7 @@ const navItems = [
   class="fixed top-0 z-50 flex items-center justify-center w-full mx-auto mt-2"
 >
   <!-- Logo/Brand solo visible en móvil -->
-  <div class="md:hidden fixed top-4 left-4 z-50">
+  <div class="lg:hidden fixed top-4 left-4 z-50">
     <img 
       src="/holycode.webp" 
       alt="The Holy Code - Desarrollo Web México" 
@@ -59,7 +59,7 @@ const navItems = [
   <!-- Menú desktop -->
   <nav
     id="header-nav"
-    class="hidden md:flex px-4 py-2 text-sm font-medium rounded-full text-holy-text-secondary justify-center items-center backdrop-blur-sm bg-holy-dark-secondary/80 border border-holy-border"
+    class="hidden lg:flex px-4 py-2 text-sm font-medium rounded-full text-holy-text-secondary justify-center items-center backdrop-blur-sm bg-holy-dark-secondary/80 border border-holy-border"
   >
     {
       navItems.map((link) => (
@@ -83,7 +83,7 @@ const navItems = [
   </nav>
 
   <!-- Menú móvil - posicionado en la esquina superior derecha -->
-  <div class="md:hidden fixed top-4 right-4 z-50">
+  <div class="lg:hidden fixed top-4 right-4 z-50">
     <MobileMenu />
   </div>
 </header>
@@ -149,7 +149,7 @@ const navItems = [
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     #header-nav {
       display: none !important;
     }

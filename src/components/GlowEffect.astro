@@ -3,7 +3,29 @@
 // Animaciones sutiles e innovadoras para una experiencia mágica
 ---
 
+<canvas id="thc-tech-background" class="thc-tech-background" aria-hidden="true"></canvas>
+
 <style is:global>
+  .thc-tech-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.95;
+  }
+
+  @media (max-width: 768px) {
+    .thc-tech-background {
+      opacity: 0.8;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .thc-tech-background {
+      opacity: 0.65;
+    }
+  }
+
   /* === SISTEMA DE RESPLANDOR DINÁMICO === */
   
   /* Elementos que pueden tener resplandor */
@@ -298,6 +320,183 @@
 </style>
 
 <script is:inline>
+  // Background tecnológico sutil y optimizado
+  function initTechBackground() {
+    // Limpiar instancia previa (navegación SPA)
+    if (window.__thcBg && typeof window.__thcBg.destroy === "function") {
+      window.__thcBg.destroy();
+    }
+
+    const canvas = document.getElementById("thc-tech-background");
+    if (!canvas || !(canvas instanceof HTMLCanvasElement)) return;
+
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const saveData = navigator.connection && navigator.connection.saveData;
+    const lowPowerDevice = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || saveData;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+    const intensityName = document.body?.dataset?.bgIntensity || "balanced";
+    const intensityMap = {
+      minimal: { factor: 0.68, speed: 0.72, opacity: 0.72 },
+      balanced: { factor: 1, speed: 1, opacity: 0.95 },
+      cinematic: { factor: 1.36, speed: 1.2, opacity: 1 },
+    };
+    const intensity = intensityMap[intensityName] || intensityMap.balanced;
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let rafId = 0;
+    let tick = 0;
+    let particles = [];
+    let lineOffset = 0;
+
+    const getTheme = () => {
+      const isDark = document.documentElement.classList.contains("dark") ||
+        (!document.documentElement.classList.contains("light") && prefersDark.matches);
+
+      if (isDark) {
+        return {
+          particle: "rgba(99, 179, 237, 0.25)",
+          link: "rgba(94, 234, 212, 0.10)",
+          grid: "rgba(90, 130, 170, 0.12)",
+        };
+      }
+
+      return {
+        particle: "rgba(51, 65, 85, 0.14)",
+        link: "rgba(71, 85, 105, 0.08)",
+        grid: "rgba(100, 116, 139, 0.09)",
+      };
+    };
+
+    const createParticles = () => {
+      const base = width > 1400 ? 42 : width > 1000 ? 34 : width > 700 ? 26 : 18;
+      const withIntensity = Math.floor(base * intensity.factor);
+      const count = lowPowerDevice ? Math.floor(withIntensity * 0.6) : withIntensity;
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * (lowPowerDevice ? 0.08 : 0.12) * intensity.speed,
+        vy: (Math.random() - 0.5) * (lowPowerDevice ? 0.08 : 0.12) * intensity.speed,
+        r: Math.random() * 1.4 + 0.6,
+      }));
+    };
+
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = Math.floor(window.innerWidth);
+      height = Math.floor(window.innerHeight);
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      createParticles();
+    };
+
+    const drawGrid = (colors) => {
+      const spacing = width > 1200 ? 110 : width > 800 ? 90 : 72;
+      ctx.strokeStyle = colors.grid;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+
+      for (let x = -spacing; x < width + spacing; x += spacing) {
+        const xx = x + (lineOffset % spacing);
+        ctx.moveTo(xx, 0);
+        ctx.lineTo(xx, height);
+      }
+
+      for (let y = -spacing; y < height + spacing; y += spacing) {
+        const yy = y + ((lineOffset * 0.45) % spacing);
+        ctx.moveTo(0, yy);
+        ctx.lineTo(width, yy);
+      }
+      ctx.stroke();
+    };
+
+    const drawParticles = (colors) => {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.fillStyle = colors.particle;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      const maxDistance = width > 900 ? 140 : 110;
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i];
+          const b = particles[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.hypot(dx, dy);
+
+          if (dist < maxDistance) {
+            const alpha = 1 - dist / maxDistance;
+            ctx.strokeStyle = colors.link.replace(/[\d.]+\)$/, `${(alpha * 0.12).toFixed(3)})`);
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+    };
+
+    const render = () => {
+      const colors = getTheme();
+      const globalAlpha = reducedMotion ? 0.7 : intensity.opacity;
+      ctx.globalAlpha = globalAlpha;
+      ctx.clearRect(0, 0, width, height);
+      drawGrid(colors);
+      drawParticles(colors);
+      ctx.globalAlpha = 1;
+    };
+
+    const animate = () => {
+      tick += 1;
+      if (tick % (lowPowerDevice ? 2 : 1) === 0) {
+        lineOffset += (lowPowerDevice ? 0.04 : 0.06) * intensity.speed;
+        render();
+      }
+      rafId = window.requestAnimationFrame(animate);
+    };
+
+    resize();
+    render();
+
+    const onResize = () => resize();
+    const themeObserver = new MutationObserver(() => render());
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    window.addEventListener("resize", onResize, { passive: true });
+    prefersDark.addEventListener("change", render);
+
+    if (!reducedMotion) {
+      animate();
+    }
+
+    window.__thcBg = {
+      destroy() {
+        if (rafId) window.cancelAnimationFrame(rafId);
+        window.removeEventListener("resize", onResize);
+        prefersDark.removeEventListener("change", render);
+        themeObserver.disconnect();
+        ctx.clearRect(0, 0, width, height);
+      }
+    };
+  }
+
   // Sistema de Scroll Glow - Detecta cuando elementos entran en vista
   function initScrollGlow() {
     const observerOptions = {
@@ -324,12 +523,19 @@
 
   // Inicializar cuando el DOM esté listo
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initScrollGlow);
+    document.addEventListener('DOMContentLoaded', () => {
+      initTechBackground();
+      initScrollGlow();
+    });
   } else {
+    initTechBackground();
     initScrollGlow();
   }
 
   // Re-inicializar en navegación SPA
-  document.addEventListener('astro:page-load', initScrollGlow);
+  document.addEventListener('astro:page-load', () => {
+    initTechBackground();
+    initScrollGlow();
+  });
 
 </script> 

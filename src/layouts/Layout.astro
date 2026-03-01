@@ -21,6 +21,10 @@ interface Props {
   ogType?: string
 }
 
+// Intensidad global del fondo animado:
+// "minimal" | "balanced" | "cinematic"
+const backgroundIntensity = "balanced"
+
 const {
   title = "The Holy Code | Desarrollo Web y MVPs",
   description = "Agencia especializada en desarrollo web y MVPs. Transformamos ideas en código funcional. Consultoría técnica, aplicaciones innovadoras en México.",
@@ -290,7 +294,7 @@ const imageURL = new URL(image, Astro.site).href
 
   </head>
 
-  <body class="relative text-holy-text-primary bg-gradient-adaptive">
+  <body class="relative text-holy-text-primary bg-gradient-adaptive" data-bg-intensity={backgroundIntensity}>
     <div
       class="fixed top-0 left-0 w-full h-full z-[-2] bg-gradient-adaptive"
       style="background: var(--holy-dark-primary); background-image: radial-gradient(ellipse 80% 80% at 50% -20%, var(--holy-bg-glow), transparent);"
