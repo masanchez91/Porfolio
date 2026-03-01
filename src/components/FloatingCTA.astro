@@ -5,30 +5,31 @@ import MailIcon from "./icons/Mail.astro"
 <div class="fixed bottom-6 right-6 z-50">
   <a 
     href="mailto:mauro@holy-code.com"
-    class="group flex items-center gap-3 px-6 py-4 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-holy-action/20 backdrop-blur-sm"
-    aria-label="Contactar por email"
+    class="group relative overflow-hidden flex items-center gap-3 px-6 py-4 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-holy-action/20 backdrop-blur-sm"
+    aria-label="Conectar por email"
   >
     <MailIcon class="size-5 group-hover:scale-110 transition-transform" />
-    <span class="font-heading font-semibold text-button">¿Hablamos?</span>
-    <div class="absolute inset-0 bg-holy-action/20 rounded-full animate-ping opacity-75"></div>
+    <span class="font-heading font-semibold text-button">Conectemos</span>
+    <div class="cta-glow absolute inset-0 rounded-full pointer-events-none"></div>
   </a>
 </div>
 
 <style>
-  /* Animación sutil de pulsación */
-  @keyframes pulse-subtle {
+  /* Animación mucho más sutil, sin parpadeo agresivo */
+  @keyframes cta-soft-breath {
     0%, 100% {
       transform: scale(1);
-      opacity: 1;
+      opacity: 0.08;
     }
     50% {
-      transform: scale(1.05);
-      opacity: 0.8;
+      transform: scale(1.025);
+      opacity: 0.16;
     }
   }
 
-  .group:hover .animate-ping {
-    animation: pulse-subtle 2s ease-in-out infinite;
+  .cta-glow {
+    background: var(--holy-action);
+    animation: cta-soft-breath 3.8s ease-in-out infinite;
   }
 
   /* Responsive: ocultar en pantallas muy pequeñas */
@@ -44,6 +45,13 @@ import MailIcon from "./icons/Mail.astro"
     
     .group span {
       display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-glow {
+      animation: none;
+      opacity: 0.08;
     }
   }
 </style> 

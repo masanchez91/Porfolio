@@ -1,216 +1,116 @@
 ---
-import GitHub from "./icons/GitHub.astro"
-import NextJS from "./icons/NextJS.astro"
-import Tailwind from "./icons/Tailwind.astro"
-import Link from "./icons/Link.astro"
 import LinkButton from "./LinkButton.astro"
-import ReactJS from "./icons/ReactJS.astro"
-import TypeScript from "./icons/TypeScript.astro"
-
-const TAGS = {
-  NEXT: {
-    name: "Next.js",
-    class: "bg-black text-white",
-    icon: NextJS,
-  },
-  TAILWIND: {
-    name: "Tailwind CSS",
-    class: "bg-[#003159] text-white",
-    icon: Tailwind,
-  },
-  REACT: {
-    name: "React.js",
-    class: "bg-[#003159] text-white",
-    icon: ReactJS,
-  },
-  TYPESCRIPT: {
-    name: "TypeScript",
-    class: "bg-[#003159] text-white",
-    icon: TypeScript,
-  },
-}
+import Link from "./icons/Link.astro"
 
 const PROJECTS = [
   {
-    title: "MEALMATE+ - Tu Compañero de Estilo de Vida Personalizado",
-    description: "Plataforma digital integral diseñada para transformar la gestión nutricional en una experiencia personalizada y motivadora. Desarrollada con tecnología de vanguardia para ofrecer recomendaciones inteligentes y seguimiento nutricional.",
-    longDescription: "MealMate+ representa la evolución del seguimiento nutricional, combinando inteligencia artificial con diseño centrado en el usuario. El proyecto incluyó desarrollo de algoritmos de recomendación personalizados, integración con APIs nutricionales y diseño de una experiencia móvil-first que ha captado la atención de usuarios en múltiples países.",
-    link: "https://mealmeatplus.holy-code.com/",
-    github: "https://github.com/masanchez91/MealMate",
-    image: "/projects/mealmeat.webp",
-    tags: [TAGS.REACT, TAGS.TAILWIND],
-    type: "indie",
+    title: "Qantus",
+    subtitle: "Plataforma de precisión para cotizaciones",
+    role: "Definición estratégica, diseño de arquitectura y ejecución técnica Full Stack.",
+    tech: "React, Node.js, motor de reglas",
+    problem: "Equipos comerciales con cálculos tardados y alto margen de error.",
+    solution: "Motor de cotización con variables configurables y escenarios comparativos.",
+    impact: "Margen de error promedio de ±0.3%, 120+ sucursales conectadas.",
     status: "Activo",
-    timeline: "8 semanas",
-    impact: "500+ usuarios activos",
-    achievements: [
-      "Algoritmo de recomendación personalizado",
-      "Integración con bases de datos nutricionales",
-      "Diseño responsive optimizado",
-      "Sistema de gamificación integrado"
-    ]
+    link: "https://www.qantus.io/"
   },
   {
-    title: "Kondominios - Gestión Integral de Condominios",
-    description: "Solución completa para digitalizar la gestión de condominios, incluyendo avisos, notificaciones, pagos, gestión de clientes, proveedores y amenidades. Una transformación digital completa del sector inmobiliario.",
-    longDescription: "Kondominios surgió como respuesta a la necesidad de modernizar la gestión tradicional de condominios en México. El proyecto abarcó desde la arquitectura del sistema hasta la experiencia del usuario final, incluyendo módulos para administradores, residentes y proveedores. La plataforma ha revolucionado la manera en que los condominios manejan sus operaciones diarias.",
-    link: "https://kondominios.holy-code.com/",
-    github: "https://github.com/masanchez91/kondominios",
-    image: "/projects/kondominios.webp",
-    tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND],
-    type: "indie",
-    status: "Completado",
-    timeline: "12 semanas",
-    impact: "10+ condominios gestionados",
-    achievements: [
-      "Sistema de roles y permisos avanzado",
-      "Módulo de pagos integrado",
-      "Dashboard analítico en tiempo real",
-      "Notificaciones push y email"
-    ]
+    title: "Wavi",
+    subtitle: "Asistente inteligente en WhatsApp para PyMEs",
+    role: "Definición estratégica, diseño de arquitectura y ejecución técnica Full Stack.",
+    tech: "Web app, automatización, integraciones de mensajería",
+    problem: "Alto volumen de preguntas repetitivas y ventas perdidas fuera de horario.",
+    solution: "Automatización de atención 24/7 con respuestas y flujo comercial asistido.",
+    impact: "Hasta 60% de consultas automatizadas y mejoras en conversión.",
+    status: "Activo",
+    link: "https://wavi.holy-code.com/"
   },
+  {
+    title: "Malu",
+    subtitle: "Software de administración de condominios en LATAM",
+    role: "Definición estratégica, diseño de arquitectura y ejecución técnica Full Stack.",
+    tech: "React, TypeScript, dashboards, control de acceso QR",
+    problem: "Procesos manuales, morosidad y conflictos operativos en condominios.",
+    solution: "Plataforma centralizada para cobranza, accesos, reservas y comunicación.",
+    impact: "Ahorro operativo de hasta 80% en tareas administrativas.",
+    status: "Activo",
+    link: "https://malu.holy-code.com/"
+  },
+  {
+    title: "MealMate+",
+    subtitle: "Compañero digital de estilo de vida personalizado",
+    role: "Definición estratégica, diseño de arquitectura y ejecución técnica Full Stack.",
+    tech: "React, Tailwind, recomendaciones personalizadas",
+    problem: "Planificación fragmentada entre nutrición, actividad y hábitos.",
+    solution: "Experiencia todo-en-uno con seguimiento y recomendaciones inteligentes.",
+    impact: "500+ usuarios activos y roadmap de mejoras continuo.",
+    status: "Activo",
+    link: "https://mealmeatplus.holy-code.com/"
+  },
+  {
+    title: "Rablo",
+    subtitle: "Digitalización de procesos críticos con IA",
+    role: "Desarrollo de producto en CompuSoluciones",
+    tech: "Flujos de autorización, IA aplicada, integraciones empresariales",
+    problem: "Falta de trazabilidad y lentitud en autorizaciones internas.",
+    solution: "Centralización de procesos y automatización de decisiones operativas.",
+    impact: "Mejor trazabilidad, cumplimiento y velocidad operativa para empresas.",
+    status: "Actual",
+    link: "https://www.rablo.io/"
+  },
+  {
+    title: "Run Territory",
+    subtitle: "Nueva app en construcción",
+    role: "Definición estratégica, diseño de arquitectura y ejecución técnica Full Stack.",
+    tech: "En definición",
+    problem: "Próximamente",
+    solution: "Próximamente",
+    impact: "Lanzamiento próximo",
+    status: "Coming soon",
+    link: "#contacto"
+  }
 ]
 ---
 
-<div class="space-y-16">
-  <!-- Introducción -->
-  <div class="text-center max-w-3xl mx-auto mb-16">
-    <h3 class="font-heading text-2xl font-semibold text-holy-text-primary mb-4">
-      Proyectos que Transforman Realidades
+<div class="space-y-10">
+  <div class="max-w-3xl">
+    <h3 class="font-heading text-2xl font-semibold text-holy-text-primary mb-3">
+      Proyectos con contexto, ejecución y resultados
     </h3>
     <p class="text-holy-text-secondary leading-relaxed">
-      Cada proyecto es una oportunidad de redefinir lo posible. Desde productos indie 
-      hasta soluciones empresariales, creamos experiencias digitales que impactan usuarios y negocios.
+      Cada caso presenta el problema, la solución construida y el impacto de negocio.
+      Este enfoque refleja mi forma de trabajar como Tech Lead y creador de producto.
     </p>
   </div>
 
-  <!-- Proyectos -->
-  <div class="space-y-20">
-    {PROJECTS.map(({ image, title, description, longDescription, tags, link, github, type, status, timeline, impact, achievements }, index) => (
-      <article class={`group relative ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} flex flex-col lg:flex gap-12 items-center`}>
-        
-        <!-- Imagen del proyecto -->
-        <div class="w-full lg:w-1/2">
-          <div class="relative overflow-hidden rounded-2xl shadow-2xl">
-            <img 
-              alt={title} 
-              class="object-cover object-top w-full h-64 md:h-80 lg:h-96 transition-transform duration-700 group-hover:scale-110" 
-              loading="lazy" 
-              src={image} 
-            />
-            <div class="absolute inset-0 bg-holy-action/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            
-            <!-- Badge de tipo -->
-            <div class="absolute top-4 left-4">
-              <span class={`px-3 py-1 rounded-full text-sm font-semibold ${type === 'indie' ? 'bg-holy-action text-holy-text-primary' : 'bg-holy-dark-secondary text-holy-action border border-holy-action'}`}>
-                {type === 'indie' ? 'Proyecto Indie' : 'Proyecto Cliente'}
-              </span>
-            </div>
-            
-            <!-- Estado -->
-            <div class="absolute top-4 right-4">
-              <span class={`px-3 py-1 rounded-full text-sm font-semibold ${status === 'Activo' ? 'bg-green-500/20 text-green-400 border border-green-500' : 'bg-blue-500/20 text-blue-400 border border-blue-500'}`}>
-                {status}
-              </span>
-            </div>
+  <div class="grid gap-6 md:grid-cols-2">
+    {PROJECTS.map((project) => (
+      <article class="rounded-2xl border border-holy-border bg-holy-card-bg p-6 backdrop-blur-sm hover:-translate-y-1 transition-all duration-300">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <h4 class="font-heading text-xl font-semibold text-holy-text-primary">{project.title}</h4>
+            <p class="text-sm text-holy-action mt-1">{project.subtitle}</p>
           </div>
+          <span class="text-xs px-2 py-1 rounded-full border border-holy-action/30 text-holy-action bg-holy-action/10">
+            {project.status}
+          </span>
         </div>
 
-        <!-- Contenido del proyecto -->
-        <div class="w-full lg:w-1/2 space-y-6">
-          
-          <!-- Header -->
-          <div class="space-y-4">
-            <h3 class="font-heading text-2xl md:text-3xl font-bold text-holy-text-primary group-hover:text-holy-action transition-colors">
-              {title}
-            </h3>
-            
-            <p class="text-holy-text-secondary leading-relaxed">
-              {description}
-            </p>
-          </div>
+        <div class="mt-5 space-y-3 text-sm text-holy-text-secondary">
+          <p><strong class="text-holy-text-primary">Rol:</strong> {project.role}</p>
+          <p><strong class="text-holy-text-primary">Problema:</strong> {project.problem}</p>
+          <p><strong class="text-holy-text-primary">Solución:</strong> {project.solution}</p>
+          <p><strong class="text-holy-text-primary">Impacto:</strong> {project.impact}</p>
+        </div>
 
-          <!-- Métricas -->
-          <div class="grid grid-cols-2 gap-4">
-            <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-xl p-4 border border-holy-neutral/20">
-              <p class="text-holy-text-secondary text-sm">Timeline</p>
-              <p class="text-holy-text-primary font-semibold">{timeline}</p>
-            </div>
-            <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-xl p-4 border border-holy-neutral/20">
-              <p class="text-holy-text-secondary text-sm">Impacto</p>
-              <p class="text-holy-text-primary font-semibold">{impact}</p>
-            </div>
-          </div>
-
-          <!-- Logros -->
-          <div class="space-y-3">
-            <h4 class="font-heading text-lg font-semibold text-holy-text-primary">
-              Logros Destacados
-            </h4>
-            <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
-              {achievements.map((achievement) => (
-                <li class="flex items-center gap-2 text-sm text-holy-text-secondary">
-                  <span class="w-1.5 h-1.5 bg-holy-action rounded-full flex-shrink-0"></span>
-                  {achievement}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <!-- Tecnologías -->
-          <div class="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span class="inline-flex items-center gap-2 px-3 py-1 bg-holy-dark-secondary/50 text-holy-text-secondary rounded-full text-sm border border-holy-neutral/20">
-                <tag.icon class="size-4" />
-                {tag.name}
-              </span>
-            ))}
-          </div>
-
-          <!-- Acciones -->
-          <div class="flex flex-wrap gap-4 pt-4">
-            {github && (
-              <LinkButton href={github}>
-                <GitHub class="size-5" />
-                Código
-              </LinkButton>
-            )}
-            {link && (
-              <LinkButton href={link}>
-                <Link class="size-4" />
-                Conocer más
-              </LinkButton>
-            )}
-          </div>
+        <div class="mt-6">
+          <LinkButton href={project.link}>
+            <Link class="size-4" />
+            Ver proyecto
+          </LinkButton>
         </div>
       </article>
     ))}
-  </div>
-
-  <!-- Call to action -->
-  <div class="text-center bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20 mt-20">
-    <h3 class="font-heading text-2xl font-semibold text-holy-text-primary mb-4">
-      ¿Listo para el próximo proyecto revolucionario?
-    </h3>
-    <p class="text-holy-text-secondary mb-8 max-w-2xl mx-auto">
-      Cada proyecto comienza con una conversación. Ya sea un producto indie ambicioso 
-      o una solución empresarial compleja, estamos listos para transformar tu visión en realidad.
-    </p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a 
-        href="#contacto"
-        class="inline-flex items-center gap-2 px-6 py-3 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105"
-      >
-        Hablemos de tu proyecto
-        <span class="transform transition-transform group-hover:translate-x-1">→</span>
-      </a>
-      <a 
-        href="/blog"
-        class="inline-flex items-center gap-2 px-6 py-3 bg-holy-dark-secondary hover:bg-holy-dark-secondary/80 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105 border border-holy-neutral/20"
-      >
-        Leer sobre nuestro proceso
-      </a>
-    </div>
   </div>
 </div>
 

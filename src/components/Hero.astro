@@ -1,117 +1,77 @@
 ---
 import MailIcon from "@/components/icons/Mail.astro"
 import SocialPill from "@/components/SocialPill.astro"
-
-const personalImageAlt = "The Holy Code - Mauro Sánchez"
 ---
 
-<div class="max-w-4xl">
-  <div class="flex flex-col sm:flex-row gap-4 mb-6">
+<div class="max-w-4xl space-y-8">
+  <div class="flex items-center gap-4">
     <img
-      class="rounded-full shadow-lg size-16 sm:size-20 mx-auto sm:mx-0 flex-shrink-0 glow-logo glow-on-scroll"
+      class="rounded-full shadow-lg size-16 sm:size-20 flex-shrink-0 border border-holy-action/30"
       src="/holycode.webp"
-      alt="The Holy Code - Agencia de Desarrollo Web y MVPs en México - Logo Oficial"
+      alt="The Holy Code - Marca personal de Mauro Sánchez"
       loading="eager"
       width="80"
       height="80"
     />
-    <div class="flex flex-col justify-center text-center sm:text-left min-w-0 flex-1">
-      <div class="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-holy-action/20 text-holy-action rounded-full text-sm font-semibold border border-holy-action/30 glow-element glow-on-scroll">
-          <span class="w-2 h-2 bg-holy-action rounded-full animate-pulse flex-shrink-0"></span>
-          <span class="whitespace-nowrap">
-            ✨ Disponible para proyectos
-          </span>
-        </div>
+    <div class="flex flex-col gap-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-holy-action/15 text-holy-action rounded-full text-sm font-semibold border border-holy-action/30 w-fit">
+        <span class="w-2 h-2 bg-holy-action rounded-full animate-pulse"></span>
+        Construyendo productos propios
       </div>
-      <p class="text-sm text-holy-text-secondary mt-1">
-        🚀 Indie Creator & Agencia
-      </p>
+      <p class="text-sm text-holy-text-secondary">The Holy Code · Tech Lead · Indie Creator</p>
     </div>
   </div>
 
-  <div class="space-y-6">
-    <h1 class="font-heading text-hero sm:text-hero md:text-6xl lg:text-7xl font-bold tracking-tight text-holy-text-primary leading-tight text-balance glow-text glow-on-scroll">
-      Donde las ideas se vuelven código.
+  <div class="space-y-5">
+    <h1 class="font-heading text-hero md:text-6xl lg:text-7xl font-bold tracking-tight text-holy-text-primary leading-tight text-balance">
+      Soy Mauro — Tech Lead, Full Stack Engineer & Indie Creator.
     </h1>
-    
-    <p class="text-lg sm:text-xl lg:text-2xl font-heading font-semibold text-holy-action text-balance glow-on-scroll">
-      Somos The Holy Code, la agencia de desarrollo donde las ideas se vuelven código que transforma empresas.
-    </p>
-    
-    <div class="prose prose-lg max-w-none text-holy-text-secondary leading-relaxed glow-on-scroll">
-      <p class="text-base sm:text-lg text-balance">
-        En <strong class="text-holy-text-primary font-semibold">The Holy Code</strong>, nuestra 
-        agencia de desarrollo especializada convierte ideas en código funcional. 
-        Desarrollamos <strong class="text-holy-text-primary font-semibold">MVPs revolucionarios</strong>, 
-        aplicaciones web innovadoras y soluciones digitales únicas 
-        donde las ideas se vuelven productos digitales exitosos.
-      </p>
 
-      <p class="text-sm sm:text-base text-holy-text-secondary text-balance">
-        Con más de 10 años de experiencia en desarrollo web y MVPs, liderados por Mauro Sánchez, 
-        combinamos la agilidad de un indie creator con la solidez de una agencia de desarrollo establecida en México y LATAM.
-      </p>
-    </div>
+    <p class="text-lg md:text-2xl font-heading font-semibold text-holy-action text-balance">
+      Construyo productos digitales minimalistas, escalables y orientados a negocio.
+    </p>
+
+    <p class="text-base sm:text-lg text-holy-text-secondary max-w-3xl leading-relaxed text-balance">
+      Con 10+ años de experiencia, combino estrategia de producto, arquitectura y ejecución para convertir ideas en software real.
+      He liderado equipos, lanzado productos propios y creado plataformas que generan impacto medible.
+    </p>
   </div>
 
-  <nav class="flex flex-wrap gap-4 mt-8 sm:mt-10 justify-center sm:justify-start">
+  <div class="flex flex-wrap gap-3 text-xs sm:text-sm">
+    <span class="px-3 py-1 rounded-full border border-holy-border bg-holy-card-bg text-holy-text-secondary">10+ años de experiencia</span>
+    <span class="px-3 py-1 rounded-full border border-holy-border bg-holy-card-bg text-holy-text-secondary">10+ proyectos entregados</span>
+    <a
+      href="https://www.moonflow.ai/blog/moonflow-adquiere-kobro"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="px-3 py-1 rounded-full border border-holy-border bg-holy-card-bg text-holy-text-secondary hover:text-holy-action transition-colors"
+    >
+      Kobro adquirida por Moonflow
+    </a>
+    <a
+      href="https://www.rablo.io/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="px-3 py-1 rounded-full border border-holy-border bg-holy-card-bg text-holy-text-secondary hover:text-holy-action transition-colors"
+    >
+      Actualmente en CompuSoluciones (Rablo)
+    </a>
+  </div>
+
+  <nav class="flex flex-wrap gap-4 pt-2">
+    <a
+      href="#proyectos"
+      class="inline-flex items-center gap-2 px-6 py-3 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105"
+    >
+      Ver proyectos
+    </a>
     <SocialPill href="mailto:mauro@holy-code.com">
       <MailIcon class="size-4 flex-shrink-0" />
-      <span class="whitespace-nowrap">
-        💡 ¿Tienes una idea? → Contáctame
-      </span>
+      Conectemos
     </SocialPill>
   </nav>
+
+  <p class="text-sm italic text-holy-text-secondary">
+    "Construyo productos digitales con visión, arquitectura y ejecución real."
+  </p>
 </div>
-
-<style>
-  /* Aplicar animación sutil de entrada */
-  div {
-    animation: fadeInUp 0.8s ease-out;
-  }
-  
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Ajustes para texto más largo */
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  /* Responsive typography */
-  @media (max-width: 640px) {
-    h1 {
-      font-size: clamp(2rem, 8vw, 3rem) !important;
-      line-height: 1.2;
-    }
-    
-    .text-lg {
-      font-size: clamp(1rem, 4vw, 1.125rem);
-    }
-  }
-
-  /* Evitar overflow en contenedores */
-  .prose {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
-  }
-
-  /* Mejorar spacing en diferentes idiomas */
-  .prose p {
-    margin-bottom: 1rem;
-  }
-
-  .prose p:last-child {
-    margin-bottom: 0;
-  }
-</style>
