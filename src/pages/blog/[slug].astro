@@ -1,9 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import BlogPost from "@/layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  const posts = await getCollection("blog", ({ data }) => !data.draft && data.lang === "es");
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
@@ -11,9 +10,17 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
 ---
 
-<BlogPost post={post}>
-  <Content />
-</BlogPost> 
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=/es/blog/${post.slug}/`} />
+    <link rel="canonical" href={`https://holy-code.com/es/blog/${post.slug}/`} />
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <a href={`/es/blog/${post.slug}/`}>Ir al artículo</a>
+  </body>
+</html>

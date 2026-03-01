@@ -2,8 +2,18 @@
 import SunIcon from "./icons/Sun.astro"
 import MoonIcon from "./icons/Moon.astro"
 import SystemIcon from "./icons/System.astro"
+import { DEFAULT_LOCALE, type Locale } from "../i18n/site"
 
-const THEMES = ["Light", "Dark", "System"]
+interface Props {
+  lang?: Locale
+}
+
+const { lang = DEFAULT_LOCALE } = Astro.props
+const THEMES = [
+  { id: "light", label: lang === "en" ? "Light" : "Claro" },
+  { id: "dark", label: lang === "en" ? "Dark" : "Oscuro" },
+  { id: "system", label: lang === "en" ? "System" : "Sistema" },
+]
 ---
 
 <div class="relative ml-1 mr-1">
@@ -11,7 +21,7 @@ const THEMES = ["Light", "Dark", "System"]
     id="theme-toggle-btn"
     class="appearance-none border-none flex hover:scale-125 transition"
   >
-    <span class="sr-only">Elige el tema</span>
+    <span class="sr-only">{lang === "en" ? "Choose theme" : "Elige el tema"}</span>
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
     <MoonIcon
       id="dark"
@@ -30,10 +40,10 @@ const THEMES = ["Light", "Dark", "System"]
       {
         THEMES.map((theme) => (
           <li
-            data-theme={theme.toLowerCase()}
+            data-theme={theme.id}
             class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
           >
-            {theme}
+            {theme.label}
           </li>
         ))
       }
@@ -199,7 +209,8 @@ const THEMES = ["Light", "Dark", "System"]
         // Selección de tema
         const themeOption = e.target.closest(".themes-menu-option");
         if (themeOption) {
-          const newTheme = themeOption.innerText.toLowerCase().trim();
+          const newTheme = themeOption.getAttribute("data-theme");
+          if (!newTheme) return;
           
           try {
             localStorage.setItem("theme", newTheme);

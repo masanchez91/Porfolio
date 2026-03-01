@@ -8,6 +8,7 @@ interface Props {
   modifiedTime?: string;
   tags?: string[];
   author?: string;
+  lang?: "es" | "en";
 }
 
 const {
@@ -18,7 +19,8 @@ const {
   publishedTime,
   modifiedTime,
   tags = [],
-  author = "Mauro Sánchez - The Holy Code"
+  author = "Mauro Sánchez - The Holy Code",
+  lang = "es"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -107,7 +109,7 @@ const imageURL = new URL(image, Astro.site).href;
   "@type": "LocalBusiness",
   "name": "The Holy Code",
   "image": new URL("/holycode.webp", Astro.site).href,
-  "description": "Agencia de desarrollo web especializada en MVPs y aplicaciones web innovadoras",
+  "description": lang === "en" ? "Product builder portfolio focused on digital product execution and full-stack architecture." : "Portfolio de producto enfocado en ejecución digital y arquitectura full stack.",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Guadalajara",
@@ -127,7 +129,7 @@ const imageURL = new URL(image, Astro.site).href;
   "openingHours": "Mo,Tu,We,Th,Fr 09:00-18:00",
   "serviceArea": {
     "@type": "Place",
-    "name": "México y LATAM"
+    "name": lang === "en" ? "Mexico and LATAM" : "México y LATAM"
   },
   "sameAs": [
     "https://linkedin.com/in/mesanchez91",

@@ -5,8 +5,15 @@ import Mail from "./icons/Mail.astro"
 import YouTube from "./icons/YouTube.astro"
 import X from "./icons/X.astro"
 import Twitch from "./icons/Twitch.astro"
+import { DEFAULT_LOCALE, getSiteCopy, localePath, type Locale } from "../i18n/site"
 
 const currentYear = new Date().getFullYear()
+interface Props {
+  lang?: Locale
+}
+
+const { lang = DEFAULT_LOCALE } = Astro.props
+const copy = getSiteCopy(lang)
 ---
 
 <footer class="relative mt-20 footer-bg border-t footer-border">
@@ -24,8 +31,7 @@ const currentYear = new Date().getFullYear()
             The Holy Code
           </h3>
           <p class="text-holy-text-secondary leading-relaxed">
-            Transformando ideas en productos digitales que impactan. 
-            Cada línea de código cuenta una historia de innovación.
+            {copy.footer.description}
           </p>
         </div>
         
@@ -89,29 +95,29 @@ const currentYear = new Date().getFullYear()
       <!-- Navigation -->
       <div class="space-y-6">
         <h4 class="font-heading text-lg font-semibold text-holy-text-primary">
-          Navegación
+          {copy.footer.navTitle}
         </h4>
         <nav class="space-y-3">
-          <a href="/#inicio" class="block text-holy-text-secondary hover:text-holy-action transition-colors">
-            Inicio
+          <a href={localePath(lang, "/#inicio")} class="block text-holy-text-secondary hover:text-holy-action transition-colors">
+            {copy.nav.home}
           </a>
-          <a href="/#proyectos" class="block text-holy-text-secondary hover:text-holy-action transition-colors">
-            Proyectos
+          <a href={localePath(lang, "/#proyectos")} class="block text-holy-text-secondary hover:text-holy-action transition-colors">
+            {copy.nav.projects}
           </a>
-          <a href="/#experiencia" class="block text-holy-text-secondary hover:text-holy-action transition-colors">
-            Experiencia
+          <a href={localePath(lang, "/#experiencia")} class="block text-holy-text-secondary hover:text-holy-action transition-colors">
+            {copy.nav.experience}
           </a>
-          <a href="/#agencia" class="block text-holy-text-secondary hover:text-holy-action transition-colors">
-            Sobre mí
+          <a href={localePath(lang, "/#agencia")} class="block text-holy-text-secondary hover:text-holy-action transition-colors">
+            {copy.nav.about}
           </a>
-          <a href="/#ecosistema" class="block text-holy-text-secondary hover:text-holy-action transition-colors">
-            Ecosistema de producto
+          <a href={localePath(lang, "/#ecosistema")} class="block text-holy-text-secondary hover:text-holy-action transition-colors">
+            {copy.nav.ecosystem}
           </a>
-          <a href="/#contacto" class="block text-holy-text-secondary hover:text-holy-action transition-colors">
-            Conectar
+          <a href={localePath(lang, "/#contacto")} class="block text-holy-text-secondary hover:text-holy-action transition-colors">
+            {copy.nav.contact}
           </a>
-          <a href="/blog" class="block text-holy-text-secondary hover:text-holy-action transition-colors">
-            Artículos del blog
+          <a href={localePath(lang, "/blog")} class="block text-holy-text-secondary hover:text-holy-action transition-colors">
+            {copy.footer.blogNav}
           </a>
         </nav>
       </div>
@@ -119,7 +125,7 @@ const currentYear = new Date().getFullYear()
       <!-- Contact info -->
       <div class="space-y-6">
         <h4 class="font-heading text-lg font-semibold text-holy-text-primary">
-          Contacto
+          {copy.footer.contactTitle}
         </h4>
         <div class="space-y-4">
           <div class="flex items-center gap-3">
@@ -127,7 +133,7 @@ const currentYear = new Date().getFullYear()
               <Mail class="size-4 text-holy-action" />
             </div>
             <div>
-              <p class="text-holy-text-secondary text-sm">Email</p>
+              <p class="text-holy-text-secondary text-sm">{copy.footer.emailLabel}</p>
               <a 
                 href="mailto:mauro@holy-code.com"
                 class="text-holy-text-primary hover:text-holy-action transition-colors font-medium"
@@ -138,12 +144,12 @@ const currentYear = new Date().getFullYear()
           </div>
           
           <div class="footer-cta rounded-xl p-4 border border-holy-action/20">
-            <p class="text-holy-text-secondary text-sm mb-2">¿Quieres seguir mi trabajo?</p>
+            <p class="text-holy-text-secondary text-sm mb-2">{copy.footer.followWork}</p>
             <a 
-              href="/#contacto"
+              href={localePath(lang, "/#contacto")}
               class="inline-flex items-center gap-2 text-holy-action hover:text-holy-action/80 transition-colors font-semibold"
             >
-              Conectemos
+              {copy.footer.connect}
               <span class="transform transition-transform group-hover:translate-x-1">→</span>
             </a>
           </div>
@@ -161,14 +167,14 @@ const currentYear = new Date().getFullYear()
           {currentYear} © <span class="font-semibold text-holy-text-primary">The Holy Code</span>
         </p>
         <p class="text-holy-text-secondary text-sm mt-1">
-          Transformando ideas en productos digitales
+          {copy.footer.bottomLine}
         </p>
       </div>
       
       <div class="flex items-center gap-4 text-xs text-holy-text-secondary">
         <span class="flex items-center gap-1">
           <span class="w-2 h-2 bg-holy-action rounded-full animate-pulse"></span>
-          Construyendo productos propios
+          {copy.footer.status}
         </span>
       </div>
     </div>

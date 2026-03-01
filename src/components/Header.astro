@@ -1,44 +1,27 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro"
 import MobileMenu from "./MobileMenu.astro"
+import { DEFAULT_LOCALE, getSiteCopy, localePath, type Locale } from "../i18n/site"
+import { resolveLanguageSwitchUrls } from "../i18n/alternates"
+
+interface Props {
+  lang?: Locale
+}
+
+const { lang = DEFAULT_LOCALE } = Astro.props
+const copy = getSiteCopy(lang)
 
 const navItems = [
-  {
-    title: "Inicio",
-    label: "inicio",
-    url: "/#inicio",
-  },
-  {
-    title: "Proyectos",
-    label: "proyectos", 
-    url: "/#proyectos",
-  },
-  {
-    title: "Experiencia",
-    label: "experiencia",
-    url: "/#experiencia",
-  },
-  {
-    title: "Sobre mí",
-    label: "agencia",
-    url: "/#agencia",
-  },
-  {
-    title: "Ecosistema", 
-    label: "ecosistema",
-    url: "/#ecosistema",
-  },
-  {
-    title: "Contacto",
-    label: "contacto",
-    url: "/#contacto",
-  },
-  {
-    title: "Blog",
-    label: "blog",
-    url: "/blog",
-  },
+  { title: copy.nav.home, label: "inicio", url: localePath(lang, "/#inicio"), section: true },
+  { title: copy.nav.projects, label: "proyectos", url: localePath(lang, "/#proyectos"), section: true },
+  { title: copy.nav.experience, label: "experiencia", url: localePath(lang, "/#experiencia"), section: true },
+  { title: copy.nav.about, label: "agencia", url: localePath(lang, "/#agencia"), section: true },
+  { title: copy.nav.ecosystem, label: "ecosistema", url: localePath(lang, "/#ecosistema"), section: true },
+  { title: copy.nav.contact, label: "contacto", url: localePath(lang, "/#contacto"), section: true },
+  { title: copy.nav.blog, label: "blog", url: localePath(lang, "/blog"), section: false },
 ]
+
+const { es: esUrl, en: enUrl } = await resolveLanguageSwitchUrls(Astro.url)
 ---
 
 <header
@@ -67,6 +50,7 @@ const navItems = [
           class="relative block px-3 py-2 transition hover:text-holy-action"
           aria-label={link.label}
           href={link.url}
+          data-section={link.section ? link.label : undefined}
         >
           {link.title}
         </a>
@@ -78,20 +62,28 @@ const navItems = [
     
     <!-- Control de tema -->
     <div class="flex items-center">
-      <ThemeToggle />
+      <ThemeToggle lang={lang} />
+    </div>
+
+    <div class="w-px h-6 bg-holy-neutral/30 mx-2"></div>
+    <div class="language-switch flex items-center text-xs">
+      <div class="lang-segment">
+        <a href={esUrl} class={`lang-chip ${lang === "es" ? "is-active" : ""}`}>ES</a>
+        <a href={enUrl} class={`lang-chip ${lang === "en" ? "is-active" : ""}`}>EN</a>
+      </div>
     </div>
   </nav>
 
   <!-- Menú móvil - posicionado en la esquina superior derecha -->
   <div class="xl:hidden">
-    <MobileMenu />
+    <MobileMenu lang={lang} esUrl={esUrl} enUrl={enUrl} />
   </div>
 </header>
 
 <script>
   document.addEventListener("astro:page-load", () => {
     const sections = document.querySelectorAll("section")
-    const navItems = document.querySelectorAll("header nav a")
+    const navItems = document.querySelectorAll("header nav a[data-section]")
     const headerNav = document.getElementById("header-nav")
 
     const callback = (entries: IntersectionObserverEntry[]) => {
@@ -124,9 +116,10 @@ const navItems = [
       navItems.forEach((item) => {
         item.addEventListener("click", (event) => {
           const href = item.getAttribute("href") || ""
-          if (!href.startsWith("/#")) return
+          const hash = href.includes("#") ? href.split("#")[1] : ""
+          if (!hash) return
 
-          const targetId = href.replace("/#", "")
+          const targetId = hash
           const target = document.getElementById(targetId)
           if (!target) return
 
@@ -172,5 +165,33 @@ const navItems = [
     #header-nav {
       display: none !important;
     }
+  }
+
+  .lang-segment {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.2rem;
+    border-radius: 9999px;
+    border: 1px solid var(--holy-border);
+    background: color-mix(in srgb, var(--holy-dark-secondary) 70%, transparent);
+  }
+
+  .lang-chip {
+    border-radius: 9999px;
+    padding: 0.2rem 0.45rem;
+    color: var(--holy-text-secondary);
+    line-height: 1;
+    transition: all 0.2s ease;
+  }
+
+  .lang-chip:hover {
+    color: var(--holy-text-primary);
+  }
+
+  .lang-chip.is-active {
+    color: var(--holy-action);
+    background: color-mix(in srgb, var(--holy-action) 18%, transparent);
+    border: 1px solid color-mix(in srgb, var(--holy-action) 55%, transparent);
   }
 </style>

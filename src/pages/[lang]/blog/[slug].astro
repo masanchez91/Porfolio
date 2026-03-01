@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import BlogPostLocalized from "@/layouts/BlogPostLocalized.astro";
+import { isLocale, SUPPORTED_LOCALES } from "@/i18n/site";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { lang: post.data.lang, slug: post.slug },
+    props: { post, lang: post.data.lang },
+  }));
+}
+
+const { post, lang } = Astro.props;
+
+if (!isLocale(Astro.params.lang) || !SUPPORTED_LOCALES.includes(lang)) {
+  return Astro.redirect("/es/blog", 302);
+}
+
+const { Content } = await post.render();
+---
+
+<BlogPostLocalized post={post} lang={lang}>
+  <Content />
+</BlogPostLocalized>

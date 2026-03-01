@@ -3,38 +3,22 @@ import Code from "./icons/Code.astro"
 import NextJS from "./icons/NextJS.astro"
 import ReactJS from "./icons/ReactJS.astro"
 import TypeScript from "./icons/TypeScript.astro"
+import { DEFAULT_LOCALE, getSiteCopy, type Locale } from "../i18n/site"
 
-const services = [
-  {
-    title: "SaaS y plataformas B2B",
-    description: "Productos orientados a resolver operaciones reales de negocio con automatización, trazabilidad y experiencia de usuario sólida.",
-    icon: Code,
-    features: ["Automatización de flujos", "Integraciones con APIs", "Dashboards operativos", "Arquitectura escalable"]
-  },
-  {
-    title: "Productos de IA aplicada",
-    description: "Uso de IA para mejorar procesos, reducir fricción operativa y acelerar decisiones dentro de productos digitales.",
-    icon: NextJS,
-    features: ["Asistentes inteligentes", "Generación de flujos", "Clasificación y sugerencias", "Automatización contextual"]
-  },
-  {
-    title: "Experiencias de producto",
-    description: "Construcción de interfaces limpias y enfocadas en conversión, adopción y claridad para usuarios finales.",
-    icon: TypeScript,
-    features: ["Diseño minimalista", "Flujos centrados en valor", "Responsive first", "Performance web"]
-  },
-  {
-    title: "Laboratorio Indie",
-    description: "Exploro y lanzo ideas propias de forma iterativa: validar rápido, aprender del mercado y evolucionar el producto.",
-    icon: ReactJS,
-    features: ["MVPs internos", "Iteración continua", "Roadmap en público", "Enfoque creator-first"]
-  }
-]
+interface Props {
+  lang?: Locale
+}
+
+const { lang = DEFAULT_LOCALE } = Astro.props
+const copy = getSiteCopy(lang)
+const serviceIcons = [Code, NextJS, TypeScript, ReactJS]
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
   {
-    services.map(({ title, description, icon: Icon, features }) => (
+    copy.services.items.map(({ title, description, features }, index) => {
+      const Icon = serviceIcons[index] ?? Code
+      return (
       <article class="group bg-holy-dark-secondary/50 backdrop-blur-sm rounded-2xl p-6 border border-holy-neutral/20 hover:border-holy-action/50 transition-all duration-300 hover:shadow-lg hover:shadow-holy-action/10">
         <div class="flex items-start gap-4 mb-4">
           <div class="p-3 bg-holy-action/20 rounded-xl group-hover:bg-holy-action/30 transition-colors duration-300">
@@ -61,24 +45,24 @@ const services = [
         </ul>
         
       </article>
-    ))
+      )
+    })
   }
 </div>
 
 <div class="mt-12 text-center">
   <div class="bg-holy-dark-secondary/30 backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20">
     <h3 class="font-heading text-h3 font-semibold text-holy-text-primary mb-4">
-      Este espacio no vende servicios
+      {copy.services.ctaTitle}
     </h3>
     <p class="text-holy-text-secondary mb-6 max-w-2xl mx-auto">
-      The Holy Code es mi vitrina para compartir productos, aprendizajes y evolución técnica.
-      Si quieres conectar para alianzas, comunidad o feedback de producto, bienvenido.
+      {copy.services.ctaDescription}
     </p>
     <a 
       href="mailto:mauro@holy-code.com"
       class="inline-flex items-center gap-2 px-6 py-3 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-holy-action/25"
     >
-      Hablemos
+      {copy.services.ctaButton}
       <span>✨</span>
     </a>
   </div>

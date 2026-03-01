@@ -1,0 +1,84 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import AboutMe from "@/components/AboutMe.astro"
+import Briefcase from "@/components/icons/Briefcase.astro"
+import CodeIcon from "@/components/icons/Code.astro"
+import Experience from "@/components/Experience.astro"
+import ProfileCheck from "@/components/icons/ProfileCheck.astro"
+import Projects from "@/components/Projects.astro"
+import Services from "@/components/Services.astro"
+import ContactForm from "@/components/ContactForm.astro"
+import SectionContainer from "@/components/SectionContainer.astro"
+import Hero from "@/components/Hero.astro"
+import FloatingSocialShare from "@/components/FloatingSocialShare.astro"
+import { getSiteCopy, isLocale, SUPPORTED_LOCALES, type Locale } from "@/i18n/site"
+
+export async function getStaticPaths() {
+  return SUPPORTED_LOCALES.map((lang) => ({ params: { lang } }))
+}
+
+const langParam = Astro.params.lang
+if (!isLocale(langParam)) {
+  return Astro.redirect("/es/", 302)
+}
+
+const lang = langParam as Locale
+const copy = getSiteCopy(lang)
+---
+
+<Layout
+  lang={lang}
+  title={copy.meta.homeTitle}
+  description={copy.meta.homeDescription}
+>
+  <main class="px-4">
+    <SectionContainer id="inicio" class="py-16 md:py-36">
+      <Hero lang={lang} />
+    </SectionContainer>
+    
+    <div class="space-y-24">
+      <SectionContainer id="proyectos">
+        <h2 class="flex items-center mb-6 text-h2 font-heading font-semibold gap-x-3 text-holy-text-primary">
+          <Briefcase class="size-8 text-holy-action" />
+          {copy.home.projectsTitle}
+        </h2>
+        <Projects lang={lang} />
+      </SectionContainer>
+
+      <SectionContainer id="experiencia">
+        <h2 class="flex items-center mb-6 text-h2 font-heading font-semibold gap-x-3 text-holy-text-primary">
+          <CodeIcon class="size-8 text-holy-action" />
+          {copy.home.experienceTitle}
+        </h2>
+        <Experience lang={lang} />
+      </SectionContainer>
+
+      <SectionContainer id="agencia">
+        <h2 class="flex items-center mb-6 text-h2 font-heading font-semibold gap-x-3 text-holy-text-primary">
+          <ProfileCheck class="size-8 text-holy-action" />
+          {copy.home.aboutTitle}
+        </h2>
+        <AboutMe lang={lang} />
+      </SectionContainer>
+
+      <SectionContainer id="ecosistema">
+        <h2 class="flex items-center mb-6 text-h2 font-heading font-semibold gap-x-3 text-holy-text-primary">
+          <CodeIcon class="size-8 text-holy-action" />
+          {copy.home.ecosystemTitle}
+        </h2>
+        <Services lang={lang} />
+      </SectionContainer>
+
+      <SectionContainer id="contacto">
+        <ContactForm lang={lang} />
+      </SectionContainer>
+
+    </div>
+  </main>
+  
+  <FloatingSocialShare
+    lang={lang}
+    title={lang === "en" ? "The Holy Code - Digital product portfolio" : "The Holy Code - Portfolio de productos digitales"}
+    url={lang === "en" ? "https://holy-code.com/en/" : "https://holy-code.com/es/"}
+  />
+</Layout>

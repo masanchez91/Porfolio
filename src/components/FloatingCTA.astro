@@ -1,5 +1,13 @@
 ---
 import MailIcon from "./icons/Mail.astro"
+import { DEFAULT_LOCALE, getSiteCopy, type Locale } from "../i18n/site"
+
+interface Props {
+  lang?: Locale
+}
+
+const { lang = DEFAULT_LOCALE } = Astro.props
+const copy = getSiteCopy(lang)
 ---
 
 <div class="floating-cta fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50">
@@ -9,7 +17,7 @@ import MailIcon from "./icons/Mail.astro"
     aria-label="Conectar por email"
   >
     <MailIcon class="size-5 group-hover:scale-110 transition-transform" />
-    <span class="font-heading font-semibold text-button">Conectemos</span>
+    <span class="font-heading font-semibold text-button">{copy.floatingCta.label}</span>
     <div class="cta-glow absolute inset-0 rounded-full pointer-events-none"></div>
   </a>
 </div>

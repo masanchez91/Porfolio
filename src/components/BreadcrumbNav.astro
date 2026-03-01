@@ -4,9 +4,10 @@ interface Props {
     name: string;
     href?: string;
   }>;
+  homeAriaLabel?: string;
 }
 
-const { items } = Astro.props;
+const { items, homeAriaLabel = "Go to home" } = Astro.props;
 
 // Schema para breadcrumbs
 const breadcrumbSchema = {
@@ -32,7 +33,7 @@ const breadcrumbSchema = {
           <a 
             href={item.href} 
             class="hover:text-holy-action transition-colors font-medium"
-            aria-label={index === 0 ? 'Ir al inicio' : undefined}
+            aria-label={index === 0 ? homeAriaLabel : undefined}
           >
             {index === 0 && '🏠 '}{item.name}
           </a>

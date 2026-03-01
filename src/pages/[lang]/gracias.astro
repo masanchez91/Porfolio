@@ -1,0 +1,70 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import { getSiteCopy, isLocale, localePath, SUPPORTED_LOCALES, type Locale } from "@/i18n/site";
+
+export async function getStaticPaths() {
+  return SUPPORTED_LOCALES.map((lang) => ({ params: { lang } }))
+}
+
+const langParam = Astro.params.lang
+if (!isLocale(langParam)) {
+  return Astro.redirect("/es/gracias", 302)
+}
+const lang = langParam as Locale
+const copy = getSiteCopy(lang)
+---
+
+<Layout lang={lang} title={copy.thanks.title} description={copy.thanks.description}>
+  <SectionContainer class="py-24 md:py-32">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="mb-8">
+        <div class="mx-auto w-20 h-20 bg-holy-action/20 rounded-full flex items-center justify-center">
+          <svg class="w-10 h-10 text-holy-action" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+      </div>
+
+      <h1 class="font-heading text-4xl md:text-5xl font-bold text-holy-text-primary mb-6">
+        {copy.thanks.heading}
+      </h1>
+
+      <p class="text-xl text-holy-text-secondary leading-relaxed mb-8">
+        {copy.thanks.body}
+      </p>
+
+      <div class="bg-holy-card-bg/50 backdrop-blur-sm rounded-2xl p-6 border border-holy-border mb-8">
+        <h2 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
+          {copy.thanks.stepsTitle}
+        </h2>
+        <div class="space-y-3 text-left">
+          {copy.thanks.steps.map((step, index) => (
+            <div class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-6 h-6 bg-holy-action text-white rounded-full flex items-center justify-center text-sm font-bold">{index + 1}</span>
+              <div>
+                <p class="text-holy-text-primary font-semibold">{step.title}</p>
+                <p class="text-holy-text-secondary text-sm">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="bg-holy-action/10 border border-holy-action/20 rounded-xl p-4 mb-8">
+        <p class="text-holy-text-primary">{copy.thanks.urgent}</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <LinkButton href={localePath(lang, "/")}>
+          {copy.thanks.backHome}
+        </LinkButton>
+
+        <LinkButton href={localePath(lang, "/blog")} variant="secondary">
+          {copy.thanks.readBlog}
+        </LinkButton>
+      </div>
+    </div>
+  </SectionContainer>
+</Layout>

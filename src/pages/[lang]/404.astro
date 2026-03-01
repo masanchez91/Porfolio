@@ -1,0 +1,43 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import { isLocale, localePath, SUPPORTED_LOCALES, type Locale } from "@/i18n/site";
+
+export async function getStaticPaths() {
+  return SUPPORTED_LOCALES.map((lang) => ({ params: { lang } }))
+}
+
+const langParam = Astro.params.lang
+if (!isLocale(langParam)) {
+  return Astro.redirect("/es/404", 302)
+}
+const lang = langParam as Locale
+---
+
+<Layout
+  lang={lang}
+  title={lang === "en" ? "404 - Page not found | The Holy Code" : "404 - Página no encontrada | The Holy Code"}
+  description={lang === "en" ? "The page you are looking for does not exist." : "La página que buscas no existe."}
+>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-36">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="font-heading text-8xl md:text-9xl font-bold text-holy-action/20 mb-4">404</h1>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-holy-text-primary mb-6">
+          {lang === "en" ? "Page not found" : "Página no encontrada"}
+        </h2>
+        <p class="text-xl text-holy-text-secondary leading-relaxed max-w-2xl mx-auto mb-8">
+          {lang === "en"
+            ? "This page does not exist, was moved, or is no longer available."
+            : "Esta página no existe, fue movida o ya no está disponible."}
+        </p>
+        <a
+          href={localePath(lang, "/")}
+          class="inline-flex items-center gap-2 px-6 py-3 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105"
+        >
+          {lang === "en" ? "Back to home" : "Volver al inicio"}
+        </a>
+      </div>
+    </SectionContainer>
+  </main>
+</Layout>

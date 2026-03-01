@@ -1,38 +1,20 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro"
-const EXPERIENCIE = [
-  {
-    date: "Nov 2025 - Actualidad",
-    title: "Desarrollador Senior",
-    company: "CompuSoluciones y Asociados",
-    description:
-      "Desarrollo de soluciones digitales de impacto para operaciones empresariales. Actualmente participo en el desarrollo de Rablo, una plataforma para digitalizar procesos y flujos de autorización críticos con IA.",
-    link: "https://www.rablo.io/",
-  },
-  {
-    date: "Ene 2023 - Nov 2025",
-    title: "Tech Lead",
-    company: "Kobro",
-    description:
-      "Lideré el desarrollo técnico de producto, arquitectura y entregas continuas para escalar la plataforma. Durante esta etapa, Kobro fue adquirida por Moonflow, validando el valor técnico y de negocio construido.",
-    link: "https://www.kobro.io",
-  },
-  {
-    date: "Oct 2018 - Dic 2023",
-    title: "Full Stack Developer",
-    company: "CompuSoluciones y Asociados",
-    description:
-      "Ejecución end-to-end de aplicaciones web y componentes backend. Colaboré en la evolución de plataformas internas y productos digitales orientados a eficiencia operativa.",
-    link: "https://www.compusoluciones.com/",
-  },
-]
+import { DEFAULT_LOCALE, getSiteCopy, type Locale } from "../i18n/site"
+
+interface Props {
+  lang?: Locale
+}
+
+const { lang = DEFAULT_LOCALE } = Astro.props
+const copy = getSiteCopy(lang)
 ---
 
 <ol class="relative mt-16">
   {
-    EXPERIENCIE.map((experiencie) => (
+    copy.experience.items.map((experiencie) => (
       <li class="">
-        <ExperienceItem {...experiencie} />
+        <ExperienceItem {...experiencie} moreLabel={copy.experience.more} />
       </li>
     ))
   }

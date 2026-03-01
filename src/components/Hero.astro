@@ -1,6 +1,14 @@
 ---
 import MailIcon from "@/components/icons/Mail.astro"
 import SocialPill from "@/components/SocialPill.astro"
+import { DEFAULT_LOCALE, getSiteCopy, localePath, type Locale } from "../i18n/site"
+
+interface Props {
+  lang?: Locale
+}
+
+const { lang = DEFAULT_LOCALE } = Astro.props
+const copy = getSiteCopy(lang)
 ---
 
 <div class="max-w-4xl space-y-8">
@@ -16,37 +24,36 @@ import SocialPill from "@/components/SocialPill.astro"
     <div class="flex flex-col gap-2">
       <div class="inline-flex items-center gap-2 px-3 py-1 bg-holy-action/15 text-holy-action rounded-full text-sm font-semibold border border-holy-action/30 w-fit">
         <span class="w-2 h-2 bg-holy-action rounded-full animate-pulse"></span>
-        Construyendo productos propios
+        {copy.hero.badge}
       </div>
-      <p class="text-sm text-holy-text-secondary">The Holy Code · Tech Lead · Indie Creator</p>
+      <p class="text-sm text-holy-text-secondary">{copy.hero.micro}</p>
     </div>
   </div>
 
   <div class="space-y-5">
     <h1 class="font-heading text-hero md:text-6xl lg:text-7xl font-bold tracking-tight text-holy-text-primary leading-tight text-balance">
-      Soy Mauro — Tech Lead, Full Stack Engineer & Indie Creator.
+      {copy.hero.title}
     </h1>
 
     <p class="text-lg md:text-2xl font-heading font-semibold text-holy-action text-balance">
-      Construyo productos digitales minimalistas, escalables y orientados a negocio.
+      {copy.hero.subtitle}
     </p>
 
     <p class="text-base sm:text-lg text-holy-text-secondary max-w-3xl leading-relaxed text-balance">
-      Con 10+ años de experiencia, combino estrategia de producto, arquitectura y ejecución para convertir ideas en software real.
-      He liderado equipos, lanzado productos propios y creado plataformas que generan impacto medible.
+      {copy.hero.description}
     </p>
   </div>
 
   <div class="flex flex-wrap gap-3 text-xs sm:text-sm">
-    <span class="px-3 py-1 rounded-full border border-holy-border bg-holy-card-bg text-holy-text-secondary">10+ años de experiencia</span>
-    <span class="px-3 py-1 rounded-full border border-holy-border bg-holy-card-bg text-holy-text-secondary">10+ proyectos entregados</span>
+    <span class="px-3 py-1 rounded-full border border-holy-border bg-holy-card-bg text-holy-text-secondary">{copy.hero.chips[0]}</span>
+    <span class="px-3 py-1 rounded-full border border-holy-border bg-holy-card-bg text-holy-text-secondary">{copy.hero.chips[1]}</span>
     <a
       href="https://www.moonflow.ai/blog/moonflow-adquiere-kobro"
       target="_blank"
       rel="noopener noreferrer"
       class="px-3 py-1 rounded-full border border-holy-border bg-holy-card-bg text-holy-text-secondary hover:text-holy-action transition-colors"
     >
-      Kobro adquirida por Moonflow
+      {copy.hero.moonflow}
     </a>
     <a
       href="https://www.rablo.io/"
@@ -54,24 +61,24 @@ import SocialPill from "@/components/SocialPill.astro"
       rel="noopener noreferrer"
       class="px-3 py-1 rounded-full border border-holy-border bg-holy-card-bg text-holy-text-secondary hover:text-holy-action transition-colors"
     >
-      Actualmente en CompuSoluciones (Rablo)
+      {copy.hero.rablo}
     </a>
   </div>
 
   <nav class="flex flex-wrap gap-4 pt-2">
     <a
-      href="#proyectos"
+      href={localePath(lang, "/#proyectos")}
       class="inline-flex items-center gap-2 px-6 py-3 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full font-semibold transition-all duration-300 hover:scale-105"
     >
-      Ver proyectos
+      {copy.hero.primaryCta}
     </a>
     <SocialPill href="mailto:mauro@holy-code.com">
       <MailIcon class="size-4 flex-shrink-0" />
-      Conectemos
+      {copy.hero.secondaryCta}
     </SocialPill>
   </nav>
 
   <p class="text-sm italic text-holy-text-secondary">
-    "Construyo productos digitales con visión, arquitectura y ejecución real."
+    {copy.hero.quote}
   </p>
 </div>

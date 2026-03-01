@@ -1,16 +1,23 @@
 ---
 import MailIcon from "./icons/Mail.astro";
+import { DEFAULT_LOCALE, getSiteCopy, type Locale } from "../i18n/site";
+
+interface Props {
+  lang?: Locale
+}
+
+const { lang = DEFAULT_LOCALE } = Astro.props
+const copy = getSiteCopy(lang)
 ---
 
 <div class="max-w-4xl mx-auto min-w-0">
   <!-- Header -->
   <div class="text-center mb-10 md:mb-12">
     <h2 class="font-heading text-3xl md:text-4xl font-bold text-holy-text-primary mb-4">
-      Conectemos
+      {copy.contact.title}
     </h2>
     <p class="text-base md:text-xl text-holy-text-secondary leading-relaxed max-w-2xl mx-auto">
-      Este portafolio es para compartir mi trabajo, productos y evolución.
-      Si quieres colaborar, dar feedback o crear una alianza, escríbeme.
+      {copy.contact.intro}
     </p>
   </div>
 
@@ -24,7 +31,7 @@ import MailIcon from "./icons/Mail.astro";
       >
         <!-- Honeypot field -->
         <input type="hidden" name="_subject" value="Nuevo mensaje desde The Holy Code" />
-        <input type="hidden" name="_next" value="https://holy-code.com/gracias" />
+        <input type="hidden" name="_next" value={copy.contact.nextUrl} />
         <div class="hidden">
           <label>
             No llenar este campo si eres humano:
@@ -35,7 +42,7 @@ import MailIcon from "./icons/Mail.astro";
         <!-- Nombre -->
         <div>
           <label for="name" class="block text-holy-text-primary font-semibold mb-2">
-            Nombre *
+            {copy.contact.name} *
           </label>
           <input
             type="text"
@@ -43,14 +50,14 @@ import MailIcon from "./icons/Mail.astro";
             name="name"
             required
             class="w-full px-4 py-3 form-field rounded-lg text-holy-text-primary form-placeholder focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
-            placeholder="Tu nombre"
+            placeholder={lang === "en" ? "Your name" : "Tu nombre"}
           />
         </div>
 
         <!-- Email -->
         <div>
           <label for="email" class="block text-holy-text-primary font-semibold mb-2">
-            Email *
+            {copy.contact.email} *
           </label>
           <input
             type="email"
@@ -65,40 +72,37 @@ import MailIcon from "./icons/Mail.astro";
         <!-- Asunto -->
         <div>
           <label for="subject" class="block text-holy-text-primary font-semibold mb-2">
-            Asunto
+            {copy.contact.subject}
           </label>
           <input
             type="text"
             id="subject"
             name="subject"
             class="w-full px-4 py-3 form-field rounded-lg text-holy-text-primary form-placeholder focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
-            placeholder="¿En qué puedo ayudarte?"
+            placeholder={lang === "en" ? "How can I help?" : "¿En qué puedo ayudarte?"}
           />
         </div>
 
         <!-- Tipo de proyecto -->
         <div>
           <label for="project-type" class="block text-holy-text-primary font-semibold mb-2">
-            Motivo de contacto
+            {copy.contact.reason}
           </label>
           <select
             id="project-type"
             name="project-type"
             class="w-full px-4 py-3 form-field rounded-lg text-holy-text-primary focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors"
           >
-            <option value="">Seleccionar...</option>
-            <option value="feedback">Feedback de producto</option>
-            <option value="alianza">Alianza o colaboración</option>
-            <option value="comunidad">Comunidad / contenido</option>
-            <option value="inversion">Inversión / partnership</option>
-            <option value="otro">Otro</option>
+            {copy.contact.reasonOptions.map((option) => (
+              <option value={option.value}>{option.label}</option>
+            ))}
           </select>
         </div>
 
         <!-- Mensaje -->
         <div>
           <label for="message" class="block text-holy-text-primary font-semibold mb-2">
-            Mensaje *
+            {copy.contact.message} *
           </label>
           <textarea
             id="message"
@@ -106,7 +110,7 @@ import MailIcon from "./icons/Mail.astro";
             rows="6"
             required
             class="w-full px-4 py-3 form-field rounded-lg text-holy-text-primary form-placeholder focus:border-holy-action focus:outline-none focus:ring-2 focus:ring-holy-action/20 transition-colors resize-none"
-            placeholder="Cuéntame el contexto de tu mensaje y cómo te gustaría conectar."
+            placeholder={lang === "en" ? "Tell me the context of your message and how you would like to connect." : "Cuéntame el contexto de tu mensaje y cómo te gustaría conectar."}
           ></textarea>
         </div>
 
@@ -116,7 +120,7 @@ import MailIcon from "./icons/Mail.astro";
           class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-lg font-semibold text-button transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-holy-action/25"
         >
           <MailIcon class="size-5" />
-          Enviar mensaje
+          {copy.contact.submit}
         </button>
       </form>
     </div>
@@ -126,7 +130,7 @@ import MailIcon from "./icons/Mail.astro";
       <!-- Contacto directo -->
       <div class="form-info-card backdrop-blur-sm rounded-2xl p-5 md:p-6 border form-info-border">
         <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
-          Contacto directo
+          {copy.contact.directContact}
         </h3>
         <div class="space-y-4">
           <div class="flex items-center gap-3">
@@ -149,20 +153,20 @@ import MailIcon from "./icons/Mail.astro";
       <!-- Tiempo de respuesta -->
       <div class="form-info-card backdrop-blur-sm rounded-2xl p-5 md:p-6 border form-info-border">
         <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
-          Tiempo de respuesta
+          {copy.contact.responseTime}
         </h3>
         <div class="space-y-3">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 bg-holy-action rounded-full"></span>
-            <span class="text-holy-text-secondary">Email: 24-48 horas</span>
+            <span class="text-holy-text-secondary">{lang === "en" ? "Email: 24-48 hours" : "Email: 24-48 horas"}</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 bg-holy-action rounded-full"></span>
-            <span class="text-holy-text-secondary">Colaboraciones: 1-2 días</span>
+            <span class="text-holy-text-secondary">{lang === "en" ? "Collaborations: 1-2 days" : "Colaboraciones: 1-2 días"}</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 bg-holy-action rounded-full"></span>
-            <span class="text-holy-text-secondary">Mensajes detallados: 2-3 días</span>
+            <span class="text-holy-text-secondary">{lang === "en" ? "Detailed messages: 2-3 days" : "Mensajes detallados: 2-3 días"}</span>
           </div>
         </div>
       </div>
@@ -170,30 +174,18 @@ import MailIcon from "./icons/Mail.astro";
       <!-- Proceso -->
       <div class="form-info-card backdrop-blur-sm rounded-2xl p-5 md:p-6 border form-info-border">
         <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
-          ¿Qué pasa después?
+          {copy.contact.next}
         </h3>
         <div class="space-y-3">
-          <div class="flex items-start gap-3">
-            <span class="flex-shrink-0 w-6 h-6 bg-holy-action text-holy-text-primary rounded-full flex items-center justify-center text-sm font-bold">1</span>
-            <div>
-              <p class="text-holy-text-primary font-semibold">Leo tu mensaje</p>
-              <p class="text-holy-text-secondary text-sm">Reviso contexto y objetivos</p>
+          {copy.contact.process.map((step, index) => (
+            <div class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-6 h-6 bg-holy-action text-holy-text-primary rounded-full flex items-center justify-center text-sm font-bold">{index + 1}</span>
+              <div>
+                <p class="text-holy-text-primary font-semibold">{step.title}</p>
+                <p class="text-holy-text-secondary text-sm">{step.description}</p>
+              </div>
             </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="flex-shrink-0 w-6 h-6 bg-holy-action text-holy-text-primary rounded-full flex items-center justify-center text-sm font-bold">2</span>
-            <div>
-              <p class="text-holy-text-primary font-semibold">Te respondo con claridad</p>
-              <p class="text-holy-text-secondary text-sm">Siguiente paso recomendado</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="flex-shrink-0 w-6 h-6 bg-holy-action text-holy-text-primary rounded-full flex items-center justify-center text-sm font-bold">3</span>
-            <div>
-              <p class="text-holy-text-primary font-semibold">Conexión activa</p>
-              <p class="text-holy-text-secondary text-sm">Colaboración, feedback o alianza</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
