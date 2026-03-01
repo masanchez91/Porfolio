@@ -2,21 +2,21 @@
 import MailIcon from "./icons/Mail.astro";
 ---
 
-<div class="max-w-4xl mx-auto">
+<div class="max-w-4xl mx-auto min-w-0">
   <!-- Header -->
-  <div class="text-center mb-12">
-    <h2 class="font-heading text-4xl font-bold text-holy-text-primary mb-4">
+  <div class="text-center mb-10 md:mb-12">
+    <h2 class="font-heading text-3xl md:text-4xl font-bold text-holy-text-primary mb-4">
       Conectemos
     </h2>
-    <p class="text-xl text-holy-text-secondary leading-relaxed max-w-2xl mx-auto">
+    <p class="text-base md:text-xl text-holy-text-secondary leading-relaxed max-w-2xl mx-auto">
       Este portafolio es para compartir mi trabajo, productos y evolución.
       Si quieres colaborar, dar feedback o crear una alianza, escríbeme.
     </p>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+  <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8 xl:gap-12 min-w-0">
     <!-- Formulario -->
-    <div class="form-container backdrop-blur-sm rounded-2xl p-8 border border-holy-action/20">
+    <div class="form-container min-w-0 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 border border-holy-action/20">
       <form
         action="https://formspree.io/f/mgvzokpg"
         method="POST"
@@ -122,9 +122,9 @@ import MailIcon from "./icons/Mail.astro";
     </div>
 
     <!-- Información de contacto -->
-    <div class="space-y-8">
+    <div class="space-y-6 md:space-y-8 min-w-0">
       <!-- Contacto directo -->
-      <div class="form-info-card backdrop-blur-sm rounded-2xl p-6 border form-info-border">
+      <div class="form-info-card backdrop-blur-sm rounded-2xl p-5 md:p-6 border form-info-border">
         <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
           Contacto directo
         </h3>
@@ -147,7 +147,7 @@ import MailIcon from "./icons/Mail.astro";
       </div>
 
       <!-- Tiempo de respuesta -->
-      <div class="form-info-card backdrop-blur-sm rounded-2xl p-6 border form-info-border">
+      <div class="form-info-card backdrop-blur-sm rounded-2xl p-5 md:p-6 border form-info-border">
         <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
           Tiempo de respuesta
         </h3>
@@ -168,7 +168,7 @@ import MailIcon from "./icons/Mail.astro";
       </div>
 
       <!-- Proceso -->
-      <div class="form-info-card backdrop-blur-sm rounded-2xl p-6 border form-info-border">
+      <div class="form-info-card backdrop-blur-sm rounded-2xl p-5 md:p-6 border form-info-border">
         <h3 class="font-heading text-xl font-semibold text-holy-text-primary mb-4">
           ¿Qué pasa después?
         </h3>

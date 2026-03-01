@@ -83,15 +83,15 @@ const PROJECTS = [
     </p>
   </div>
 
-  <div class="grid gap-6 md:grid-cols-2">
+  <div class="grid gap-6 xl:grid-cols-2">
     {PROJECTS.map((project) => (
-      <article class="rounded-2xl border border-holy-border bg-holy-card-bg p-6 backdrop-blur-sm hover:-translate-y-1 transition-all duration-300">
+      <article class="min-w-0 rounded-2xl border border-holy-border bg-holy-card-bg p-5 md:p-6 backdrop-blur-sm hover:-translate-y-1 transition-all duration-300">
         <div class="flex items-start justify-between gap-3">
-          <div>
-            <h4 class="font-heading text-xl font-semibold text-holy-text-primary">{project.title}</h4>
+          <div class="min-w-0">
+            <h4 class="font-heading text-xl font-semibold text-holy-text-primary break-words">{project.title}</h4>
             <p class="text-sm text-holy-action mt-1">{project.subtitle}</p>
           </div>
-          <span class="text-xs px-2 py-1 rounded-full border border-holy-action/30 text-holy-action bg-holy-action/10">
+          <span class="shrink-0 text-xs px-2 py-1 rounded-full border border-holy-action/30 text-holy-action bg-holy-action/10">
             {project.status}
           </span>
         </div>

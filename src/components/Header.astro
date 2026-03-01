@@ -6,7 +6,7 @@ const navItems = [
   {
     title: "Inicio",
     label: "inicio",
-    url: "/",
+    url: "/#inicio",
   },
   {
     title: "Proyectos",
@@ -45,7 +45,7 @@ const navItems = [
   class="fixed top-0 z-50 flex items-center justify-center w-full mx-auto mt-2"
 >
   <!-- Logo/Brand solo visible en móvil -->
-  <div class="lg:hidden fixed top-4 left-4 z-50">
+  <div class="xl:hidden fixed top-4 left-4 z-50">
     <img 
       src="/holycode.webp" 
       alt="The Holy Code - Desarrollo Web México" 
@@ -59,7 +59,7 @@ const navItems = [
   <!-- Menú desktop -->
   <nav
     id="header-nav"
-    class="hidden lg:flex px-4 py-2 text-sm font-medium rounded-full text-holy-text-secondary justify-center items-center backdrop-blur-sm bg-holy-dark-secondary/80 border border-holy-border"
+    class="hidden xl:flex max-w-[min(100vw-2rem,72rem)] px-4 py-2 text-sm font-medium rounded-full text-holy-text-secondary justify-center items-center backdrop-blur-sm bg-holy-dark-secondary/80 border border-holy-border"
   >
     {
       navItems.map((link) => (
@@ -83,7 +83,7 @@ const navItems = [
   </nav>
 
   <!-- Menú móvil - posicionado en la esquina superior derecha -->
-  <div class="lg:hidden fixed top-4 right-4 z-50">
+  <div class="xl:hidden">
     <MobileMenu />
   </div>
 </header>
@@ -92,6 +92,7 @@ const navItems = [
   document.addEventListener("astro:page-load", () => {
     const sections = document.querySelectorAll("section")
     const navItems = document.querySelectorAll("header nav a")
+    const headerNav = document.getElementById("header-nav")
 
     const callback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
@@ -119,6 +120,24 @@ const navItems = [
       observer.observe(section)
     })
 
+    if (headerNav instanceof HTMLElement && headerNav.dataset.anchorInit !== "true") {
+      navItems.forEach((item) => {
+        item.addEventListener("click", (event) => {
+          const href = item.getAttribute("href") || ""
+          if (!href.startsWith("/#")) return
+
+          const targetId = href.replace("/#", "")
+          const target = document.getElementById(targetId)
+          if (!target) return
+
+          event.preventDefault()
+          history.replaceState(null, "", href)
+          target.scrollIntoView({ behavior: "smooth", block: "start" })
+        })
+      })
+      headerNav.dataset.anchorInit = "true"
+    }
+
     // Cleanup function
     document.onvisibilitychange = () => {
       if (document.visibilityState === "hidden") {
@@ -142,14 +161,14 @@ const navItems = [
   }
 
   /* Responsive breakpoints mejorados */
-  @media (max-width: 1024px) {
+  @media (max-width: 1279px) {
     #header-nav a {
       padding: 0.5rem 0.75rem;
       font-size: 0.875rem;
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1279px) {
     #header-nav {
       display: none !important;
     }

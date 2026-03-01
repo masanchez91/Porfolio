@@ -294,7 +294,7 @@ const imageURL = new URL(image, Astro.site).href
 
   </head>
 
-  <body class="relative text-holy-text-primary bg-gradient-adaptive" data-bg-intensity={backgroundIntensity}>
+  <body class="relative overflow-x-clip text-holy-text-primary bg-gradient-adaptive" data-bg-intensity={backgroundIntensity}>
     <div
       class="fixed top-0 left-0 w-full h-full z-[-2] bg-gradient-adaptive"
       style="background: var(--holy-dark-primary); background-image: radial-gradient(ellipse 80% 80% at 50% -20%, var(--holy-bg-glow), transparent);"
@@ -683,6 +683,10 @@ const imageURL = new URL(image, Astro.site).href
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+      }
+
+      section[id] {
+        scroll-margin-top: 6.5rem;
       }
 
       .multi-line-ellipsis {

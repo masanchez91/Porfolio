@@ -2,7 +2,7 @@
 import MailIcon from "./icons/Mail.astro"
 ---
 
-<div class="fixed bottom-6 right-6 z-50">
+<div class="floating-cta fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50">
   <a 
     href="mailto:mauro@holy-code.com"
     class="group relative overflow-hidden flex items-center gap-3 px-6 py-4 bg-holy-action hover:bg-holy-action/90 text-holy-text-primary rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-holy-action/20 backdrop-blur-sm"
@@ -34,17 +34,23 @@ import MailIcon from "./icons/Mail.astro"
 
   /* Responsive: ocultar en pantallas muy pequeñas */
   @media (max-width: 480px) {
-    .fixed {
-      bottom: 4rem;
-      right: 1rem;
+    .floating-cta {
+      bottom: 5.25rem;
+      right: 0.75rem;
     }
-    
-    .group {
-      padding: 0.75rem 1rem;
+
+    .floating-cta .group {
+      padding: 0.7rem 0.95rem;
     }
-    
-    .group span {
+
+    .floating-cta .group span {
       display: none;
+    }
+  }
+
+  @media (max-height: 680px) {
+    .floating-cta {
+      bottom: 4.8rem;
     }
   }
 
